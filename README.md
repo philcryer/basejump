@@ -22,7 +22,7 @@ Missing that? I can't help you.
 
 ## usage
 
-run `basejump` to automatically setup all of applications and dot files *without prompts*! So, if you are not `philcryer`, you should _read the code_ (amiright Mike?) before blindy running this so you know what's going to happen.
+Run `basejump` to automatically setup all of applications and dot files *without prompts*! So, if you are not `philcryer`, you should _read the code_ (amiright Mike?) before blindy running this so you know what's going to happen.
 
 ```
 ./basejump
