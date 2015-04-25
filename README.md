@@ -5,7 +5,7 @@ basejump
 
 ## requirements
 
-* Linux (Debian _(recommended)_ or Ubuntu - not using CentOS or RHEL currently, so 'that's not supported')
+* Linux (Debian _(recommended)_ or Ubuntu. Using CentOS or RHEL? "that's not supported")
 * git
 * zsh
 * vim-nox
