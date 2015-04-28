@@ -1,19 +1,20 @@
 basejump
 =====
 
-![](baseJumping.png) Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs the needed `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty)) and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+![](basejump.png) Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs my preferred `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty))i and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 
 ## requirements
 
-* Linux (Debian _(recommended)_ or Ubuntu. Using CentOS or RHEL? "that's not supported")
+* Linux (Debian or Ubuntu. Using something else? "that's not supported")
 * git
-* zsh
+* rsync
 * vim-nox
+* zsh
 
 Missing any of those? No problem, just:
 
 ```
-sudo apt-get install git zsh vim-nox
+sudo apt-get install git rsync vim-nox zsh
 ```
 
 * a sense of humor
@@ -28,7 +29,7 @@ Run `basejump` to automatically setup all of applications and dot files *without
 ./basejump
 ```
 
-When it's done, close/reopen your terminal session and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
+When it's done, it will close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
 
 ## issues?
 
