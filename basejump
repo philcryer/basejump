@@ -11,24 +11,30 @@ function software-check(){
       fi
   done
   echo "=> Checing for required packages..."
-    if [ ! -d '/usr/share/doc/vim-nox' ]; then
-      sudo apt-get install vim-nox
-    fi
+#    if [ ! -d '/usr/share/doc/vim-nox' ]; then
+#      sudo apt-get install vim-nox
+#    fi
 }
 
 function install-dots(){
   git clone https://github.com/philcryer/dotty.git
-  rsync --exclude ".git/" --exclude "README.md" --exclude "LICENSE" -avh --no-perms . ~;
+  cd dotty
+  rsync --exclude ".git/" --exclude ".ssh" --exclude "README.md" --exclude "LICENSE" -avh --no-perms . ~;
+cd -
+  rm -rf dotty
 }
 
 function install-prezto(){
-	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+	cd ~
+	if [ ! -d '.zprezto' ]; then
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git ".zprezto"
 	ln -s .zprezto/runcoms/zlogin .zlogin
 	ln -s .zprezto/runcoms/zlogout .zlogout
 	ln -s .zprezto/runcoms/zpreztorc .zpreztorc
 	ln -s .zprezto/runcoms/zprofile .zprofile
 	ln -s .zprezto/runcoms/zshenv .zshenv
 	ln -s .zprezto/runcoms/zshrc .zshrc
+	fi
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
@@ -49,8 +55,10 @@ if [ ! -d '~/.zprezto' ]; then
 	echo;echo "NOTICE: attempting to change your default shell (provide password)"
 	chsh -s /bin/zsh
 
-	echo "NOTICE: exiting shell for changes to be applied"
-	exit 
+	echo "NOTICE: exit shell and re-login changes to be applied"
+fi
+if [ -d '~/.extra' ]; then
+	echo "NOTICE: edit ~/.extra for more functionality"
 fi
 
 exit 0
