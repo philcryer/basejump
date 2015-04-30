@@ -33,6 +33,9 @@ function install-prezto(){
 	ln -s .zprezto/runcoms/zpreztorc .zpreztorc
 	ln -s .zprezto/runcoms/zprofile .zprofile
 	ln -s .zprezto/runcoms/zshenv .zshenv
+if [ -f .zshrc ]; then
+	rm -f .zshrc
+fi
 	ln -s .zprezto/runcoms/zshrc .zshrc
 	fi
 }
