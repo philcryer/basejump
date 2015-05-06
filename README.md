@@ -39,6 +39,12 @@ When it's done, it will close your terminal session, log back in and you should 
 
 ## issues?
 
-You might have them if you're not running Debian _(recommended)_ or Ubuntu. If you are and are still having issues, let me know by opening an [issue](https://github.com/philcryer/basejump/issues) or making a [pull request](https://github.com/philcryer/basejump/pulls).
+You might have them if you're not running Debian _(recommended)_ or Ubuntu. Using OSX? I told you that was "not supported", but if you see errors about Vim not having Lua support you can fix it by installing a "better" vim than stock with `homebrew`:
+
+```
+brew install macvim --with-cscope --with-lua --override-system-vim
+```
+
+If you are and are still having issues, let me know by opening an [issue](https://github.com/philcryer/basejump/issues) or making a [pull request](https://github.com/philcryer/basejump/pulls).
 
 ### thanks
