@@ -1,10 +1,9 @@
 basejump
 =====
-<img style="float:right" src="basejump.png" /> Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs my preferred `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty))i and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+![](basejump.png)
+Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs my preferred `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty))i and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 
 ## requirements
-
-![](basejump.png) 
 
 * Linux (Debian or Ubuntu. Using something else? "that's not supported")
 * git
