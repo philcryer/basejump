@@ -33,7 +33,7 @@ Run `basejump` to automatically setup all of applications and dot files *without
 Do you want to just AUTORUN this without prompts? Of course you do!
 
 ```
-git clone https://github.com/philcryer/basejump.git && cd basejump && source basejump -f
+git clone https://github.com/philcryer/basejump.git; cd basejump; ./basejump -f
 ```
 
 When it's done, it will close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
