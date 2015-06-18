@@ -2,31 +2,50 @@
 
 set -e
 
+echo "=> Ohai! Let's basejump!"
+
 function software-check(){
   echo "=> Checking for required software..."
     for cli in git rsync zsh; do
       if ! type "$cli" > /dev/null 2>&1; then
         "NOTICE $cli is not installed - trying to install"
-	 sudo apt-get install $cli
+				sudo apt-get install $cli
       fi
-  done
+  	done
   echo "=> Checing for required packages..."
-#    if [ ! -d '/usr/share/doc/vim-nox' ]; then
-#      sudo apt-get install vim-nox
-#    fi
+	if [ ! -d '/usr/share/doc/vim-nox' ]; then
+		sudo apt-get install vim-nox
+	fi
 }
 
 function install-dots(){
+  echo "=> Installing dotfiles..."
+	# dotty dnld and install dotfiles
+	# TODO this should install dotty like we install prezo so we can just git pull on dotty dir (aka ~)
   git clone https://github.com/philcryer/dotty.git
   cd dotty
   rsync --exclude ".git/" --exclude ".ssh" --exclude "README.md" --exclude "LICENSE" -avh --no-perms . ~;
 cd -
+	# cleanup dotty dnld
   rm -rf dotty
+
+	# yikes, create some .vim directories if we don't have them, gotta be a better way to do this 
+  echo "=> Creating .vim dirs, if needed..."
+	if [ ! -d '~/.vim/backups' ]; then
+		mkdir -p ~/.vim/backups
+	fi
+	if [ ! -d '~/.vim/swaps' ]; then
+		mkdir -p ~/.vim/swaps
+	fi
+	if [ ! -d '~/.vim/undo' ]; then
+		mkdir -p ~/.vim/undo
+	fi
 }
 
 function install-prezto(){
 	cd ~
 	if [ ! -d '.zprezto' ]; then
+  echo "=> Installing zprezto..."
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git ".zprezto"
 	ln -s .zprezto/runcoms/zlogin .zlogin
 	ln -s .zprezto/runcoms/zlogout .zlogout
@@ -40,11 +59,22 @@ fi
 	fi
 }
 
+if [ "$1" == "--update" -o "$1" == "-u" ]; then
+  echo "=> Updating existing install..."
+	install-dots;
+	if [ ! -d '~/.zprezto' ]; then
+		cd ~/.zprezto
+		git pull
+		exit 0
+	fi
+fi
+
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
+  echo "=> Installing without prompts, like a boss..."
   software-check;
   install-dots;
 else
-  read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+  read -p "=> This may overwrite existing files! Are you sure? (y/n) " -n 1;
   echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
       software-check;
@@ -60,8 +90,12 @@ if [ ! -d '~/.zprezto' ]; then
 
 	echo "NOTICE: exit shell and re-login changes to be applied"
 fi
-if [ -d '~/.extra' ]; then
-	echo "NOTICE: edit ~/.extra for more functionality"
+
+if [ ! -f '~/.extra' ]; then
+	touch ~/.extra
+	echo "NOTICE: edit the ~/.extra file to override functionality"
+else 
+	echo "NOTICE: edit the ~/.extra file to override functionality"
 fi
 
 exit 0
