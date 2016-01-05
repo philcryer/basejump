@@ -94,7 +94,7 @@ fi;
 if [ ! -d '~/.zprezto' ]; then
 	install-prezto;
 
-	echo;echo "NOTICE: attempting to change your default shell (provide password)"
+	echo;echo "NOTICE: attempting to change your default shell (provide password) or run `chsh -s /bin/zsh` and logout"
 	chsh -s /bin/zsh
 
 	echo "NOTICE: exit shell and re-login changes to be applied"
