@@ -39,7 +39,7 @@ basejump -f
 Or maybe you just want a single command to download and install, I really don't recommend this unless you *really* know what this script does! Then again, yolo!
 
 ```
-curl -s https://raw.githubusercontent.com/philcryer/basejump/master/basejump | bash
+curl -s -L http://bit.ly/1Z2ngJi | bash
 ```
 
 When it's done, close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
