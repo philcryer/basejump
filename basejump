@@ -27,7 +27,7 @@ cd -
   if [ ! -d '~/.ssh' ]; then
 	mkdir -p ~/.ssh
   fi
-  cp dotty/.sshconfig $HOME/.ssh/config-sample
+  mv .sshconfig $HOME/.ssh/config-sample
   rm -rf dotty
   echo "=> Creating .vim dirs, if needed..."
 	if [ ! -d '~/.vim/backups' ]; then
