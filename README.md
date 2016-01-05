@@ -2,7 +2,7 @@ basejump
 =====
 ![](basejump.png)
 
-Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs my preferred `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty)) and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs my preferred `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)), my preferred `vim` setup ([amix/vimrc](https://github.com/amix/vimrc)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty)) and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 
 ## requirements
 
@@ -24,19 +24,25 @@ Missing that? I can't help you.
 
 ## usage
 
-Run `basejump` to automatically setup all of applications and dot files *without prompts*! So, if you are not `philcryer`, you should _read the code_ (amiright Mike?) before blindy running this so you know what's going to happen.
+Run `basejump`, which will automatically setup all of applications and dot files! But, if you are not `philcryer`, you should first _read the code_ (amiright Mike?) before blindy running this so you know what's going to happen.
 
 ```
-./basejump
+basejump
 ```
 
-Do you want to just AUTORUN this without prompts? Of course you do!
+Do you want to just AUTORUN this *without prompts?* Remember, I said you shouldn't, but I'm not your boss, so why the hell not?
 
 ```
-git clone https://github.com/philcryer/basejump.git; cd basejump; ./basejump -f
+basejump -f
 ```
 
-When it's done, it will close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
+Or maybe you just want a single command to download and install, I really don't recommend this unless you *really* know what this script does! Then again, yolo!
+
+```
+git clone https://github.com/philcryer/basejump.git; cd basejump; sh basejump -f
+```
+
+When it's done, close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
 
 ## issues?
 
