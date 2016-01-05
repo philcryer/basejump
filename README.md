@@ -10,6 +10,7 @@ Basejump automates the deployment of my customized console configs on new system
 * git
 * rsync
 * vim-nox
+* bash
 * zsh
 
 Missing any of those? No problem, just:
