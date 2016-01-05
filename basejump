@@ -91,20 +91,21 @@ else
     fi;
 fi;
 
+if [ ! -f '~/.extra' ]; then
+	touch ~/.extra
+	echo "NOTICE: edit the ~/.extra file if you want to override any functionality"
+else 
+	echo "NOTICE: edit the ~/.extra file if you want to override any functionality"
+fi
+
 if [ ! -d '~/.zprezto' ]; then
 	install-prezto;
 
-	echo;echo "NOTICE: attempting to change your default shell (provide password) or run `chsh -s /bin/zsh` and logout"
+	echo;echo "NOTICE: attempting to change your default shell (provide password)"
+	echo "NOTICE: if this step fails just run 'chsh -s /bin/zsh', logout and back in."
 	chsh -s /bin/zsh
 
 	echo "NOTICE: exit shell and re-login changes to be applied"
-fi
-
-if [ ! -f '~/.extra' ]; then
-	touch ~/.extra
-	echo "NOTICE: edit the ~/.extra file to override functionality"
-else 
-	echo "NOTICE: edit the ~/.extra file to override functionality"
 fi
 
 exit 0
