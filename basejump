@@ -9,7 +9,7 @@ software-check(){
     for cli in git rsync zsh; do
       if ! type "$cli" > /dev/null 2>&1; then
         "NOTICE $cli is not installed - trying to install"
-				sudo apt-get install $cli
+	sudo apt-get install $cli
       fi
   	done
   echo "=> Checing for required packages..."
@@ -20,18 +20,15 @@ software-check(){
 
 install-dots(){
   echo "=> Installing dotfiles..."
-	# dotty dnld and install dotfiles
-	# TODO this should install dotty like we install prezo so we can just git pull on dotty dir (aka ~)
   git clone https://github.com/philcryer/dotty.git
   cd dotty
   rsync --exclude ".git/" --exclude ".ssh" --exclude "README.md" --exclude "LICENSE" -avh --no-perms . ~;
 cd -
-	if [ ! -d '~/.ssh' ]; then
-		mkdir -p ~/.ssh
-	fi
-	cp dotty/.sshconfig $HOME/.ssh/config-sample
-  	rm -rf dotty
-	# yikes, create some .vim directories if we don't have them, gotta be a better way to do this 
+  if [ ! -d '~/.ssh' ]; then
+	mkdir -p ~/.ssh
+  fi
+  cp dotty/.sshconfig $HOME/.ssh/config-sample
+  rm -rf dotty
   echo "=> Creating .vim dirs, if needed..."
 	if [ ! -d '~/.vim/backups' ]; then
 		mkdir -p ~/.vim/backups
@@ -52,7 +49,6 @@ install-prezto(){
 	ln -s .zprezto/runcoms/zlogin .zlogin
 	ln -s .zprezto/runcoms/zlogout .zlogout
 	ln -s .zprezto/runcoms/zpreztorc .zpreztorc
-#	ln -s .zprezto/runcoms/zprofile .zprofile
 	ln -s .zprezto/runcoms/zshenv .zshenv
 	sed -i 's/sorin/steeef/g' ~/.zpreztorc  
 if [ -f .zshrc ]; then
@@ -82,6 +78,7 @@ if [ "$1" == "--force" -o "$1" == "-f" ]; then
   echo "=> Installing without prompts, like a boss..."
   software-check;
   install-dots;
+  install-prezto;
   install-amix-vimrc;
 else
   read -p "=> This may overwrite existing files! Are you sure? (y/n) " -n 1;
@@ -89,6 +86,7 @@ else
     if [[ $REPLY =~ ^[Yy]$ ]]; then
       software-check;
       install-dots;
+      install-prezto;
       install-amix-vimrc;
     fi;
 fi;
@@ -100,14 +98,9 @@ else
 	echo "NOTICE: edit the ~/.extra file if you want to override any functionality"
 fi
 
-if [ ! -d '~/.zprezto' ]; then
-	install-prezto;
-
-	echo;echo "NOTICE: attempting to change your default shell (provide password)"
-	echo "NOTICE: if this step fails just run 'chsh -s /bin/zsh', logout and back in."
-	chsh -s /bin/zsh
-
-	echo "NOTICE: exit shell and re-login changes to be applied"
-fi
+echo;echo "NOTICE: attempting to change your default shell (provide password)"
+echo "NOTICE: if this step fails just run 'chsh -s /bin/zsh', logout and back in."
+chsh -s /bin/zsh
+echo "NOTICE: exit shell and re-login changes to be applied"
 
 exit 0
