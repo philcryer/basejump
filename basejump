@@ -59,6 +59,12 @@ fi
 	fi
 }
 
+function install-amix-vimrc(){
+    echo "=> Installing amix/vimrc..."
+    git clone https://github.com/amix/vimrc.git ~/.vim_runtime
+    sh ~/.vim_runtime/install_awesome_vimrc.sh
+}
+
 if [ "$1" == "--update" -o "$1" == "-u" ]; then
   echo "=> Updating existing install..."
 	install-dots;
@@ -73,12 +79,14 @@ if [ "$1" == "--force" -o "$1" == "-f" ]; then
   echo "=> Installing without prompts, like a boss..."
   software-check;
   install-dots;
+  install-amix-vimrc;
 else
   read -p "=> This may overwrite existing files! Are you sure? (y/n) " -n 1;
   echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
       software-check;
       install-dots;
+      install-amix-vimrc;
     fi;
 fi;
 
