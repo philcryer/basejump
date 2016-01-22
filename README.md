@@ -8,6 +8,7 @@ Basejump automates the deployment of my customized console configs on new system
 
 * Linux (Debian or Ubuntu. Using something else? "that's not supported")
 * git
+* curl
 * rsync
 * vim-nox
 * bash
@@ -16,7 +17,7 @@ Basejump automates the deployment of my customized console configs on new system
 Missing any of those? No problem, just:
 
 ```
-(sudo) apt-get install git rsync vim-nox zsh
+(sudo) apt-get install git curl rsync vim-nox zsh
 ```
 
 * a sense of humor
