@@ -6,16 +6,11 @@ echo "=> Ohai! Let's basejump!"
 
 software-check(){
   echo "=> Checking for required software..."
-    for cli in git rsync zsh; do
+    for cli in git rsync zsh vim; do
       if ! type "$cli" > /dev/null 2>&1; then
-        "NOTICE $cli is not installed - trying to install"
-	sudo apt-get install $cli
+        "NOTICE $cli is not installed - install that and try again"; exit 1
       fi
   	done
-  echo "=> Checing for required packages..."
-	if [ ! -d '/usr/share/doc/vim-nox' ]; then
-		sudo apt-get install vim-nox
-	fi
 }
 
 install-dots(){
@@ -50,7 +45,8 @@ install-prezto(){
 	ln -s .zprezto/runcoms/zlogout .zlogout
 	ln -s .zprezto/runcoms/zpreztorc .zpreztorc
 	ln -s .zprezto/runcoms/zshenv .zshenv
-	sed -i 's/sorin/steeef/g' ~/.zpreztorc  
+    mv .prompt_fak3r_setup ~/.zpvrezto/modules/prompt/functions/prompt_fak3r_setup
+	sed -i 's/sorin/fak3r/g' ~/.zpreztorc  
 if [ -f .zshrc ]; then
 	rm -f .zshrc
 fi
