@@ -45,7 +45,7 @@ install-prezto(){
 	ln -s .zprezto/runcoms/zlogout .zlogout
 	ln -s .zprezto/runcoms/zpreztorc .zpreztorc
 	ln -s .zprezto/runcoms/zshenv .zshenv
-    mv .prompt_fak3r_setup ~/.zpvrezto/modules/prompt/functions/prompt_fak3r_setup
+    mv .prompt_fak3r_setup ~/.zprezto/modules/prompt/functions/prompt_fak3r_setup
 	sed -i 's/sorin/fak3r/g' ~/.zpreztorc  
 if [ -f .zshrc ]; then
 	rm -f .zshrc
