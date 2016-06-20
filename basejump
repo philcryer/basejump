@@ -51,6 +51,7 @@ if [ -f .zshrc ]; then
 	rm -f .zshrc
 fi
 	ln -s .zprezto/runcoms/zshrc .zshrc
+    cd -; cat .zshrc.history >> ${HOME}/.zshrc
 	fi
 }
 
