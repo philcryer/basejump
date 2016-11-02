@@ -18,11 +18,11 @@ install-dots(){
   git clone https://github.com/philcryer/dotty.git
   cd dotty
   rsync --exclude ".git/" --exclude ".ssh" --exclude "README.md" --exclude "LICENSE" -avh --no-perms . ~;
-cd -
-  if [ ! -d '~/.ssh' ]; then
-	mkdir -p ~/.ssh
+  if [ ! -d '$HOME/.ssh' ]; then
+	mkdir -p $HOME/.ssh
   fi
-  mv $HOME/.sshconfig $HOME/.ssh/config-sample
+  cp .ssh/ssh_config $HOME/.ssh/config 
+  cd -
   rm -rf dotty
   echo "=> Creating .vim dirs, if needed..."
 	if [ ! -d '~/.vim/backups' ]; then
@@ -36,10 +36,11 @@ cd -
 	fi
 }
 
+# now using oh-my-zsh (again) from the dotty repo, it'll auto update 
 install-prezto(){
-	cd ~
-	if [ ! -d '.zprezto' ]; then
-  echo "=> Installing zprezto..."
+cd ~
+   if [ ! -d '.zprezto' ]; then
+	echo "=> Installing zprezto..."
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git ".zprezto"
 	ln -s .zprezto/runcoms/zlogin .zlogin
 	ln -s .zprezto/runcoms/zlogout .zlogout
@@ -47,18 +48,21 @@ install-prezto(){
 	ln -s .zprezto/runcoms/zshenv .zshenv
     mv .prompt_fak3r_setup ~/.zprezto/modules/prompt/functions/prompt_fak3r_setup
 	sed -i 's/sorin/fak3r/g' ~/.zpreztorc  
-if [ -f .zshrc ]; then
-	rm -f .zshrc
-fi
-	ln -s .zprezto/runcoms/zshrc .zshrc
-    cd -; cat .zshrc.history >> ${HOME}/.zshrc
+	if [ -f .zshrc ]; then
+		rm -f .zshrc
 	fi
+	ln -s .zprezto/runcoms/zshrc .zshrc
+	cd -; cat .zshrc.history >> ${HOME}/.zshrc
+fi
 }
 
 install-amix-vimrc(){
     echo "=> Installing amix/vimrc..."
     git clone https://github.com/amix/vimrc.git ~/.vim_runtime
+    # install ultimate
     sh ~/.vim_runtime/install_awesome_vimrc.sh
+    # install basic
+    sh ~/.vim_runtime/install_basic_vimrc.sh
 }
 
 if [ "$1" == "--update" -o "$1" == "-u" ]; then
@@ -75,7 +79,7 @@ if [ "$1" == "--force" -o "$1" == "-f" ]; then
   echo "=> Installing without prompts, like a boss..."
   software-check;
   install-dots;
-  install-prezto;
+  #install-prezto;
   install-amix-vimrc;
 else
   read -p "=> This may overwrite existing files! Are you sure? (y/n) " -n 1;
@@ -83,8 +87,8 @@ else
     if [[ $REPLY =~ ^[Yy]$ ]]; then
       software-check;
       install-dots;
-      install-prezto;
-      install-amix-vimrc;
+     #install-prezto;
+     install-amix-vimrc;
     fi;
 fi;
 
