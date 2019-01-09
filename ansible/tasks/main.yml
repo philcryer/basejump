@@ -20,11 +20,3 @@
     path: ${HOME}/downloads
     state: link
   when: stat_downloads_dir.stat.exists == True
-
-  #- name: MacOS specific tasks
-  #include_tasks: macos.yml
-  #when: ansible_distribution == 'MacOSX'
-
-- name: Linux specific tasks
-  include_tasks: linux.yml
-  when: ansible_system == 'Linux'

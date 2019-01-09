@@ -5,10 +5,10 @@
   #become: true
 
   vars_files:
-    - vars/common.yml
+  #  - vars/common.yml
       #- vars/{{ ansible_distribution }}.yml
       #- vars/{{ ansible_distribution|lower }}.yml
-      #- "vars/{{ ansible_system|lower }}.yml"
+      - "group_vars/{{ ansible_system|lower }}.yml"
 
   #  roles:
       #  - role: elliotweiser.osx-command-line-tools
@@ -24,6 +24,7 @@
       #tags: ['mas']
 
   tasks:
+    - include_tasks: "tasks/main.yml"
     - include_tasks: "tasks/{{ ansible_system|lower }}.yml"
       #- include_tasks: tasks/main.yml
 

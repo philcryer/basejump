@@ -1,9 +1,9 @@
 ---
 - name: Install a list of packages
   apt:
-    name: "{{ packages }}"
+    name: "{{ installed_packages }}"
   vars:
-    packages:
-    - htop
-    - multitail
+    packages: "{{ installed_packages }}"
+    #- htop
+    #- multitail
   become: true
