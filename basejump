@@ -106,8 +106,8 @@ main(){
 
 main;
 
-#cd ansible
-#ansible-galaxy install -r requirements.yml
-#ansible-playbook main.yml -i inventory --ask-sudo-pass -vvvv
+cd ansible
+#ansible-playbook main.yml -i inventory --ask-become-pass -vvvv
+ansible-playbook main.yml -i inventory --ask-become-pass
 
 exit 0

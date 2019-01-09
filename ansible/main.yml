@@ -1,18 +1,20 @@
 ---
 - hosts: all
   connection: local
-  become: true
-  become_method: sudo
+  gather_facts: true
+  #become: true
 
   vars_files:
     - vars/common.yml
-    - vars/{{ ansible_distribution|lower }}.yml
+      #- vars/{{ ansible_distribution }}.yml
+      #- vars/{{ ansible_distribution|lower }}.yml
+      #- "vars/{{ ansible_system|lower }}.yml"
 
-  roles:
+  #  roles:
       #  - role: elliotweiser.osx-command-line-tools
       #when: ansible_distribution == 'MacOSX'
-    - role: geerlingguy.homebrew
-      when: ansible_distribution == 'MacOSX'
+  #  - role: geerlingguy.homebrew
+  #when: ansible_distribution == 'MacOSX'
 
       #- role: geerlingguy.dotfiles
       #when: configure_dotfiles
@@ -22,10 +24,9 @@
       #tags: ['mas']
 
   tasks:
-    - include_tasks: tasks/main.yml
+    - include_tasks: "tasks/{{ ansible_system|lower }}.yml"
+      #- include_tasks: tasks/main.yml
 
-      # - include_tasks: tasks/sudoers.yml
-      #when: configure_sudoers
 
       # - include_tasks: tasks/terminal.yml
       #when: configure_terminal

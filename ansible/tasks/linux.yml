@@ -6,4 +6,4 @@
     packages:
     - htop
     - multitail
-  become: yes
+  become: true
