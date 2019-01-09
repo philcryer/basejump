@@ -1,6 +1,8 @@
-basejump
-=====
-![](basejump.png)
+# basejump
+
+![](src/basejump.png)
+
+## NOTICE: this is being rewritten for 2019 with Ansible handling Linux (debian, ubuntu) or macOS. Stay tuned
 
 Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs my preferred `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)), my preferred `vim` setup ([amix/vimrc](https://github.com/amix/vimrc)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty)) and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 

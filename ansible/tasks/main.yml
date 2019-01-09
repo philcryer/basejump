@@ -1,0 +1,24 @@
+---
+- name: Ensure home bin directory
+  file:
+    path: $HOME/bin
+    state: directory
+
+- name: Ensure code dictory exists
+  file:
+    path: $HOME/{{ code_directory }}
+    state: directory
+
+- name: Symlink Downloads to downloads because unix standards
+  file:
+    src: $HOME/Downloads
+    path: $HOME/downloads
+    state: link
+
+- name: MacOS specific tasks
+  include_tasks: macos.yml
+  when: ansible_distribution == 'MacOSX'
+
+- name: Linux specific tasks
+  include_tasks: linux.yml
+  when: ansible_distribution == 'Linux'
