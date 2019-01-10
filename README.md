@@ -2,9 +2,9 @@
 
 # basejump
 
-Basejump uses (Ansible)[https://www.ansible.com] to automate the deployment of my dotfiles, configs, and handly-dandy one-liners on *nix systems (Linux and macOS). I needed one command I could run to get the game going from scratch, so this script installs Ansible via Pip, then gets my preferred setups from my `[philcryer/dotfiles](https://github.com/philcryer/dotfiles)` project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+Basejump uses [Ansible](https://www.ansible.com) to automate the deployment of my dotfiles, configs, and handly-dandy one-liners on *nix systems (Linux and macOS). I needed one command I could run to get the game going from scratch, so this script installs Ansible via Pip, then gets my preferred setups from my [philcryer/dotfiles](https://github.com/philcryer/dotfiles) project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 
-__NOTICE__ if you don't have Ansible installed, it will do that first, automatically!
+__NOTICE__ if you don't have Ansible installed, basejump will do that first, automatically!
 
 ## requirements
 
@@ -32,7 +32,7 @@ basejump
 Do you want to just AUTORUN this *without prompts?* using one of those `curl` methods? I always say you shouldn't do this, it's a security risk, but look, I'm not your boss, and yolo, so why the hell not?
 
 ```
-curl -s -L http://bit.ly/1Z2ngJi -o base; bash base -f
+curl -s -L https://raw.githubusercontent.com/philcryer/basejump/master/src/auto.sh -o /tmp/base; sh /tmp/base
 ```
 
 When it's done, close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
