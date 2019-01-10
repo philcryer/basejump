@@ -1,0 +1,4 @@
+---
+- name: geerlingguy.mas
+- name: geerlingguy.homebrew
+- name: dev-sec.ssh-hardening

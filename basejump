@@ -90,7 +90,7 @@ install-homebrew(){
 run-ansible(){
     msg_status "handing off to ansible!"
     cd ansible
-    ansible-galaxy install -r roles/requirements.yml
+    ansible-galaxy install -r requirements.yml
     ansible-playbook main.yml -i inventory
 }
 

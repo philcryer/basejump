@@ -10,17 +10,14 @@ dotfiles_giturl: https://github.com/philcryer/dotfiles.git
 
 dotfiles_files:
   - .aliases
-/home/phil/devel/dotty/.bash_profile
+  - .bash_profile
   - .curlrc
-/home/phil/devel/dotty/.editorconfig
-/home/phil/devel/dotty/.exports
+  - .editorconfig
+  - .exports
   - .hushlogin
-/home/phil/devel/dotty/.inputrc
+  - .inputrc
   - .screenrc
   - .tmux.conf
   - .wgetrc
-
-
-/home/phil/devel/dotty/.gvimrc
-
-/home/phil/devel/dotty/.osx
+  - .gvimrc
+#/home/phil/devel/dotty/.osx
