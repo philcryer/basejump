@@ -1,14 +1,13 @@
 ---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: yes
+
 - name: Install a list of packages
-  #apt:
-  #  name: "{{ installed_packages }}"
-  #vars:
-  #  packages: "{{ installed_packages }}"
-    #- htop
-    #- multitail
-  #become: true
   apt:
     name: "{{ item }}"
     state: present
   loop: "{{ installed_packages }}"
-  become: true
+  become: yes

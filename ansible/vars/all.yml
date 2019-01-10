@@ -2,7 +2,9 @@
 gitconfig_name: "philcryer"
 gitconfig_email: "phil@philcryer.com"
 
-code_directory: ${HOME}/devel
+sudo_user: "{{ ansible_user_id }}"
+
+code_directory: ~/devel
 
 dotfiles_giturl: https://github.com/philcryer/dotty.git
 

@@ -1,4 +1,0 @@
----
-- name: Run .osx dotfiles.
-  shell: "{{ osx_script }}"
-  changed_when: false

@@ -1,4 +1,13 @@
 ---
+- name: Add user to sudo for passwordless ansible work 
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^{{ ansible_user_id }}'
+    line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD:ALL'
+    validate: 'visudo -cf %s'
+  become: true
+
 - name: Ensure home bin directory
   file:
     path: "${HOME}/bin"
@@ -20,3 +29,11 @@
     path: "${HOME}/downloads"
     state: link
   when: downloads_dir.stat.exists == True
+
+- name: Disallow root SSH access
+  lineinfile: dest=/etc/ssh/sshd_config
+    regexp="^PermitRootLogin"
+    line="PermitRootLogin no"
+    state=present
+  notify: restart sshd
+  become: true

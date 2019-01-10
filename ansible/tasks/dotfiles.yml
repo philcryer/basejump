@@ -7,9 +7,36 @@
     update: yes
 
 - name: Install dotfiles
-  file:
+  synchronize:
     src: "{{ code_directory }}/dotty/{{ item }}"
-    dest: "${HOME}/{{ item }}"
-    state: hard
+    dest: "~/{{ item }}"
+    checksum: yes
+    archive: no
   with_items:
     - "{{ dotfiles_files }}"
+  delegate_to: localhost
+
+- name: Check if amix/vimrc is installed yet
+  stat:
+    path: "${HOME}/.vim_runtime"
+  register: amix_dir
+
+- name: Download or update amix/vimrc code
+  git: 
+    repo: https://github.com/amix/vimrc.git
+    dest: "${HOME}/.vim_runtime"
+    clone: yes
+    update: yes
+    depth: 1
+
+- name: Install amix/vimrc
+  command: sh ~/.vim_runtime/install_awesome_vimrc.sh
+  when: amix_dir.stat.exists == False
+
+- name: Update amix/vimrc
+  command: git pull --rebase
+  args:
+    chdir: ~/.vim_runtime
+  when: amix_dir.stat.exists == True
+
+
