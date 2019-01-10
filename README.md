@@ -2,15 +2,13 @@
 
 # basejump
 
-## NOTICE: this is being rewritten for 2019 with Ansible handling Linux (debian, ubuntu) or macOS. Stay tuned
+Basejump uses (Ansible)[https://www.ansible.com] to automate the deployment of my dotfiles, configs, and handly-dandy one-liners on *nix systems (Linux and macOS). I needed one command I could run to get the game going from scratch, so this script installs Ansible via Pip, then gets my preferred setups from my `[philcryer/dotfiles](https://github.com/philcryer/dotfiles)` project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 
-Basejump uses (Ansible)https://www.ansible.com] to automate the deployment of my dotfiles, configs, and handly-dandy one-liners on *nix systems (Linux and macOS). I needed one command I could run to get the game going from scratch, so this script installs my preferred setups from my ([philcryer/dotfiles](https://github.com/philcryer/dotfiles)) project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
-
-__NOTICE__ if you don't have Ansible installed, it does that first
+__NOTICE__ if you don't have Ansible installed, it will do that first, automatically!
 
 ## requirements
 
-* Linux (tested on Debian and Ubuntu, stand by for RHEL testing), macOS
+* Linux (tested on Debian and Ubuntu, stand by for RHEL testing), macOS (wip, but it's coming along!)
 * python
 * pip
 * git
@@ -41,13 +39,15 @@ When it's done, close your terminal session, log back in and you should be all s
 
 ## issues?
 
-You might have them if you're not running Debian _(recommended)_ or Ubuntu. I'd like to have this tested on other distros, please let me know if you have. The macOS support is coming along, try it out. Oh, if you see errors about Vim not having Lua support you can fix it by installing a "better" vim than stock with `homebrew`:
+You might have them if you're not running Debian _(recommended)_ or Ubuntu. I'd like to have this tested on other distros, please let me know if you have. 
+
+The macOS support is coming along, try it out. Oh, and in macOS if you see errors about Vim not having Lua support you can fix it by installing a "better" vim than stock via `homebrew`:
 
 ```
 brew install macvim --with-cscope --with-lua --override-system-vim
 (sudo) brew linkapps
 ```
 
-If you are and are still having issues, let me know by opening an [issue](https://github.com/philcryer/basejump/issues) or making a [pull request](https://github.com/philcryer/basejump/pulls).
+If you are and are having other issues or have suggestions, let me know by opening an [issue](https://github.com/philcryer/basejump/issues) or making a [pull request](https://github.com/philcryer/basejump/pulls).
 
 ### thanks
