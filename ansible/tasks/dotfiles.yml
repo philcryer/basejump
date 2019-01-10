@@ -39,4 +39,11 @@
     chdir: ~/.vim_runtime
   when: amix_dir.stat.exists == True
 
+- name: Verify personal amix/vimrc overrides installed
+  synchronize:
+    src: "{{ code_directory }}/dotty/.vim_runtime/vimrcs/my_configs.vim"
+    dest: "~/.vim_runtime/vimrcs/my_configs.vim"
+    checksum: yes
+    archive: no
+  delegate_to: localhost
 
