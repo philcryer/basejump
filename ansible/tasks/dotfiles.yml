@@ -2,18 +2,26 @@
 - name: Checkout dotfiles repo
   git:
     repo: "{{ dotfiles_giturl }}"
-    dest: "{{ code_directory }}/dotty/"
+    dest: "{{ code_directory }}/dotfiles/"
     clone: yes
     update: yes
 
 - name: Install dotfiles
   synchronize:
-    src: "{{ code_directory }}/dotty/{{ item }}"
+    src: "{{ code_directory }}/dotfiles/{{ item }}"
     dest: "~/{{ item }}"
     checksum: yes
     archive: no
   with_items:
     - "{{ dotfiles_files }}"
+  delegate_to: localhost
+
+- name: Install one-liners to ~/bin
+  synchronize:
+    src: "{{ code_directory }}/dotfilesbin/"
+    dest: "~/bin/"
+    checksum: yes
+    archive: no
   delegate_to: localhost
 
 - name: Check if amix/vimrc is installed yet
@@ -41,7 +49,7 @@
 
 - name: Verify personal amix/vimrc overrides installed
   synchronize:
-    src: "{{ code_directory }}/dotty/.vim_runtime/vimrcs/my_configs.vim"
+    src: "{{ code_directory }}/dotfiles/.vim_runtime/vimrcs/my_configs.vim"
     dest: "~/.vim_runtime/vimrcs/my_configs.vim"
     checksum: yes
     archive: no

@@ -4,15 +4,14 @@
   gather_facts: true
 
   vars_files:
-      - "vars/all.yml"
-      - "vars/{{ ansible_system|lower }}.yml"
+      - "group_vars/all"
+      - "group_vars/{{ ansible_system|lower }}"
+
+  tasks:
+    - include_tasks: "tasks/main.yml"
+      tags: ['tasks']
 
   roles:
     - role: geerlingguy.homebrew
       when: ansible_distribution == 'MacOSX'
       tags: ['osx']
-
-  tasks:
-    - include_tasks: "tasks/main.yml"
-    - include_tasks: "tasks/dotfiles.yml"
-    - include_tasks: "tasks/{{ ansible_system|lower }}.yml"

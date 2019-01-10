@@ -1,0 +1,26 @@
+---
+gitconfig_name: "philcryer"
+gitconfig_email: "phil@philcryer.com"
+
+sudo_user: "{{ ansible_user_id }}"
+
+code_directory: ~/devel
+
+dotfiles_giturl: https://github.com/philcryer/dotfiles.git
+
+dotfiles_files:
+  - .aliases
+/home/phil/devel/dotty/.bash_profile
+  - .curlrc
+/home/phil/devel/dotty/.editorconfig
+/home/phil/devel/dotty/.exports
+  - .hushlogin
+/home/phil/devel/dotty/.inputrc
+  - .screenrc
+  - .tmux.conf
+  - .wgetrc
+
+
+/home/phil/devel/dotty/.gvimrc
+
+/home/phil/devel/dotty/.osx

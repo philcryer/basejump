@@ -1,39 +1,15 @@
 ---
-- name: Add user to sudo for passwordless ansible work 
-  lineinfile:
-    path: /etc/sudoers
-    state: present
-    regexp: '^{{ ansible_user_id }}'
-    line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD:ALL'
-    validate: 'visudo -cf %s'
-  become: true
+- name: Running basejump/base task
+  include: base.yml
 
-- name: Ensure home bin directory
-  file:
-    path: "${HOME}/bin"
-    state: directory
+- name: Running basejump/dotfiles task
+  include: dotfiles.yml
 
-- name: Ensure code dictory exists
-  file:
-    path: "{{ code_directory }}"
-    state: directory
+- name: Running basejump/sudoers task
+  include: sudoers.yml
 
-- name: Check for non-standard Downloads directory
-  stat:
-    path: "${HOME}/Downloads"
-  register: downloads_dir
+- name: Running basejump/ssh-lockdown task
+  include: ssh-lockdown.yml
 
-- name: If non-standard Downloads directory exists, symlink it
-  file:
-    src: "${HOME}/Downloads"
-    path: "${HOME}/downloads"
-    state: link
-  when: downloads_dir.stat.exists == True
-
-- name: Disallow root SSH access
-  lineinfile: dest=/etc/ssh/sshd_config
-    regexp="^PermitRootLogin"
-    line="PermitRootLogin no"
-    state=present
-  notify: restart sshd
-  become: true
+- name: Running basejump/linux|macosx task
+  include: "{{ ansible_system|lower }}.yml"

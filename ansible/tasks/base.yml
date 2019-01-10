@@ -1,0 +1,22 @@
+---
+- name: Ensure home bin directory
+  file:
+    path: "${HOME}/bin"
+    state: directory
+
+- name: Ensure code dictory exists
+  file:
+    path: "{{ code_directory }}"
+    state: directory
+
+- name: Check for non-standard Downloads directory
+  stat:
+    path: "${HOME}/Downloads"
+  register: downloads_dir
+
+- name: If non-standard Downloads directory exists, symlink it
+  file:
+    src: "${HOME}/Downloads"
+    path: "${HOME}/downloads"
+    state: link
+  when: downloads_dir.stat.exists == True

@@ -1,46 +1,37 @@
-# basejump
+<div align="center" border="0"><img src="src/basejump.png" alt="dotfiles"></div>
 
-![](src/basejump.png)
+# basejump
 
 ## NOTICE: this is being rewritten for 2019 with Ansible handling Linux (debian, ubuntu) or macOS. Stay tuned
 
-Basejump automates the deployment of my customized console configs on new systems. I needed one command I could run to get the game going from scratch, so this script installs my preferred `zsh` setup ([sbusso/zprezto](https://github.com/sbusso/zprezto)), my preferred `vim` setup ([amix/vimrc](https://github.com/amix/vimrc)) then checks out my dotfiles repo ([philcryer/dotty](https://github.com/philcryer/dotty)) and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+Basejump uses (Ansible)https://www.ansible.com] to automate the deployment of my dotfiles, configs, and handly-dandy one-liners on *nix systems (Linux and macOS). I needed one command I could run to get the game going from scratch, so this script installs my preferred setups from my ([philcryer/dotfiles](https://github.com/philcryer/dotfiles)) project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+
+__NOTICE__ if you don't have Ansible installed, it does that first
 
 ## requirements
 
-* Linux (Debian or Ubuntu. Using something else? "that's not supported")
+* Linux (tested on Debian and Ubuntu, stand by for RHEL testing), macOS
+* python
+* pip
 * git
-* curl
-* rsync
-* vim-nox
-* bash
-* zsh
-
-Missing any of those? No problem, just:
-
-```
-(sudo) apt-get install git curl rsync vim-nox zsh
-```
-
-* a sense of humor
-
-Missing that? I can't help you.
+* sudo
 
 ## usage
 
-Run `basejump`, which will automatically setup all of applications and dot files! But, if you are not `philcryer`, you should first _read the code_ (amiright Mike?) before blindy running this so you know what's going to happen.
+Checkout the code, change into the directory:
+
+```
+git clone https://github.com/philcryer/basejump.git
+cd basejump
+```
+
+Look over what's going to be done by reading `ansible/main.yml`, then run `basejump`, which will automatically install Ansible via Pip (if it's not already installed), and then setup all of applications and dot files I can't live without
 
 ```
 basejump
 ```
 
-Do you want to just AUTORUN this *without prompts?* Remember, I said you shouldn't, but I'm not your boss, so why the hell not?
-
-```
-basejump -f
-```
-
-Or maybe you just want a single command to download and install, I really don't recommend this unless you *really* know what this script does! Then again, yolo!
+Do you want to just AUTORUN this *without prompts?* using one of those `curl` methods? I always say you shouldn't do this, it's a security risk, but look, I'm not your boss, and yolo, so why the hell not?
 
 ```
 curl -s -L http://bit.ly/1Z2ngJi -o base; bash base -f
@@ -50,7 +41,7 @@ When it's done, close your terminal session, log back in and you should be all s
 
 ## issues?
 
-You might have them if you're not running Debian _(recommended)_ or Ubuntu. Using OSX? I told you that was "not supported", but if you see errors about Vim not having Lua support you can fix it by installing a "better" vim than stock with `homebrew`:
+You might have them if you're not running Debian _(recommended)_ or Ubuntu. I'd like to have this tested on other distros, please let me know if you have. The macOS support is coming along, try it out. Oh, if you see errors about Vim not having Lua support you can fix it by installing a "better" vim than stock with `homebrew`:
 
 ```
 brew install macvim --with-cscope --with-lua --override-system-vim
