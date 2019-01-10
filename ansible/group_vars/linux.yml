@@ -1,21 +1,4 @@
 ---
-downloads: ~/.ansible-downloads/
-
-configure_dotfiles: yes
-configure_terminal: yes
-configure_osx: yes
-
-dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
-dotfiles_repo_accept_hostkey: yes
-dotfiles_repo_local_destination: ~/devel
-
-dotfiles_files:
-  - .bash_profile
-  - .gitignore
-  - .inputrc
-  - .osx
-  - .vimrc
-
 installed_packages:
   - gettext
   - git
@@ -28,7 +11,7 @@ installed_packages:
     #  - nvm
     #  - php
     #- ssh-copy-id
-  - cowsay
+    #- cowsay
     #- readline
   - openssl
   - pv

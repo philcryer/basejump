@@ -1,0 +1,15 @@
+---
+- name: Checkout dotfiles repo
+  git:
+    repo: "{{ dotfiles_giturl }}"
+    dest: "{{ code_directory }}/dotty/"
+    clone: yes
+    update: yes
+
+- name: Install dotfiles
+  file:
+    src: "{{ code_directory }}/dotty/{{ item }}"
+    dest: "${HOME}/{{ item }}"
+    state: hard
+  with_items:
+    - "{{ dotfiles_files }}"

@@ -2,20 +2,19 @@
 - hosts: all
   connection: local
   gather_facts: true
-  #become: true
 
   vars_files:
-  #  - vars/common.yml
-      #- vars/{{ ansible_distribution }}.yml
-      #- vars/{{ ansible_distribution|lower }}.yml
+      - "group_vars/all.yml"
       - "group_vars/{{ ansible_system|lower }}.yml"
 
-  #  roles:
-      #  - role: elliotweiser.osx-command-line-tools
-      #when: ansible_distribution == 'MacOSX'
-  #  - role: geerlingguy.homebrew
-  #when: ansible_distribution == 'MacOSX'
+  roles:
+    - role: geerlingguy.homebrew
+      when: ansible_distribution == 'MacOSX'
+      tags: ['osx']
 
+      #- role: elliotweiser.osx-command-line-tools
+      #when: ansible_distribution == 'MacOSX'
+      #tags: ['osx']
       #- role: geerlingguy.dotfiles
       #when: configure_dotfiles
       #tags: ['dotfiles']
@@ -25,22 +24,5 @@
 
   tasks:
     - include_tasks: "tasks/main.yml"
+    - include_tasks: "tasks/dotfiles.yml"
     - include_tasks: "tasks/{{ ansible_system|lower }}.yml"
-      #- include_tasks: tasks/main.yml
-
-
-      # - include_tasks: tasks/terminal.yml
-      #when: configure_terminal
-
-      #- include_tasks: tasks/osx.yml
-      #when: ansible_distribution == 'MacOSX'
-      #tags: ['osx']
-
-      #- include_tasks: tasks/extra-packages.yml
-      #tags: ['extra-packages']
-
-      #- name: Run configured post-provision ansible task files.
-      #include_tasks: "{{ outer_item }}"
-      #loop_control:
-      #  loop_var: outer_item
-      #with_fileglob: "{{ post_provision_tasks|default(omit) }}"

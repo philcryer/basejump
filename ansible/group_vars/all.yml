@@ -1,0 +1,15 @@
+---
+gitconfig_name: "philcryer"
+gitconfig_email: "phil@philcryer.com"
+
+code_directory: ${HOME}/devel
+
+dotfiles_giturl: https://github.com/philcryer/dotty.git
+
+dotfiles_files:
+  - .aliases
+  - .curlrc
+  - .hushlogin
+  - .screenrc
+  - .tmux.conf
+  - .wgetrc
