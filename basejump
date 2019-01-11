@@ -17,9 +17,15 @@ function msg_notification () {
     echo -e "\x1B[01;33m[*]\x1B[0m $1"
 }
 
-msg_status "let's basejump!"
-
-sudo -v
+kick-off(){
+    clear
+    echo -e "\x1B[01;31m"
+    echo "     |            |    |             |               |"
+    echo "  |        |              |        |             |"
+    cat src/logo-ascii.txt
+    msg_status "ohai, let's basejump!"
+    sudo -v
+}
 
 os-check(){
     msg_notification "checking operating system"
@@ -95,6 +101,7 @@ run-ansible(){
 }
 
 main(){
+    kick-off;
     os-check;
     software-check;
     #if [ "$distro" == "MacOS" ]; then

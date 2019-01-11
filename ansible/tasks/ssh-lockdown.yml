@@ -5,6 +5,6 @@
     regexp: "^PermitRootLogin"
     line: "PermitRootLogin no"
     state: present
-    validate: 'sudo sshd -t'
+    validate: 'sudo sshd -t %s'
   notify: restart sshd
   become: true

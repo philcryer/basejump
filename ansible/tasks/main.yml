@@ -8,8 +8,8 @@
 - name: Running basejump/sudoers task
   include: sudoers.yml
 
-- name: Running basejump/ssh-lockdown task
-  include: ssh-lockdown.yml
+  #- name: Running basejump/ssh-lockdown task
+  #include: ssh-lockdown.yml
 
 - name: Running basejump/linux|macosx task
   include: "{{ ansible_system|lower }}.yml"
