@@ -1,4 +1,4 @@
-<div align="center" border="0"><img src="src/basejump.png" alt="dotfiles"></div>
+<div align="center" border="0"><img src="src/logo.png" alt="dotfiles"></div>
 
 # basejump
 
@@ -36,6 +36,12 @@ curl -s -L https://raw.githubusercontent.com/philcryer/basejump/master/src/auto.
 ```
 
 When it's done, close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
+
+## screenshot
+
+<div align="center" border="0"><img src="src/screenshot.png" alt="basejump in action!"></div>
+
+Look, can it really be something I wrote if there's no ascii-art? That's a retorical question, the answer is no.
 
 ## issues?
 
