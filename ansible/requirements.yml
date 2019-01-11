@@ -1,4 +1,4 @@
 ---
-- name: geerlingguy.mas
 - name: geerlingguy.homebrew
 - name: dev-sec.ssh-hardening
+- name: elliotweiser.osx-command-line-tools

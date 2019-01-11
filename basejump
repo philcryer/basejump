@@ -37,60 +37,48 @@ os-check(){
 }
 
 software-check(){
-  msg_notification "checking for required software"
+    msg_notification "checking for required software"
     for cli in python pip git sudo; do
-      if ! type "$cli" > /dev/null 2>&1; then
-        msg_error "$cli is not installed - install that and try again"; exit 1
-      fi
-  	done
-  msg_good "all required software installed"
+        if ! type "$cli" > /dev/null 2>&1; then
+            msg_error "$cli is not installed - install that and try again"; exit 1
+        fi
+    done
+    msg_good "all required software installed"
 }
 
 software-check-mac(){
-  msg_notification "checking for specific macOS required software"
+    msg_notification "checking for specific macOS required software"
     for cli in ruby; do
-      if ! type "$cli" > /dev/null 2>&1; then
-        msg_error "$cli is not installed - install that and try again"; exit 1
-      fi
+        if ! type "$cli" > /dev/null 2>&1; then
+            msg_error "$cli is not installed - install that and try again"; exit 1
+        fi
   	done
-  msg_good "specific macOS software installed"
+    msg_good "specific macOS software installed"
 }
 
 install-ansible(){
-  if ! type "ansible" > /dev/null 2>&1; then
-    msg_notification "ansible not installed, enter sudo password to install"
-    sudo pip3 install --upgrade pip
-    sudo pip3 install ansible
-  fi
-  msg_good "ansible is installed"
+    if ! type "ansible" > /dev/null 2>&1; then
+        msg_notification "ansible not installed, enter sudo password to install"
+        sudo pip3 install --upgrade pip
+        sudo pip3 install ansible
+    fi
+    msg_good "ansible is installed"
 }
 
 install-xcode(){
     if ! command -v cc >/dev/null; then
         msg_notification "xcode commandline tools not installed, installing"
         xcode-select --install
-    else
-        msg_good "xcode already installed, continuing"
     fi
-    if ! command -v cc >/dev/null; then
-        msg_error "xcode commandline tools install failed - see output and try again"; exit 1
-    else
-        msg_good "xcode commandline tools installed"
-    fi
+    msg_good "xcode commandline tools installed"
 }
 
 install-homebrew(){
     if ! command -v brew >/dev/null; then
         msg_notification "homebrew not installed, installing"
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
-    else
-        msg_good "homebrew already installed, continuing"
     fi
-    if ! command -v brew >/dev/null; then
-        msg_error "homebrew install failed - see output and try again"; exit 1
-    else
-        msg_good "homebrew installed"
-    fi
+    msg_good "homebrew installed"
 }
 
 run-ansible(){
