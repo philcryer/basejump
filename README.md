@@ -39,7 +39,7 @@ When it's done, close your terminal session, log back in and you should be all s
 
 ## screenshot
 
-<div align="center" border="0"><img src="src/screenshot.png" alt="basejump in action!"><font size="2">Can it really be something I wrote if there's no ascii-art? That's a retorical question, the answer is no.</font></div>
+<div align="center" border="0"><img src="src/screenshot.png" alt="basejump in action!"><br /><font size="1">Can it really be something I wrote if there's no ascii-art? That's a retorical question, the answer is no.</font></div>
 
 ## issues
 
