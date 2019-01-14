@@ -39,11 +39,9 @@ When it's done, close your terminal session, log back in and you should be all s
 
 ## screenshot
 
-<div align="center" border="0"><img src="src/screenshot.png" alt="basejump in action!"></div>
+<div align="center" border="0"><img src="src/screenshot.png" alt="basejump in action!"><font size="2">Can it really be something I wrote if there's no ascii-art? That's a retorical question, the answer is no.</font></div>
 
-Look, can it really be something I wrote if there's no ascii-art? That's a retorical question, the answer is no.
-
-## issues?
+## issues
 
 You might have them if you're not running Debian _(recommended)_ or Ubuntu. I'd like to have this tested on other distros, please let me know if you have. 
 
@@ -51,9 +49,33 @@ The macOS support is coming along, try it out. Oh, and in macOS if you see error
 
 ```
 brew install macvim --with-cscope --with-lua --override-system-vim
-(sudo) brew linkapps
+sudo brew linkapps
 ```
 
 If you are and are having other issues or have suggestions, let me know by opening an [issue](https://github.com/philcryer/basejump/issues) or making a [pull request](https://github.com/philcryer/basejump/pulls).
+
+## license 
+
+The MIT License (MIT)
+
+Copyright (c) 2019 philcryer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ### thanks
