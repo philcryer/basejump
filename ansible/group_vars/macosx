@@ -14,9 +14,8 @@ configure_osx: yes
 homebrew_installed_packages:
   - autoconf
   - bash-completion
-    #  - doxygen
+  - doxygen
   - gettext
-    #  - gifsicle
   - git
   - go
   - gpg
@@ -27,16 +26,23 @@ homebrew_installed_packages:
   - sqlite
   - mcrypt
   - nmap
-    # - node
-    #  - nvm
-    #  - php
   - ssh-copy-id
-    #- cowsay
   - readline
   - openssl
   - pv
   - wget
   - wrk
+  # new 01172019
+  - kubernetes-cli
+  - ctop
+  - docker-clean 
+  - coreutils 
+  - jq
+  - openssh
+  - speedtest-cli
+  - tmux
+  - tree
+  - watch
 
 homebrew_taps:
   - homebrew/core
