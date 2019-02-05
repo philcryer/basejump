@@ -1,0 +1,22 @@
+---
+- name: Check if SpaceVim is installed
+  stat:
+    path: "~/.SpaceVim.d"
+  register: spacevim_dir
+
+- name: Install SpaceVim if it's not installed
+  command: curl -sLf https://spacevim.org/install.sh | bash
+  when: spacevim_dir.stat.exists == false
+
+- name: Get SpaceVim fonts
+  get_url: 
+    url: "{{ nerdfont_url }}"
+    dest: '{{ downloads }}/SourceCodePro.zip'
+    mode: 0644
+  when: spacevim_dir.stat.exists == false
+
+- name: Copy in latest SpaceVim config
+  copy:
+    src: ./files/spacevim-init.toml
+    dest: "$HOME/.SpaceVim.d/init.toml"
+    mode: 0644

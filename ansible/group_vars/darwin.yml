@@ -33,6 +33,7 @@ homebrew_installed_packages:
   - tree
   - watch
   - hugo
+  - nginx
   #- doxygen
   #- git
   #- ssh-copy-id

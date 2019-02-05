@@ -8,17 +8,18 @@ code_directory: ~/devel
 
 dotfiles_giturl: https://github.com/philcryer/dotfiles.git
 
-dotfiles_files:
+dotfiles:
   - .aliases
   - .bash_profile
   - .curlrc
   - .editorconfig
   - .exports
+  - .gitignore
   - .hushlogin
   - .inputrc
   - .screenrc
   - .tmux.conf
   - .wgetrc
-  - .gvimrc
-
+  #- .gvimrc
+  
 nerdfont_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip

@@ -12,5 +12,19 @@
   loop: "{{ installed_packages }}"
   become: yes
 
-- name: Install nerd-fonts
-  command: mkdir -p ~/.local/share/fonts; cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+- name: Ensure SpaceVim fonts dir exists
+  file:
+    path: ~/.local/share/fonts
+    state: directory
+  when: spacevim_dir.stat.exists == false
+
+- name: Extract SpaceVim fonts
+  unarchive:
+    src: "{{ downloads }}/SourceCodePro.zip"
+    dest: ~/.local/share/fonts
+  when: spacevim_dir.stat.exists == false
+
+- name: Remove SpaceVim fonts zip
+  file:
+    path: "{{ downloads }}/SourceCodePro.zip"
+    state: absent

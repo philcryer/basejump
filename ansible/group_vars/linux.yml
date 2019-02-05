@@ -9,3 +9,4 @@ installed_packages:
   - openssl
   - pv
   - wget
+  - nginx

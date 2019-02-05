@@ -6,11 +6,19 @@
     clone: yes
     update: yes
 
-- name: Install dotfiles
+- name: Install static dotfiles
   synchronize:
-    src: "{{ code_directory }}/dotfiles/{{ item }}"
-    dest: "~/{{ item }}"
+    src: "{{ code_directory }}/dotfiles/{{ dotfiles_item }}"
+    dest: "~/{{ dotfiles_item }}"
     checksum: yes
     archive: no
   with_items:
-    - "{{ dotfiles_files }}"
+    - "{{ dotfiles }}"
+  loop_control:
+    loop_var: dotfiles_item
+
+- name: Adding templated dotfile
+  template:
+    src: gitconfig.j2
+    dest: ~/.gitconfig
+    mode: 0644

@@ -1,7 +1,8 @@
 ---
-- name: Install one-liners to ~/bin
+- name: Install one-liners to home/bin dir
   synchronize:
     src: "{{ code_directory }}/dotfiles/bin/"
     dest: "~/bin/"
     checksum: yes
     archive: no
+  delegate_to: localhost
