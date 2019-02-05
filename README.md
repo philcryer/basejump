@@ -8,7 +8,7 @@ __NOTICE__ if you don't have Ansible installed, basejump will do that first, aut
 
 ## requirements
 
-* Linux (tested on Debian and Ubuntu, stand by for RHEL testing), macOS (wip, but it's coming along!)
+* Linux or macOS (10.12+)
 * python
 * pip
 * git
@@ -43,9 +43,9 @@ When it's done, close your terminal session, log back in and you should be all s
 
 ## issues
 
-You might have them if you're not running Debian _(recommended)_ or Ubuntu. I'd like to have this tested on other distros, please let me know if you have. 
+* Linux: if you're not running Debian/GNU Linux _(recommended)_ or Ubuntu Linux, reach out, I'd like this tested on more Linux distros.
 
-The macOS support is coming along, try it out. Oh, and in macOS if you see errors about Vim not having Lua support you can fix it by installing a "better" vim than stock via `homebrew`:
+* macOS: if you see errors about Vim not having Lua support you can fix it by installing a "better" vim than stock via `homebrew`:
 
 ```
 brew install macvim --with-cscope --with-lua --override-system-vim
