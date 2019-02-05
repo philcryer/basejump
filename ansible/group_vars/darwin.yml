@@ -5,7 +5,8 @@ downloads: ~/.ansible/tmp/
 #configure_dotfiles: yes
 configure_dotfiles: no
 configure_terminal: yes
-configure_osx: yes
+configure_osx: no
+#configure_osx: yes
 
 #dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
 #dotfiles_repo_accept_hostkey: yes
@@ -14,9 +15,7 @@ configure_osx: yes
 homebrew_installed_packages:
   - autoconf
   - bash-completion
-  - doxygen
   - gettext
-  - git
   - go
   - gpg
   - hub
@@ -26,51 +25,55 @@ homebrew_installed_packages:
   - sqlite
   - mcrypt
   - nmap
-  - ssh-copy-id
   - readline
-  - openssl
   - pv
-  - wget
-  - wrk
-  # new 01172019
-  - kubernetes-cli
-  - ctop
-  - docker-clean 
-  - coreutils 
   - jq
-  - openssh
-  - speedtest-cli
+  - wget
   - tmux
   - tree
   - watch
+  #- doxygen
+  #- git
+  #- ssh-copy-id
+  #- openssl
+  #- wrk
+  # new 01172019
+  #- kubernetes-cli
+  #- ctop
+  #- docker-clean 
+  #- coreutils 
+  #- openssh
+  #- speedtest-cli
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - caskroom/fonts
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-    #- chromedriver
-  - docker
-    #  - dropbox
-  - firefox
-  - google-chrome
-  - handbrake
-    #- licecap
-    # - limechat
-    # - macvim
-    # - sequel-pro
-    # - skitch
-  - slack
-    #  - sublime-text
-    #  - transmit
-  - torbrowser # integrated tor/firefox broswer
-  - transmission # bittorrent
-  - tunnelblick # VPN
-  - vagrant # | https://www.vagrantup.com/downloads.html
-  - vagrant-manager # 
-  - virtualbox # | https://www.virtualbox.org/
+  - font-hack-nerd-font
   - vlc 
+  #- chromedriver
+  #- docker
+  #  - dropbox
+  #- firefox
+  #- google-chrome
+  #- handbrake
+  #- licecap
+  # - limechat
+  # - macvim
+  # - sequel-pro
+  # - skitch
+  #- slack
+  #  - sublime-text
+  #  - transmit
+  #- torbrowser # integrated tor/firefox broswer
+  #- transmission # bittorrent
+  #- tunnelblick # VPN
+  #- vagrant # | https://www.vagrantup.com/downloads.html
+  #- vagrant-manager # 
+  #- virtualbox # | https://www.virtualbox.org/
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []

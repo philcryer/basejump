@@ -12,4 +12,4 @@
   #include: ssh-lockdown.yml
 
 - name: Running basejump/linux|macosx task
-  include: "{{ ansible_system|lower }}.yml"
+  include: "tasks/{{ ansible_system|lower }}.yml"
