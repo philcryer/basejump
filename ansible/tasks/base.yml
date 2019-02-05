@@ -9,17 +9,7 @@
     path: "{{ code_directory }}"
     state: directory
 
-- name: Check for non-standard Downloads directory
-  stat:
-    path: "${HOME}/Downloads"
-  register: downloads_dir
-
-- name: If non-standard Downloads directory exists, symlink it
+- name: Ensure Downloads directory exists
   file:
-    #src: "${HOME}/Downloads"
-    #path: "${HOME}/downloads"
-    #src: "${HOME}/downloads"
     path: "${HOME}/Downloads"
-    #state: link
     state: directory
-  when: downloads_dir.stat.exists == True

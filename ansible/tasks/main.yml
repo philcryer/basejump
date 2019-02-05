@@ -5,6 +5,9 @@
 - name: Running basejump/dotfiles task
   include: dotfiles.yml
 
+- name: Running basejump/binfiles task
+  include: binfiles.yml
+
 - name: Adding templates
   template:
     src: gitconfig.j2

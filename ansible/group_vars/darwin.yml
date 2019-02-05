@@ -32,6 +32,7 @@ homebrew_installed_packages:
   - tmux
   - tree
   - watch
+  - hugo
   #- doxygen
   #- git
   #- ssh-copy-id

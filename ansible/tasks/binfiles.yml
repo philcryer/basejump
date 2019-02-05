@@ -1,0 +1,7 @@
+---
+- name: Install one-liners to ~/bin
+  synchronize:
+    src: "{{ code_directory }}/dotfiles/bin/"
+    dest: "~/bin/"
+    checksum: yes
+    archive: no
