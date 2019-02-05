@@ -20,4 +20,5 @@ dotfiles_files:
   - .tmux.conf
   - .wgetrc
   - .gvimrc
-#/home/phil/devel/dotty/.osx
+
+nerdfont_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip

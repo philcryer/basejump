@@ -2,3 +2,14 @@
 #- name: Run .osx dotfiles.
 #  shell: "{{ osx_script }}"
 #  changed_when: false
+
+- name: Extract SpaceVim fonts
+  unarchive:
+    src: "{{ downloads }}/SourceCodePro.zip"
+    dest: /Library/Fonts
+  when: spacevim_dir.stat.exists == false
+
+- name: Remove SpaceVim fonts zip
+  file:
+    path: "{{ downloads }}/SourceCodePro.zip"
+    state: absent
