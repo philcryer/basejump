@@ -49,11 +49,13 @@ homebrew_taps:
   - homebrew/core
   - homebrew/cask
   - caskroom/fonts
+  - caskroom/cask
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - font-hack-nerd-font
   - vlc 
+  - visual-studio-code
   #- chromedriver
   #- docker
   #  - dropbox
