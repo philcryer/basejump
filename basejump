@@ -38,7 +38,7 @@ os-check(){
 
 software-check(){
     msg_notification "checking for required software"
-    for cli in python pip git sudo; do
+    for cli in python curl git sudo; do
         if ! type "$cli" > /dev/null 2>&1; then
             msg_error "$cli is not installed - install that and try again"; exit 1
         fi
@@ -46,19 +46,17 @@ software-check(){
     msg_good "all required software installed"
 }
 
-#linux/macOS
-#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-#Then run the following:
-#python get-pip.py
-
-software-check-mac(){
-    msg_notification "checking for specific macOS required software"
-    for cli in ruby; do
+software-check-pip(){
+    msg_notification "checking for python pip"
+    for cli in pip; do
         if ! type "$cli" > /dev/null 2>&1; then
-            msg_error "$cli is not installed - install that and try again"; exit 1
+            msg_error "$cli is not installed - attempting to install"; exit 1
+            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            python get-pip.py
+            rm get-pip.py
         fi
   	done
-    msg_good "specific macOS software installed"
+    msg_good "python pip is installed"
 }
 
 install-ansible(){
@@ -97,15 +95,8 @@ main(){
     kick-off;
     os-check;
     software-check;
-    #if [ "$distro" == "MacOS" ]; then
-    #    software-check-mac;
-    #fi
+    software-check-pip;
     install-ansible;
-    #if [ "$distro" == "MacOS" ]; then
-    #  msg_good "since this is $distro, checking for xcode commandline tools"
-    #  install-xcode;
-    #  msg_good "since this is $distro, checking for homebrew"
-    #fi
     run-ansible;
 }
 
