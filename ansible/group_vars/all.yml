@@ -2,9 +2,11 @@
 gitconfig_name: "philcryer"
 gitconfig_email: "phil@philcryer.com"
 
+code_directory: ~/devel
+
 sudo_user: "{{ ansible_user_id }}"
 
-code_directory: ~/devel
+nerdfont_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip
 
 dotfiles_giturl: https://github.com/philcryer/dotfiles.git
 
@@ -20,6 +22,3 @@ dotfiles:
   - .screenrc
   - .tmux.conf
   - .wgetrc
-  #- .gvimrc
-  
-nerdfont_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip

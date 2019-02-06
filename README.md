@@ -23,7 +23,9 @@ git clone https://github.com/philcryer/basejump.git
 cd basejump
 ```
 
-Look over what's going to be done by reading `ansible/main.yml`, then run `basejump`, which will automatically install Ansible via Pip (if it's not already installed), and then setup all of applications and dot files I can't live without
+Edit `ansible/group_vars/all.yml` and add your git username and email.
+
+Look over what's going to be done by reading `ansible/tasks/main.yml`, then run `basejump`, which will automatically install Ansible if it's not already installed, via Pip, and then setup all of applications and dot files I can't live without
 
 ```
 basejump
