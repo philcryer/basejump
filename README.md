@@ -41,7 +41,7 @@ basejump
 Do you want to just AUTORUN this *without prompts?* using one of those `curl` methods? I always say you shouldn't do this, it's a security risk, but look, I'm not your boss, and yolo, so why the hell not?
 
 ```
-curl -s -L https://raw.githubusercontent.com/philcryer/basejump/master/src/auto.sh -o /tmp/base; sh /tmp/base
+curl -s -L https://raw.githubusercontent.com/philcryer/basejump/master/src/auto.sh -o auto.sh; sh auto.sh
 ```
 
 When it's done, close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 

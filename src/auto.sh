@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -63,7 +63,6 @@ main(){
 main;
 
 cd $HOME/devel/basejump-master
-ls -ls
-#sh basejump
+sh basejump
 
 exit 0
