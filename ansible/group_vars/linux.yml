@@ -10,3 +10,4 @@ installed_packages:
   - wget
   - nginx
   - htop
+  - nc

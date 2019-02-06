@@ -34,6 +34,8 @@ homebrew_installed_packages:
   - watch
   - hugo
   - nginx
+  - htop
+  - nc
   #- doxygen
   #- git
   #- ssh-copy-id

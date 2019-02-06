@@ -2,9 +2,16 @@
 
 # basejump
 
-Basejump uses [Ansible](https://www.ansible.com) to automate the deployment of my dotfiles, configs, and handly-dandy one-liners on *nix systems (Linux and macOS). I needed one command I could run to get the game going from scratch, so this script installs Ansible via Pip, then gets my preferred setups from my [philcryer/dotfiles](https://github.com/philcryer/dotfiles) project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+Basejump uses [Ansible](https://www.ansible.com) to automate the setup of new hosts with applications, dotfiles, configs, and handly-dandy one-liners on Linux and macOS systems. I needed one command I could run to get the game going from scratch, so this script installs Ansible via Pip, then gets my preferred setups from my [philcryer/dotfiles](https://github.com/philcryer/dotfiles) project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 
-__NOTICE__ if you don't have Ansible installed, basejump will do that first, automatically!
+Some of installed software (see full list for [Linux](/ansible/group_vars/linux.yml) and [macOS](/ansible/group_vars/darwin.yml) and add/remove what you want)  
+
+* networking tools: nc, iperf, nmap
+* monitoring: htop
+* applications: nginx, vlc
+* development: [SpaceVim](https://spacevim.org/), font-hack-nerd-font, VS Code (macOS), iTerm 2 (macOS)
+
+__NOTICE__ if you don't have Ansible installed, basejump will do that first via Pip, automatically!
 
 ## requirements
 
@@ -23,7 +30,7 @@ git clone https://github.com/philcryer/basejump.git
 cd basejump
 ```
 
-Edit `ansible/group_vars/all.yml` and add your git username and email.
+Edit `ansible/group_vars/all.yml` and set your git username and email variables
 
 Look over what's going to be done by reading `ansible/tasks/main.yml`, then run `basejump`, which will automatically install Ansible if it's not already installed, via Pip, and then setup all of applications and dot files I can't live without
 
