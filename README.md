@@ -4,7 +4,7 @@
 
 Basejump uses [Ansible](https://www.ansible.com) to automate the setup of new hosts with applications, dotfiles, configs, and handly-dandy one-liners on Linux and macOS systems. I needed one command I could run to get the game going from scratch, so this script installs Ansible via Pip, then gets my preferred setups from my [philcryer/dotfiles](https://github.com/philcryer/dotfiles) project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
 
-Some of installed software (see full list for [Linux](/ansible/group_vars/linux.yml) and [macOS](/ansible/group_vars/darwin.yml) and add/remove what you want)  
+Some of installed software (see full list for [Linux](/ansible/group_vars/linux.yml) and [macOS](/ansible/group_vars/darwin.yml#L15) and add/remove what you want)  
 
 * networking tools: nc, iperf, nmap
 * monitoring: htop
