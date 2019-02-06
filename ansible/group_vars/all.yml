@@ -22,3 +22,4 @@ dotfiles:
   - .screenrc
   - .tmux.conf
   - .wgetrc
+  - .ssh/config-example
