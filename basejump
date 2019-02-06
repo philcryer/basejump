@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+################################################################################
+# basejump
+#   Basejump uses [Ansible](https://www.ansible.com) to automate the setup of
+#   new hosts with applications, dotfiles, configs, and handly-dandy one-liners
+#   on Linux and macOS systems.
+################################################################################
+# * project:  https://github.com/philcryer/basejump
+# * license:  The MIT License (MIT) Copyright (c) 2019 philcryer
+################################################################################
+
 set -e
 
 distro=$(uname)
