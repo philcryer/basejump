@@ -11,3 +11,4 @@ installed_packages:
   - nginx
   - htop
   - nc
+  - awscli
