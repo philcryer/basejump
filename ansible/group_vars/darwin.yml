@@ -39,6 +39,7 @@ homebrew_installed_packages:
   # work related
   - awscli
   - vault
+  - graphviz
   #- doxygen
   #- git
   #- ssh-copy-id
