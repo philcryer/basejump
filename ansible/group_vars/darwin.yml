@@ -36,7 +36,9 @@ homebrew_installed_packages:
   - nginx
   - htop
   - netcat
+  # work related
   - awscli
+  - vault
   #- doxygen
   #- git
   #- ssh-copy-id
