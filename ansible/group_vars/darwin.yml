@@ -67,7 +67,6 @@ homebrew_cask_apps:
   #- chromedriver
   #- docker
   #  - dropbox
-  #- firefox
   #- google-chrome
   #- handbrake
   #- licecap
@@ -78,6 +77,7 @@ homebrew_cask_apps:
   #- slack
   #  - sublime-text
   #  - transmit
+  #- firefox
   #- torbrowser # integrated tor/firefox broswer
   #- transmission # bittorrent
   #- tunnelblick # VPN
