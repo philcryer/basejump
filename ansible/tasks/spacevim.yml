@@ -5,7 +5,7 @@
   register: spacevim_dir
 
 - name: Install SpaceVim if it's not installed
-  command: curl -sLf https://spacevim.org/install.sh | bash
+  shell: curl -q -sLf https://spacevim.org/install.sh | bash
   when: spacevim_dir.stat.exists == false
 
 - name: Get SpaceVim fonts
@@ -15,10 +15,20 @@
     mode: 0644
   when: spacevim_dir.stat.exists == false
 
-- name: Ensure SpaceVim.d exists
+- name: Ensure SpaceVim fonts dir exists
   file:
-    path: "~/.SpaceVim.d"
+    path: ~/.local/share/fonts
     state: directory
+
+- name: Extract SpaceVim fonts
+  unarchive:
+    src: "{{ downloads }}/SourceCodePro.zip"
+    dest: ~/.local/share/fonts
+  when: spacevim_dir.stat.exists == false
+
+- name: Reload font cache
+  shell: fc-cache -f
+  when: ansible_system == "Linux" and spacevim_dir.stat.exists == false
 
 - name: Copy in latest SpaceVim config
   copy:

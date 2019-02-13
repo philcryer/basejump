@@ -12,3 +12,6 @@ installed_packages:
   - htop
   - netcat
   - awscli
+  - vim-nox
+  - fonts-powerline
+  - fontconfig
