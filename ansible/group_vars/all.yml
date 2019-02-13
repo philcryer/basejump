@@ -2,6 +2,8 @@
 gitconfig_name: "philcryer"
 gitconfig_email: "phil@philcryer.com"
 
+downloads: ~/.ansible/tmp/
+
 code_directory: ~/devel
 
 sudo_user: "{{ ansible_user_id }}"

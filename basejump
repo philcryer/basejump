@@ -60,9 +60,9 @@ software-check-pip(){
     msg_notification "checking for python pip"
     for cli in pip; do
         if ! type "$cli" > /dev/null 2>&1; then
-            msg_error "$cli is not installed - attempting to install"; exit 1
+            msg_error "$cli is not installed - attempting to install"
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            python get-pip.py
+            sudo python get-pip.py
             rm get-pip.py
         fi
   	done

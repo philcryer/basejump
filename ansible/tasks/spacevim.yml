@@ -15,6 +15,11 @@
     mode: 0644
   when: spacevim_dir.stat.exists == false
 
+- name: Ensure SpaceVim.d exists
+  file:
+    path: "~/.SpaceVim.d"
+    state: directory
+
 - name: Copy in latest SpaceVim config
   copy:
     src: ./files/spacevim-init.toml

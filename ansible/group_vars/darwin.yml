@@ -1,7 +1,4 @@
 ---
-#downloads: ~/.ansible-downloads/
-downloads: ~/.ansible/tmp/
-
 #configure_dotfiles: yes
 configure_dotfiles: no
 configure_terminal: yes

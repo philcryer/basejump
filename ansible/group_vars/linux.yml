@@ -10,5 +10,5 @@ installed_packages:
   - wget
   - nginx
   - htop
-  - nc
+  - netcat
   - awscli
