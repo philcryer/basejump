@@ -1,7 +1,17 @@
 ---
-#- name: Run .osx dotfiles.
-#  shell: "{{ osx_script }}"
-#  changed_when: false
+- name: Install macos defaults
+  copy:
+    src: "files/macos-defaults"
+    dest: ~/bin/
+    mode: 0755
+  delegate_to: localhost
+
+- name: Install macos update
+  copy:
+    src: "files/macos-update"
+    dest: ~/bin/
+    mode: 0755
+  delegate_to: localhost
 
 - name: Extract SpaceVim fonts
   unarchive:
