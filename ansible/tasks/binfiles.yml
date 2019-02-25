@@ -2,7 +2,7 @@
 - name: Install binfiles, oneliners, etc to HOME-bin
   synchronize:
     src: "{{ code_directory }}/dotfiles/bin/"
-    dest: ~/bin/
+    dest: ~/bin
     checksum: yes
     archive: no
     recursive: yes
