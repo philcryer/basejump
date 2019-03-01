@@ -35,6 +35,7 @@ homebrew_installed_packages:
   - netcat
   # work related
   - awscli
+  - aws-sam-cli
   - vault
   - graphviz
   #- doxygen
@@ -55,12 +56,14 @@ homebrew_taps:
   - homebrew/cask
   - caskroom/fonts
   - caskroom/cask
+  - aws/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - font-hack-nerd-font
   - vlc 
   - visual-studio-code
+  #- amethyst # needs review
   #- chromedriver
   #- docker
   #  - dropbox
