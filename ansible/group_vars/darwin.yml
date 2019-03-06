@@ -31,6 +31,7 @@ homebrew_installed_packages:
   - watch
   - hugo
   - nginx
+  - npm
   - htop
   - netcat
   # work related
@@ -108,6 +109,9 @@ npm_packages: []
   #   state: present # present/absent/latest, default: present
   #   version: "^2.6" # default: N/A
 pip_packages: []
+# - name: boto3
+#    state: present
+#    version:
   # - name: mkdocs
   #   state: present # present/absent/latest, default: present
   #   version: "0.16.3" # default: N/A

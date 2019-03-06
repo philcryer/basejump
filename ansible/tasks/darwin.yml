@@ -23,3 +23,8 @@
   file:
     path: "{{ downloads }}/SourceCodePro.zip"
     state: absent
+
+- name: Install pip packages
+  pip:
+    #name: PackagenameA,PackagenameB
+    name: boto3

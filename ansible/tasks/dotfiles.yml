@@ -17,6 +17,21 @@
   loop_control:
     loop_var: dotfiles_item
 
+- name: Adding .config dir
+  file:
+    path: ~/.config
+    state: directory
+
+- name: Adding .config/pip dir
+  file:
+    path: ~/.config/pip
+    state: directory
+
+- name: Adding templated dotfile
+  copy:
+    src: "{{ code_directory }}/dotfiles/pip.conf"
+    dest: ~/.config/pip/pip.conf
+
 - name: Adding templated dotfile
   template:
     src: gitconfig.j2
