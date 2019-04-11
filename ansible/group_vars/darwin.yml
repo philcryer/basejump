@@ -64,6 +64,8 @@ homebrew_cask_apps:
   - font-hack-nerd-font
   - vlc 
   - visual-studio-code
+  #brew cask install vscodium
+  - vscodium
   #- amethyst # needs review
   #- chromedriver
   #- docker

@@ -25,3 +25,8 @@ dotfiles:
   - .tmux.conf
   - .wgetrc
   - .ssh/config-example
+
+pip_packages:
+  - tabulate
+  - colored
+  - termcolor
