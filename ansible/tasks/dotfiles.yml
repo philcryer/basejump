@@ -6,7 +6,7 @@
     clone: yes
     update: yes
 
-- name: Install static dotfiles
+- name: Install static dotfiles (will error if you have local changes, this is normal)
   synchronize:
     src: "{{ code_directory }}/dotfiles/{{ dotfiles_item }}"
     dest: "~/{{ dotfiles_item }}"

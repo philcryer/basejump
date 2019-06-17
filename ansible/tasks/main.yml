@@ -19,3 +19,8 @@
 
 - name: Running OS specific task
   include: "tasks/{{ ansible_system|lower }}.yml"
+
+- name: Cleaup downloaded repo
+  file:
+    path: "{{ code_directory }}/dotfiles/"
+    state: absent

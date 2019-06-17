@@ -1,6 +1,6 @@
 ---
-gitconfig_name:
-gitconfig_email:
+gitconfig_name: 
+gitconfig_email: 
 
 downloads: ~/.ansible/tmp/
 

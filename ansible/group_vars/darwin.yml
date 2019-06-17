@@ -21,7 +21,6 @@ homebrew_installed_packages:
   - libevent
   - sqlite
   - mcrypt
-  - nmap
   - readline
   - pv
   - jq
@@ -29,16 +28,14 @@ homebrew_installed_packages:
   - tmux
   - tree
   - watch
-  - hugo
-  - nginx
   - npm
   - htop
   - netcat
-  # work related
+  - graphviz
+  # AWS related
   - awscli
   - aws-sam-cli
   - vault
-  - graphviz
   #- doxygen
   #- git
   #- ssh-copy-id
@@ -62,10 +59,10 @@ homebrew_taps:
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - font-hack-nerd-font
-  - vlc 
-  - visual-studio-code
+  #- vlc 
+  #- visual-studio-code
   #brew cask install vscodium
-  - vscodium
+  #- vscodium
   #- amethyst # needs review
   #- chromedriver
   #- docker
