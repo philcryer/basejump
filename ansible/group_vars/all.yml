@@ -1,6 +1,6 @@
 ---
-gitconfig_name: "philcryer"
-gitconfig_email: "phil@philcryer.com"
+gitconfig_name:
+gitconfig_email:
 
 downloads: ~/.ansible/tmp/
 
