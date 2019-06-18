@@ -28,6 +28,14 @@ os-check(){
         fi
 }
 
+install-xcode(){
+    if ! command -v cc >/dev/null; then
+        msg_notification "xcode commandline tools not installed, installing"
+        xcode-select --install
+    fi
+    msg_good "xcode commandline tools installed"
+}
+
 software-check(){
   msg_notification "checking for required software"
     for cli in curl python pip git sudo; do
@@ -55,6 +63,9 @@ get-basejump(){
 
 main(){
     os-check;
+    if [ "$distro" == "MacOS" ]; then
+      install-xcode;
+    fi
     software-check;
     get-basejump;
     msg_status "handing off to basejump!"
@@ -63,6 +74,7 @@ main(){
 main;
 
 cd $HOME/devel/basejump-master
-sh basejump
+chmod 755 basejump
+./basejump
 
 exit 0
