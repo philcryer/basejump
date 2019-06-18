@@ -68,12 +68,14 @@ main(){
     fi
     software-check;
     get-basejump;
-    msg_status "edit gitconfig vars and run basejump!"
+    msg_status ">> Next steps >>"
+    msg_status "* run"
+    msg_status "  cd $HOME/devel/basejump-master"
+    msg_status "* edit gitconfig vars in ansible/group_vars/all.yml"
+    msg_status "* run basejump!"
+    msg_status "  ./basejump"
 }
 
 main;
-
-cd $HOME/devel/basejump-master
-pwd
 
 exit 0
