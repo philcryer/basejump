@@ -64,6 +64,9 @@ software-check-pip(){
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             sudo python get-pip.py
             rm get-pip.py
+        else
+            msg_notification "checking for latest version of python pip"
+            sudo -H pip install --upgrade pip
         fi
   	done
     msg_good "python pip is installed"
@@ -72,7 +75,6 @@ software-check-pip(){
 install-ansible(){
     if ! type "ansible" > /dev/null 2>&1; then
         msg_notification "ansible not installed, enter sudo password to install"
-        sudo pip install --upgrade pip
         sudo pip install ansible
     fi
     msg_good "ansible is installed"
@@ -104,6 +106,9 @@ run-ansible(){
 main(){
     kick-off;
     os-check;
+    if [ "$distro" == "MacOS" ]; then
+      install-xcode;
+    fi
     software-check;
     software-check-pip;
     install-ansible;

@@ -27,4 +27,5 @@
 - name: Install pip packages
   pip:
     name: boto3
-    extra_args: --user
+    #extra_args: --user
+  become: yes
