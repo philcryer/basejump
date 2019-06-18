@@ -4,6 +4,16 @@
     path: "~/.SpaceVim.d"
   register: spacevim_dir
 
+- name: Ensure home Spacevim directory exists
+  file:
+    path: "${HOME}/.SpaceVim"
+    state: directory
+
+- name: Ensure home Spacevim.d directory exists
+  file:
+    path: "${HOME}/.SpaceVim.d"
+    state: directory
+
 - name: Install SpaceVim if it's not installed
   shell: curl -q -sLf https://spacevim.org/install.sh | bash
   when: spacevim_dir.stat.exists == false

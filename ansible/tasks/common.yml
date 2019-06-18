@@ -1,7 +1,12 @@
 ---
-- name: Ensure home bin directory
+- name: Ensure home bin directory exists
   file:
     path: "${HOME}/bin"
+    state: directory
+
+- name: Ensure home .ssh directory exists
+  file:
+    path: "${HOME}/.ssh"
     state: directory
 
 - name: Ensure code dictory exists
