@@ -24,8 +24,8 @@
     path: "{{ downloads }}/SourceCodePro.zip"
     state: absent
 
-- name: Install pip packages
-  pip:
-    name: boto3
+#- name: Install pip packages
+#  pip:
+#    name: boto3
     #extra_args: --user
-  become: yes
+#  become: yes
