@@ -55,6 +55,7 @@ homebrew_taps:
  # - homebrew/cask
  # - caskroom/fonts
  # - caskroom/cask
+  - homebrew/cask
   - aws/tap
 
 
@@ -62,6 +63,10 @@ homebrew_taps:
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - font-hack-nerd-font
+  - iterm2
+  - atom
+  # vscode
+  - visual-studio-code
   #- vlc 
   #- visual-studio-code
   #brew cask install vscodium
