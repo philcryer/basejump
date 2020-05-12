@@ -10,6 +10,8 @@ configure_osx: no
 #dotfiles_repo_local_destination: ~/devel
 
 homebrew_installed_packages:
+  - scala
+  - nodejs
   - parquet-tools
   - autoconf
   - bash-completion
@@ -20,6 +22,7 @@ homebrew_installed_packages:
   - httpie
   - iperf
   - libevent
+  - terraform
   - sqlite
   - mcrypt
   - readline
@@ -57,16 +60,13 @@ homebrew_installed_packages:
 homebrew_taps:
   - homebrew/core
   - homebrew/cask-fonts
- # - homebrew/cask
- # - caskroom/fonts
- # - caskroom/cask
   - homebrew/cask
   - aws/tap
-
-
+  - adoptopenjdk/openjdk
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - adoptopenjdk12
   - dbvisualizer
   #- alfred
   - xquartz
@@ -74,24 +74,24 @@ homebrew_cask_apps:
   - iterm2
   - alacritty
   - atom
+  - postman
   #- vlc 
   - visual-studio-code
-  #brew cask install vscodium
   #- vscodium
   #- amethyst # needs review
   #- chromedriver
   #- docker
-  #  - dropbox
+  #- dropbox
   #- google-chrome
   #- handbrake
   #- licecap
-  # - limechat
-  # - macvim
-  # - sequel-pro
-  # - skitch
+  #- limechat
+  #- macvim
+  #- sequel-pro
+  #- skitch
   #- slack
-  #  - sublime-text
-  #  - transmit
+  #- sublime-text
+  #- transmit
   #- firefox
   #- torbrowser # integrated tor/firefox broswer
   #- transmission # bittorrent
