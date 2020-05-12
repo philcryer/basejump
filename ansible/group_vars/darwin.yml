@@ -32,6 +32,9 @@ homebrew_installed_packages:
   - htop
   - netcat
   - graphviz
+  - neovim
+  #- freerdp
+  - rdesktop
   # AWS related
   - awscli
   - aws-sam-cli
@@ -48,7 +51,7 @@ homebrew_installed_packages:
   #- coreutils 
   #- openssh
   #- speedtest-cli
-  - openconnect
+  #- openconnect
 
 homebrew_taps:
   - homebrew/core
@@ -63,13 +66,16 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - dbvisualizer
+  - xquartz
   - font-hack-nerd-font
   - iterm2
+  - alacritty
   - atom
   #- vlc 
-  #- visual-studio-code
+  - visual-studio-code
   #brew cask install vscodium
-  - vscodium
+  #- vscodium
   #- amethyst # needs review
   #- chromedriver
   #- docker
