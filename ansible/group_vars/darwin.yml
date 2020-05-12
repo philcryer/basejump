@@ -10,6 +10,7 @@ configure_osx: no
 #dotfiles_repo_local_destination: ~/devel
 
 homebrew_installed_packages:
+  - parquet-tools
   - autoconf
   - bash-completion
   - gettext
@@ -67,6 +68,7 @@ homebrew_taps:
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - dbvisualizer
+  #- alfred
   - xquartz
   - font-hack-nerd-font
   - iterm2
