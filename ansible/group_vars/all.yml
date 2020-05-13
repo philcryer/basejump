@@ -13,6 +13,7 @@ nerdfont_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/S
 dotfiles_giturl: https://github.com/philcryer/dotfiles.git
 
 dotfiles:
+  - .config
   - .aliases
   - .bash_profile
   - .curlrc
