@@ -11,6 +11,8 @@ configure_osx: no
 
 homebrew_installed_packages:
   - scala
+  - scala211
+  - sbt
   - nodejs
   - parquet-tools
   - autoconf
@@ -23,6 +25,7 @@ homebrew_installed_packages:
   - iperf
   - libevent
   - terraform
+  - terraform-docs
   - sqlite
   - mcrypt
   - readline
@@ -62,11 +65,14 @@ homebrew_taps:
   - homebrew/cask-fonts
   - homebrew/cask
   - aws/tap
+  #- adoptopenjdk/openjdk12
+  #- adoptopenjdk14-openj8
   - adoptopenjdk/openjdk
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - adoptopenjdk12
+  - adoptopenjdk8
   - dbvisualizer
   #- alfred
   - xquartz
