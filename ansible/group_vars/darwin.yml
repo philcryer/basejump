@@ -77,11 +77,11 @@ homebrew_cask_apps:
   #- alfred
   - xquartz
   - font-hack-nerd-font
-  - iterm2
+  #- iterm2
   - alacritty
   - atom
   - postman
-  #- vlc 
+  - vlc 
   - visual-studio-code
   #- vscodium
   #- amethyst # needs review

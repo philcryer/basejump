@@ -103,6 +103,19 @@ run-ansible(){
     ansible-playbook main.yml -i inventory
 }
 
+install-dotfiles(){
+    msg_good "installing dotfiles"
+    if [ -d "dotfiles" ]; then
+	rm -rf dotfiles
+    fi
+    git clone https://github.com/philcryer/dotfiles.git
+    rm dotfiles/LICENSE
+    rm dotfiles/README.md
+    rm dotfiles/pip.conf
+    cp -R dotfiles/* ${HOME}  
+    rm -rf dotfiles
+}
+
 main(){
     kick-off;
     os-check;
@@ -110,6 +123,7 @@ main(){
       install-xcode;
     fi
     software-check;
+    install-dotfiles;
     software-check-pip;
     install-ansible;
     run-ansible;
