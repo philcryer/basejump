@@ -121,6 +121,7 @@ main(){
     os-check;
     if [ "$distro" == "MacOS" ]; then
       install-xcode;
+      install-homebrew;
     fi
     software-check;
     install-dotfiles;
