@@ -114,7 +114,10 @@ install-dotfiles(){
     fi
     git clone https://github.com/philcryer/dotfiles.git
     cd dotfiles/
-    cp -R .gitconfig .gitignore .wgetrc .screenrc .tmux.conf .hushlogin .curlrc .abcde.conf .aliases ${HOME}  
+    if [ ! -f "$HOME/.gitconfig" ]; then
+	cp .gifconfig ${HOME}
+    fi
+    cp -R .gitignore .wgetrc .screenrc .tmux.conf .hushlogin .curlrc .abcde.conf .aliases ${HOME}  
     cd ..; rm -rf dotfiles
 exit 0
 }
