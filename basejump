@@ -62,11 +62,13 @@ software-check-pip(){
         if ! type "$cli" > /dev/null 2>&1; then
             msg_error "$cli is not installed - attempting to install"
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            sudo python get-pip.py
+            #sudo python get-pip.py
+            python get-pip.py
             rm get-pip.py
         else
             msg_notification "checking for latest version of python pip3"
-            sudo -H pip3 install --upgrade pip
+            #sudo -H pip3 install --upgrade pip
+            pip3 install --upgrade pip
         fi
   	done
     msg_good "python pip is installed"
@@ -74,8 +76,10 @@ software-check-pip(){
 
 install-ansible(){
     if ! type "ansible" > /dev/null 2>&1; then
-        msg_notification "ansible not installed, enter sudo password to install"
-        sudo -H pip3 install ansible
+        #msg_notification "ansible not installed, enter sudo password to install"
+        msg_notification "ansible not installed, installing"
+        #sudo -H pip3 install ansible
+        pip3 install ansible
     fi
     msg_good "ansible is installed"
 }
@@ -109,11 +113,10 @@ install-dotfiles(){
 	rm -rf dotfiles
     fi
     git clone https://github.com/philcryer/dotfiles.git
-    rm dotfiles/LICENSE
-    rm dotfiles/README.md
-    rm dotfiles/pip.conf
-    cp -R dotfiles/* ${HOME}  
-    rm -rf dotfiles
+    cd dotfiles/
+    cp -R .gitconfig .gitignore .wgetrc .screenrc .tmux.conf .hushlogin .curlrc .abcde.conf .aliases ${HOME}  
+    cd ..; rm -rf dotfiles
+exit 0
 }
 
 main(){
@@ -127,7 +130,7 @@ main(){
     install-dotfiles;
     software-check-pip;
     install-ansible;
-    run-ansible;
+#    run-ansible;
 }
 
 main;
