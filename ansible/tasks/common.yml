@@ -4,10 +4,10 @@
     path: "${HOME}/bin"
     state: directory
 
-- name: Ensure home .ssh directory exists
-  file:
-    path: "${HOME}/.ssh"
-    state: directory
+      #- name: Ensure home .ssh directory exists
+      #file:
+      #path: "${HOME}/.ssh"
+      #state: directory
 
 - name: Ensure code dictory exists
   file:

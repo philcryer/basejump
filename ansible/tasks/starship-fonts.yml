@@ -1,0 +1,48 @@
+---
+#- name: Check if SpaceVim is installed
+#  stat:
+#    path: "~/.SpaceVim.d"
+#  register: spacevim_dir
+
+#- name: Ensure home Spacevim directory exists
+#  file:
+#    path: "${HOME}/.SpaceVim"
+#    state: directory
+
+#- name: Ensure home Spacevim.d directory exists
+#  file:
+#    path: "${HOME}/.SpaceVim.d"
+#    state: directory
+
+#- name: Install SpaceVim if it's not installed
+#  shell: curl -q -sLf https://spacevim.org/install.sh | bash
+#  when: spacevim_dir.stat.exists == false
+
+- name: Get starship-fonts
+  get_url: 
+    url: "{{ nerdfont_url }}"
+      #dest: '{{ downloads }}/SourceCodePro.zip'
+    dest: '{{ downloads }}/{{ fonts_name }}'
+    mode: 0644
+      #  when: spacevim_dir.stat.exists == false
+
+- name: Ensure starship-fonts dir exists
+  file:
+    path: ~/.local/share/fonts
+    state: directory
+
+- name: Extract SpaceVim fonts
+  unarchive:
+    src: "{{ downloads }}/{{ fonts_name }}"
+    dest: ~/.local/share/fonts
+      #when: spacevim_dir.stat.exists == false
+
+- name: Reload font cache
+  shell: fc-cache -f
+    #  when: ansible_system == "Linux" and spacevim_dir.stat.exists == false
+
+    #- name: Copy in latest SpaceVim config
+    #copy:
+    #src: ./files/spacevim-init.toml
+    #dest: "$HOME/.SpaceVim.d/init.toml"
+    #mode: 0644

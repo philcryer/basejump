@@ -21,6 +21,7 @@
 - name: Get SpaceVim fonts
   get_url: 
     url: "{{ nerdfont_url }}"
+      #dest: '{{ downloads }}/SourceCodePro.zip'
     dest: '{{ downloads }}/SourceCodePro.zip'
     mode: 0644
   when: spacevim_dir.stat.exists == false

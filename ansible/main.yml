@@ -12,6 +12,10 @@
       tags: ['tasks']
 
   roles:
+    - role: cb-starship-arole
+      when: ansible_distribution == 'Linux'
+      tags: ['osx']
+
     - role: geerlingguy.homebrew
       when: ansible_distribution == 'MacOSX'
       tags: ['osx']

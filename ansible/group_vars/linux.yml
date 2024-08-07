@@ -10,8 +10,11 @@ installed_packages:
   - wget
   - nginx
   - htop
-  - netcat
-  - awscli
-  - vim-nox
+  - netcat-openbsd
+  - openssh-client
   - fonts-powerline
   - fontconfig
+  - neovim
+  - ncdu
+  - git
+  - file
