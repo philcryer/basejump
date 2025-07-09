@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-#=============================================================================
-# basejump --- a script that uses Ansible to automate the setup of new hosts
-#       with applications, dotfiles, configs, and handly-dandy one-liners on
-#       Linux and macOS systems.
-# Copyright: (c) 2019 philcryer
+#===============================================================================
+# basejump -- a script that installs Ansible, then uses it to automate the setup
+#   hosts with apps, dotfiles, configs, and one-liners in Alpine Linux
+#
+# Source:  https://github.com/philcryer/basejump
 # Author: philcryer < phil at philcryer dot com >
-# URL:  https://github.com/philcryer/basejump
 # License: MIT
 #=============================================================================
 
 set -e
+os=$(uname)
+distro=$(cat /etc/os-release | grep ^ID | cut -d= -f2)
 
-distro=$(uname)
-
+## prompts
 function msg_status () {
     echo -e "\x1B[01;34m[*]\x1B[0m $1" 
 }
@@ -27,6 +27,7 @@ function msg_notification () {
     echo -e "\x1B[01;33m[*]\x1B[0m $1"
 }
 
+## functions
 kick-off(){
     clear
     echo -e "\x1B[01;31m"
@@ -34,74 +35,51 @@ kick-off(){
     echo "  |        |              |        |             |"
     cat src/logo-ascii.txt
     msg_status "ohai, let's basejump!"
-    sudo -v
+}
+
+become-check(){
+    msg_notification "checking for become scheme (sudo or doas)"
+    if type sudo > /dev/null 2>&1; then
+        become_scheme=sudo
+    fi
+    if type doas > /dev/null 2>&1; then
+        become_scheme=doas
+    fi
+    msg_good "found $become_scheme, will use it for become scheme"
 }
 
 os-check(){
     msg_notification "checking operating system"
-        if [ "$distro" == "Linux" ]; then
-            msg_good "$distro is supported, continuing"
-        elif [ "$distro" == "MacOS" ]; then
-            msg_good "$distro is supported, continuing"
+        if [ "$os" == "Linux" ]; then
+            msg_good "$os ($distro) is supported, continuing"
         fi
 }
 
-software-check(){
-    msg_notification "checking for required software"
-    for cli in python3 curl git sudo; do
-        if ! type "$cli" > /dev/null 2>&1; then
-            msg_error "$cli is not installed - install that and try again"; exit 1
-        fi
-    done
+neovim-install(){
+    msg_notification "installing and configuring"
+    $become_scheme  apk add neovim tree-sitter-lua hunspell hunspell-en-us 
+    mkdir -p $HOME/.config 
+    cp -R config/nvim $HOME/.config/
+}
+
+software-install(){
+    msg_notification "doing a full system upgrade"
+    $become_scheme apk -U upgrade
+    msg_notification "installing ansible and supporting software"
+    $become_scheme apk add python3 py-pip git curl ansible ansible-lint
+    msg_notification "installing zsh and supporting software"
+    $become_scheme apk add zsh wl-clipboard
+    #alpine-zsh-config
+    msg_notification "installing and configuring starship.rs"
+    $become_scheme apk add starship starship-zsh-completion starship-zsh-plugin
+    cp config/zshrc $HOME/.zshrc
+    zsh
+    source $HOME/.zshrc
     msg_good "all required software installed"
 }
 
-software-check-pip(){
-    msg_notification "checking for python3 pip3"
-    for cli in pip3; do
-        if ! type "$cli" > /dev/null 2>&1; then
-            msg_error "$cli is not installed - attempting to install"
-	    apt install python3-pip -y --no-install-recommends
-
-            #curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            #sudo python3 get-pip.py
-            #rm get-pip.py
-        #else
-            #msg_notification "checking for latest version of python3 pip3"
-            #sudo -H pip3 install --upgrade pip
-        #    sudo python3 -m pip install --upgrade pip
-        fi
-  	done
-    msg_good "python3 pip is installed"
-}
-
-install-ansible(){
-    if ! type "ansible" > /dev/null 2>&1; then
-        msg_notification "ansible not installed, enter sudo password to install"
-	apt install ansible ansible-lint -y
-        #sudo python3 -m pip3 install ansible
-    fi
-    msg_good "ansible is installed"
-}
-
-install-xcode(){
-    if ! command -v cc >/dev/null; then
-        msg_notification "xcode commandline tools not installed, installing"
-        xcode-select --install
-    fi
-    msg_good "xcode commandline tools installed"
-}
-
-install-homebrew(){
-    if ! command -v brew >/dev/null; then
-        msg_notification "homebrew not installed, installing"
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
-    fi
-    msg_good "homebrew installed"
-}
-
 run-ansible(){
-    msg_status "handing off to ansible!"
+    msg_status "handing off to ansible"
     cd ansible
     ansible-galaxy install -r requirements.yml
     ansible-playbook main.yml -i inventory
@@ -123,16 +101,12 @@ install-dotfiles(){
 
 main(){
     kick-off;
+    become-check;
     os-check;
-    if [ "$distro" == "MacOS" ]; then
-      install-xcode;
-      install-homebrew;
-    fi
-    software-check;
+    software-install;
+    neovim-install;
     #install-dotfiles;
-    software-check-pip;
-    install-ansible;
-    run-ansible;
+    #run-ansible;
 }
 
 main;

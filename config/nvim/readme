@@ -1,0 +1,11 @@
+# 1) install and configure neovim
+#   - follow steps: https://ww2.coastal.edu/mmurphy2/oer/alpine/neovim/
+#	- doas apk add neovim tree-sitter-lua hunspell hunspell-en-us 
+#	- nvim $HOME/.config/nvim/init.lua
+#
+# 2) make neovim default 
+#	- echo "alias vim=\"nvim\"" | tee -a ~/.zshrc
+#	- echo "alias vi=\"nvim\"" | tee -a ~/.zshrc
+#	- echo "export EDITOR=\"nvim\"" | tee -a ~/.zshrc
+#	- echo "export VISUAL=\"nvim\"" | tee -a ~/.zshrc
+#	- git config --global core.editor nvim
