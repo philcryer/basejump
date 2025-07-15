@@ -1,10 +1,21 @@
+## pathing
+if [ -d '$HOME/bin' ]; then
+	PATH=$PATH:$HOME/bin
+fi
+if [ -d '$HOME/.local/bin' ]; then
+	PATH=$PATH:$HOME/.local/bin
+fi
 if [ -d '/home/linuxbrew/.linuxbrew/bin' ]; then
 	PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 fi
+
+## aliases
 alias vim="nvim"
 alias vi="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
-eval "$(starship init zsh)"
 alias dflip="docker compose down; docker compose up -d; docker compose logs -f"
 alias dlogs="docker compose logs -f"
+
+## star starship
+eval "$(starship init zsh)"
