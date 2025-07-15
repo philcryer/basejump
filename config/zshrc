@@ -1,3 +1,6 @@
+if [ -d '/home/linuxbrew/.linuxbrew/bin' ]; then
+	PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+fi
 alias vim="nvim"
 alias vi="nvim"
 export EDITOR="nvim"
