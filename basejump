@@ -11,7 +11,7 @@
 
 set -e
 os=$(uname)
-distro=$(cat /etc/os-release | grep ^ID | cut -d= -f2)
+distro=$(cat /etc/os-release | grep ^ID= | cut -d= -f2)
 
 ## prompts
 function msg_status () {
@@ -50,8 +50,10 @@ become-check(){
 
 os-check(){
     msg_notification "checking operating system"
-        if [ "$os" == "Linux" ]; then
+        if [ "$distro" == "alpine" ]; then
             msg_good "$os ($distro) is supported, continuing"
+        else
+            msg_good "$os ($distro) is NOT supported. Exiting"; exit 1
         fi
 }
 
@@ -73,8 +75,8 @@ software-install(){
     msg_notification "installing and configuring starship.rs"
     $become_scheme apk add starship starship-zsh-completion starship-zsh-plugin
     cp config/zshrc $HOME/.zshrc
-    zsh
-    source $HOME/.zshrc
+    #zsh
+    #source $HOME/.zshrc
     msg_good "all required software installed"
 }
 
@@ -97,6 +99,13 @@ install-dotfiles(){
     fi
     cp -R .gitignore .wgetrc .screenrc .tmux.conf .hushlogin .curlrc .abcde.conf .aliases ${HOME}
     cd ..; rm -rf dotfiles
+}
+
+todo(){
+    cp config/zshrc ~/.zshrc
+    cp -R config/terminfo ~/.terminfo
+    cp -R config/nvim ~/.config/
+    cp -R config/wofi ~/.config/
 }
 
 main(){
