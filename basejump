@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 #===============================================================================
 # basejump -- a script that installs Ansible, then uses it to automate the setup
@@ -52,6 +52,9 @@ os-check(){
     msg_notification "checking operating system"
         if [ "$distro" == "alpine" ]; then
             msg_good "$os ($distro) is supported, continuing"
+        fi
+        if [ "$distro" == "cachyos" ]; then
+            msg_good "$os ($distro) is supported, continuing"
         else
             msg_good "$os ($distro) is NOT supported. Exiting"; exit 1
         fi
@@ -59,25 +62,41 @@ os-check(){
 
 neovim-install(){
     msg_notification "installing and configuring"
-    $become_scheme  apk add neovim tree-sitter-lua hunspell hunspell-en-us 
+    if [ "$distro" == "alpine" ]; then
+      $become_scheme  apk add neovim tree-sitter-lua hunspell hunspell-en-us 
+    fi
+    if [ "$distro" == "cachyos" ]; then
+      $become_scheme pacman -Sy --noconfirm neovim tree-sitter-lua hunspell hunspell-en_us 
+    fi
     mkdir -p $HOME/.config 
-    cp -R config/nvim $HOME/.config/
+    #cp -R config/nvim $HOME/.config/
 }
 
 software-install(){
     msg_notification "doing a full system upgrade"
-    $become_scheme apk -U upgrade
-    msg_notification "installing ansible and supporting software"
-    $become_scheme apk add python3 py-pip git curl ansible ansible-lint
-    msg_notification "installing zsh and supporting software"
-    $become_scheme apk add zsh wl-clipboard
-    #alpine-zsh-config
-    msg_notification "installing and configuring starship.rs"
-    $become_scheme apk add starship starship-zsh-completion starship-zsh-plugin
-    cp config/zshrc $HOME/.zshrc
-    #zsh
-    #source $HOME/.zshrc
-    msg_good "all required software installed"
+    if [ "$distro" == "alpine" ]; then
+      $become_scheme apk -U upgrade
+      msg_notification "installing ansible and supporting software"
+      $become_scheme apk add python3 py-pip git curl ansible ansible-lint
+    fi
+    if [ "$distro" == "cachyos" ]; then
+      $become_scheme pacman -S
+      $become_scheme pacman -Syu --noconfirm
+      msg_notification "installing ansible and supporting software"
+      exit 0
+      $become_scheme pacman -S git curl ansible ansible-lint
+    fi
+
+      #msg_notification "installing zsh and supporting software"
+      #$become_scheme apk add zsh wl-clipboard
+      ##alpine-zsh-config
+      #msg_notification "installing and configuring starship.rs"
+      #$become_scheme apk add starship starship-zsh-completion starship-zsh-plugin
+      #cp config/zshrc $HOME/.zshrc
+      #zsh
+      #source $HOME/.zshrc
+
+      msg_good "all required software installed"
 }
 
 run-ansible(){
@@ -112,7 +131,7 @@ main(){
     kick-off;
     become-check;
     os-check;
-    software-install;
+    #software-install;
     neovim-install;
     #install-dotfiles;
     #run-ansible;
