@@ -133,7 +133,7 @@ main(){
     become-check;
     os-check;
     #software-install;
-    neovim-install;
+    #neovim-install;
     #install-dotfiles;
     #run-ansible;
 }
