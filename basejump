@@ -73,7 +73,7 @@ neovim-install(){
     #cp -R config/nvim $HOME/.config/
 }
 
-software-install(){
+ansible-install(){
     msg_notification "doing a full system upgrade"
     if [ "$distro" == "alpine" ]; then
       $become_scheme apk -U upgrade
@@ -97,7 +97,7 @@ software-install(){
       #zsh
       #source $HOME/.zshrc
 
-      msg_good "all required software installed"
+      msg_good "ansible installed"
 }
 
 run-ansible(){
@@ -132,7 +132,7 @@ main(){
     kick-off;
     become-check;
     os-check;
-    #software-install;
+    ansible-install;
     #neovim-install;
     #install-dotfiles;
     #run-ansible;
