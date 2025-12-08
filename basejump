@@ -91,6 +91,7 @@ ansible-install(){
         exit 0
         $become_scheme pacman -S git curl ansible ansible-lint
       fi
+	fi
     done
     msg_good "ansible installed"
 }
