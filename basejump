@@ -33,7 +33,7 @@ kick-off(){
     echo -e "\x1B[01;31m"
     echo "     |            |    |             |               |"
     echo "  |        |              |        |             |"
-	echo " B      A      S      E      J      U      M      P    !"
+	echo "   B     A     S     E     J     U     M     P   !"
 	#cat src/logo-ascii.txt
 	msg_status "ohai, let's basejump!"
 }
@@ -74,15 +74,14 @@ neovim-install(){
 }
 
 ansible-install(){
-    msg_notification "checking if Ansible is already installed"
-    for cli in aws ssh; do
+    msg_notification "checking if ansible and ansible-lint is installed"
+    for cli in ansible ansible-lint; do
       if ! type "$cli" > /dev/null 2>&1; then
-
       msg_notification "installing Ansible on ${distro} using ${become_scheme}"
       if [ "$distro" == "alpine" ]; then
         $become_scheme apk -U upgrade
         msg_notification "installing ansible and supporting software"
-        $become_scheme apk add python3 py-pip git curl ansible ansible-lint
+        $become_scheme apk add git curl ansible ansible-lint
       fi
       if [ "$distro" == "cachyos" ]; then
         $become_scheme pacman -S
