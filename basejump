@@ -33,7 +33,7 @@ kick-off(){
     echo -e "\x1B[01;31m"
     echo "     |            |    |             |               |"
     echo "  |        |              |        |             |"
-	cat src/logo-ascii.txt
+	#cat src/logo-ascii.txt
 	msg_status "ohai, let's basejump!"
 }
 
