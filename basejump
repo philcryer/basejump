@@ -74,20 +74,28 @@ neovim-install(){
 }
 
 ansible-install(){
-    msg_notification "doing a full system upgrade"
-    if [ "$distro" == "alpine" ]; then
-      $become_scheme apk -U upgrade
-      msg_notification "installing ansible and supporting software"
-      $become_scheme apk add python3 py-pip git curl ansible ansible-lint
-    fi
-    if [ "$distro" == "cachyos" ]; then
-      $become_scheme pacman -S
-      $become_scheme pacman -Syu --noconfirm
-      msg_notification "installing ansible and supporting software"
-      exit 0
-      $become_scheme pacman -S git curl ansible ansible-lint
-    fi
+    msg_notification "checking if Ansible is already installed"
+    for cli in aws ssh; do
+      if ! type "$cli" > /dev/null 2>&1; then
 
+      msg_notification "installing Ansible on ${distro} using ${become_scheme}"
+      if [ "$distro" == "alpine" ]; then
+        $become_scheme apk -U upgrade
+        msg_notification "installing ansible and supporting software"
+        $become_scheme apk add python3 py-pip git curl ansible ansible-lint
+      fi
+      if [ "$distro" == "cachyos" ]; then
+        $become_scheme pacman -S
+        $become_scheme pacman -Syu --noconfirm
+        msg_notification "installing ansible and supporting software"
+        exit 0
+        $become_scheme pacman -S git curl ansible ansible-lint
+      fi
+    done
+    msg_good "ansible installed"
+}
+
+# old
       #msg_notification "installing zsh and supporting software"
       #$become_scheme apk add zsh wl-clipboard
       ##alpine-zsh-config
@@ -97,8 +105,6 @@ ansible-install(){
       #zsh
       #source $HOME/.zshrc
 
-      msg_good "ansible installed"
-}
 
 run-ansible(){
     msg_status "handing off to ansible"
