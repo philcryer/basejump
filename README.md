@@ -44,6 +44,12 @@ Do you want to just AUTORUN this *without prompts?* using one of those `curl` me
 curl -s -L https://raw.githubusercontent.com/philcryer/basejump/master/src/auto.sh -O; chmod 755 auto.sh; ./auto.sh
 ```
 
+or via wget
+
+```
+sh -c "$(wget -qO- https://raw.githubusercontent.com/philcryer/basejump/refs/heads/main/basejump)"
+```
+
 When it's done, close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
 
 ## screenshot
