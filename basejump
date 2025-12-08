@@ -52,8 +52,8 @@ os-check(){
     msg_notification "checking operating system"
         if [ "$distro" == "alpine" ]; then
             msg_good "$os ($distro) is supported, continuing"
-        fi
-        if [ "$distro" == "cachyos" ]; then
+        #fi
+        elif [ "$distro" == "cachyos" ]; then
             msg_good "$os ($distro) is supported, continuing"
         else
             msg_good "$os ($distro) is NOT supported. Exiting"; exit 1
