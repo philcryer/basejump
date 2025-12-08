@@ -34,6 +34,12 @@ kick-off(){
     echo "     |            |    |             |               |"
     echo "  |        |              |        |             |"
 	echo "   B     A     S     E     J     U     M     P   !"
+
+	echo "|     |     |     |     |     |     |     |"	
+	echo " |     |     |     |     |     |     |     |"
+	echo "  |     |     |     |     |     |     |     |"
+	echo "   B     A     S     E     J     U     M     P"
+
 	#cat src/logo-ascii.txt
 	msg_status "ohai, let's basejump!"
 }
