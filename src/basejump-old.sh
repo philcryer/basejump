@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 #===============================================================================
-# basejump -- a script that installs Ansible, then uses it to automate the
-#   base setup of hosts via playbooks from the ansible/requirements.txt file 
+# basejump -- a script that installs Ansible, then uses it to automate the setup
+#   hosts playbooks from the ansible/requirements.txt file 
 #
 # Source:  https://github.com/philcryer/basejump
 # Author: philcryer < phil at philcryer dot com >
@@ -32,6 +32,7 @@ kick-off(){
   echo " |     |     |     |     |     |     |     |"
   echo "  |     |     |     |     |     |     |     |"
   echo "   B     A     S     E     J     U     M     P"
+	echo; msg_status "ohai, let's basejump!"
 }
 
 become-check(){
@@ -77,15 +78,64 @@ ansible-install(){
 run-ansible(){
     msg_status "handing off to ansible"
     cd ansible
-    echo; msg_notification "Ansible output below..."
     ansible-galaxy install -r requirements.yml
     ansible-playbook main.yml -i inventory
 }
 
-kick-off;
-become-check;
-os-check;
-ansible-install;
-run-ansible;
+main(){
+    kick-off;
+    become-check;
+    os-check;
+    ansible-install;
+    #run-ansible;
+}
+
+main;
 
 exit 0
+
+#OLD
+neovim-install(){
+    msg_notification "installing and configuring"
+    if [ "$distro" == "alpine" ]; then
+      $become_scheme  apk add neovim tree-sitter-lua hunspell hunspell-en-us 
+    fi
+    if [ "$distro" == "cachyos" ]; then
+      $become_scheme pacman -Sy --noconfirm neovim tree-sitter-lua hunspell hunspell-en_us 
+    fi
+    mkdir -p $HOME/.config 
+    #cp -R config/nvim $HOME/.config/
+}
+
+
+# old
+      #msg_notification "installing zsh and supporting software"
+      #$become_scheme apk add zsh wl-clipboard
+      ##alpine-zsh-config
+      #msg_notification "installing and configuring starship.rs"
+      #$become_scheme apk add starship starship-zsh-completion starship-zsh-plugin
+      #cp config/zshrc $HOME/.zshrc
+      #zsh
+      #source $HOME/.zshrc
+
+install-dotfiles(){
+    msg_good "installing dotfiles"
+    if [ -d "dotfiles" ]; then
+	rm -rf dotfiles
+    fi
+    git clone https://github.com/philcryer/dotfiles.git
+    cd dotfiles/
+    if [ ! -f "$HOME/.gitconfig" ]; then
+        cp .gifconfig ${HOME}
+    fi
+    cp -R .gitignore .wgetrc .screenrc .tmux.conf .hushlogin .curlrc .abcde.conf .aliases ${HOME}
+    cd ..; rm -rf dotfiles
+}
+
+todo(){
+    cp config/zshrc ~/.zshrc
+    cp -R config/terminfo ~/.terminfo
+    cp -R config/nvim ~/.config/
+    cp -R config/wofi ~/.config/
+}
+

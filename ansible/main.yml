@@ -8,7 +8,8 @@
       - "group_vars/{{ ansible_system|lower }}.yml"
 
   tasks:
-    - include_tasks: "tasks/main.yml"
+    #- include_tasks: "tasks/main.yml"
+    - import_tasks: "tasks/main.yml"
       tags: ['tasks']
 
   roles:
