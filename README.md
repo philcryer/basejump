@@ -2,24 +2,35 @@
 
 # basejump
 
-Basejump uses [Ansible](https://www.ansible.com) to automate the setup of new hosts with applications, dotfiles, configs, and handly-dandy one-liners on Linux and macOS systems. I needed one command I could run to get the game going from scratch, so this script installs Ansible via Pip, then gets my preferred setups from my [philcryer/dotfiles](https://github.com/philcryer/dotfiles) project, and puts them in place so I have an identical setup on all of the hosts I work on. Easy peasy lemon squeezy.
+Basejump is a shell script that runs on a new Linux host, it will check if [Ansible](https://www.ansible.com) is installed, if not it will install `ansible` and `ansible-lint, and then hand it off to ansible to automate the setup of a new Linux host. Look in the [ansible directory](https://github.com/philcryer/basejump/tree/main/ansible) to see what it does to start, by default it only deals with command-line setup, focusing on things like:
 
-Some of installed software (see full list for [Linux](/ansible/group_vars/linux.yml) and [macOS](/ansible/group_vars/darwin.yml#L15) and add/remove what you want)  
+* ssh
+  * user configuration (~/.ssh/config`)
+* git
+  * install
+  * configuration (~/.git_config)
+* neovim
+  * install
+  * configuration (~/.config/nvim)
+* user profile
+  * configuration (~/.profile)
 
-* networking tools: nc, iperf, nmap
-* monitoring: htop
-* applications: nginx, vlc
-* development: [SpaceVim](https://spacevim.org/), font-hack-nerd-font, VS Code (macOS), iTerm 2 (macOS)
+This creates a consistent base environment in Linux, regardless of which distribution is running, currently targeting:
+
+* Alpine Linux
+* CachyOS (Arch Linux)
+* Debian
+* Fedora
+
+Soon Ansible modules for setting up and configuring a desktop will be available.
 
 __NOTICE__ if you don't have Ansible installed, basejump will do that first via Pip, automatically!
 
 ## requirements
 
-* Linux or macOS (10.12+)
-* python
-* pip
-* git
-* sudo
+* Linux, with packages:
+  * wget
+  * sudo -or- doas
 
 ## usage
 
