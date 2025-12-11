@@ -4,8 +4,6 @@
  <img alt="basejump logo" src="logo.png">
 </picture>
 <div align="center" border="0"><img src="logo.png" alt="dotfiles"></div>
-<div align="right" border="0"><img src="logo.png" alt="dotfiles"></div>
-
 
 # basejump
 
