@@ -1,7 +1,7 @@
 <div align="center" border="0"><img src="logo.png" alt="dotfiles"></div>
 <picture>
- <source media="(prefers-color-scheme: dark)" srcset="YOUR-DARKMODE-IMAGE">
- <source media="(prefers-color-scheme: light)" srcset="YOUR-LIGHTMODE-IMAGE">
+ <source media="(prefers-color-scheme: dark)" srcset="logo.png">
+ <source media="(prefers-color-scheme: light)" srcset="logo.png">
  <img alt="basejump logo" src="logo.png">
 </picture>
 
