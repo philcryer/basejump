@@ -1,0 +1,42 @@
+---
+- name: Ensure base directories exists
+  ansible.builtin.file:
+    path:
+      - "${HOME}/bin"
+      - "${HOME}/repos"
+      - "${HOME}/Downloads"
+    mode: "0755"
+    state: directory
+
+      #- name: Ensure home .ssh directory exists
+      #file:
+      #path: "${HOME}/.ssh"
+      #state: directory
+
+
+#- name: Setup sudo or doas
+#  ansible.builtin.stat:
+#    path: /etc/sudoers
+#  register: f.sudoers
+#- name: Setup sudo for user
+#  #ansible.builtin.fail:
+#  include_tasks: sudoers.yml
+#  #when: is_sudo.stat.pw_name != 'root'
+#  when: f.sudoers.stat.isreg is defined and f.sudoers.stat.isreg
+
+    # -name: Running spacevim task
+    #  include: spacevim.yml
+    #
+#- name: Running starship-fonts task
+#  include: starship-fonts.yml
+
+    #- name: Running ssh-lockdown task
+    #include: ssh-lockdown.yml
+
+#- name: Running OS specific task
+#  include: "tasks/{{ ansible_system|lower }}.yml"
+
+    #- name: Cleaup downloaded repo
+    #file:
+    #path: "{{ code_directory }}/dotfiles/"
+    #state: absent

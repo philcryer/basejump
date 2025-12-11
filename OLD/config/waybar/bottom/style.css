@@ -1,0 +1,30 @@
+@import "./rose-pine.css";
+
+* {
+  background: transparent;
+}
+
+.modules-center {
+  margin-bottom: 16px;
+}
+
+#taskbar {
+  background: @overlay;
+  opacity: 0.75;
+  border-radius: 12px 12px 12px 12px;
+}
+
+#taskbar button {
+  background: @surface;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 12px 12px 12px 12px;
+}
+
+#taskbar button.active {
+  background: @iris;
+}
+
+#taskbar empty {
+  background: transparent;
+}

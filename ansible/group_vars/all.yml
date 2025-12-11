@@ -1,36 +1,13 @@
 ---
 gitconfig_name:
 gitconfig_email:
-
 downloads: ~/.ansible/tmp/
-
-  #code_directory: ~/devel
 code_directory: ~/repos
-
-sudo_user: "{{ ansible_user_id }}"
-
-  #nerdfont_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip
-nerdfont_url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
-fonts_name: FiraCode.zip
-
-dotfiles_giturl: https://github.com/philcryer/dotfiles.git
-
-dotfiles:
-  - .config
-  - .aliases
-  - .bash_profile
-  - .curlrc
-  - .editorconfig
-  - .exports
-  - .gitignore
-  - .hushlogin
-  - .inputrc
-  - .screenrc
-  - .tmux.conf
-  - .wgetrc
-  - .ssh/config-example
-
-pip_packages:
-  - tabulate
-  - colored
-  - termcolor
+ansible_become_password: '{{ become_pass }}'
+installed_packages:
+  - fish
+  - btop
+  - unzip
+  - curl
+  - wget 
+  - neovim

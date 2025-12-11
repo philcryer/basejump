@@ -1,4 +1,7 @@
 ---
-#- name: geerlingguy.homebrew
-- name: dev-sec.ssh-hardening
-#- name: elliotweiser.osx-command-line-tools
+roles:
+  - name: dev-sec.ssh-hardening
+
+collections:
+  - name: oneidentity.privilege_manager
+

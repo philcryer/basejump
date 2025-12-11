@@ -1,22 +1,9 @@
 ---
-- hosts: all
-  connection: local
+- name: Main playbook for Basejump
+  hosts: all
   gather_facts: true
-
   vars_files:
-      - "group_vars/all.yml"
-      - "group_vars/{{ ansible_system|lower }}.yml"
-
+      - "~/.ansible/become_pass.yml"
   tasks:
-    #- include_tasks: "tasks/main.yml"
-    - import_tasks: "tasks/main.yml"
-      tags: ['tasks']
-
-  roles:
-    - role: cb-starship-arole
-      when: ansible_distribution == 'Linux'
-      tags: ['osx']
-
-    - role: geerlingguy.homebrew
-      when: ansible_distribution == 'MacOSX'
-      tags: ['osx']
+    - name: Run common tasks
+      ansible.builtin.include_tasks: "tasks/base.yml"

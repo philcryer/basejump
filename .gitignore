@@ -1,4 +1,2 @@
 ansible/*.retry
 ansible/roles/*
-get-pip.py
-dotfiles
