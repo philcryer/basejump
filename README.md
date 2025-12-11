@@ -1,9 +1,10 @@
-<picture>
- <source media="(prefers-color-scheme: dark)" srcset="logo.png">
- <source media="(prefers-color-scheme: light)" srcset="logo.png">
- <img alt="basejump logo" src="logo.png">
-</picture>
-<div align="center" border="0"><img src="logo.png" alt="dotfiles"></div>
+<div align="center" border="0">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="logo.png">
+    <source media="(prefers-color-scheme: light)" srcset="logo.png">
+    <img alt="basejump logo" src="logo.png">
+  </picture>
+</div>
 
 # basejump
 
