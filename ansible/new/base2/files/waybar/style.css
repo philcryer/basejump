@@ -1,0 +1,187 @@
+@import "mocha.css";
+
+@define-color text_color @text;
+
+/* uncomment it for use pywal script*/
+/*
+@import "/home/divan/.cache/wal/waybar.css";
+@define-color text_color @maxY;
+*/
+
+
+* {
+	border: none;
+	border-radius: 0;
+	font-family: "Noto Nerd Font";
+	/*font-size: 17px;*/
+	/*font-size: 13px;*/
+	font-size: 12px;
+	min-height: 1em;
+}
+
+window#waybar {
+	background: @surface0;
+	color: @text_color;
+}
+
+#window {
+	font-weight: bold;
+	font-family: "Noto";
+}
+
+.modules-left {
+	background: @base;
+	border-radius: 0.5em;
+	margin-left: -0.5em;
+	padding: 0 0.5em;
+}
+
+.modules-right {
+	background: @base;
+	border-radius: 0.5em;
+	margin-right: -0.5em;
+	padding: 0 0.5em;
+}
+
+.modules-center {
+	background: @base;
+	border-radius: 0.5em;
+	margin-right: 0.25em;
+	margin-left: 0.25em;
+	padding: 0 0.5em;
+}
+
+#power {
+	background: @surface0;
+	border-radius: 0.5em;
+	margin-left: 0.15em;
+	padding-right: 0.5em;
+	margin-right: -0.5em;
+	color: @red;
+}
+
+#custom-reboot {
+	color: @flamingo
+}
+
+#custom-exit {
+	color: @peach
+}
+
+
+#custom-lock {
+	color: @flamingo
+}
+
+#workspaces button {
+	padding: 0 0.25em;
+	background: transparent;
+	color: @text_color;
+	border-top: 2px solid @surface0;
+}
+
+#workspaces button.focused {
+	color: @text_color;
+	border-top: 2px solid @text_color;
+}
+
+#workspaces button.active {
+	color: @text;
+	border-top: 2px solid @text;
+}
+
+#workspaces button.urgent {
+	border-color: @red;
+	color: @red;
+	border-top: 2px solid @red;
+}
+
+#clock {
+	padding: 0 0.5em;
+	margin: 0 0.15em;
+	/*background: @surface0;*/
+	border-radius: 0.5em;
+	font-weight: bold;
+}
+
+#pulseaudio.mic{
+	color: @text_color;
+	margin-left: 0.3em;
+	margin-right: -0.3em;
+}
+#pulseaudio.mic.source-muted{
+	color: @red;
+	margin-left: 0em;
+	margin-right: 0em;
+}
+
+#language, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+	padding: 0 0.15em;
+	margin: 0 0.15em;
+}
+
+#battery {
+}
+
+#battery icon {
+	color: @red;
+}
+
+@keyframes critical {
+	to {
+		color: @red;
+	}
+}
+@keyframes good {
+	to {
+		color: @blue;
+	}
+}
+
+#battery.charging {
+	color: @text_color;
+	animation-name: good;
+	animation-duration: 3.5s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#battery.warning:not(.charging) {
+	color: @text_color;
+	animation-name: critical;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+#battery.critical:not(.charging) {
+	color: @text_color;
+	animation-name: critical;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#cpu {
+}
+
+#memory {
+}
+
+#network {
+}
+
+#network.disconnected {
+	color: @red;
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+}
+
+#tray {
+}

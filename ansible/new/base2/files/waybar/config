@@ -1,0 +1,170 @@
+{
+	"reload_style_on_change": true,
+	"layer": "top", // Waybar at top layer
+	"position": "top", // Waybar at the bottom of your screen
+	// Bar height is based on the css font size. Don't forget to change the tray icon size!
+	// "width": 1366, // Waybar width
+	// Choose the order of the modules
+	//"modules-left": ["hyprland/workspaces", "tray", "hyprland/language"],
+	//"modules-left": ["sway/workspaces"],
+	"modules-left": ["hyprland/workspaces"],
+	//"modules-right": ["pulseaudio#mic", "pulseaudio", "network", "cpu", "memory", "battery", "clock", "group/power"],
+	//"modules-right": [ "pulseaudio", "battery", "network", "tray"],
+	"modules-right": [ "idle_inhibitor", "pulseaudio", "battery", "network", "tray"],
+	//"modules-center": ["hyprland/window"],
+	"modules-center": ["clock"],
+
+	"hyprland/language": {
+		"format": "{}",
+		"format-en": "En",
+		"format-ru": "Ru",
+	},
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": false,
+		"active-only": false,
+		"show-special": false,
+		"format": "{name}"
+	},
+	"hyprland/window": {
+	    "format": "{}",
+	    "icon": false,
+	    "separate-outputs": true
+	},
+	"tray": {
+		//"icon-size": 17,
+		//"icon-size": 13,
+		"icon-size": 14,
+		//"spacing": 10
+		"spacing": 20,
+  	        "reverse-direction": true
+	},
+	"clock": {
+		"interval": 5,
+		//"format": "{:%Y-%m-%d}",
+		//"format": "{:%R:%S}",
+		"format": "{:%R     %a,  %b %d}",
+		"format-alt": "{:%Y-%m-%d}",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+							"mode"          : "month",
+							"mode-mon-col"  : 3,
+							"weeks-pos"     : "right",
+							"on-scroll"     : 1,
+							"format": {
+									  "months":     "<span color='#ffead3'><b>{}</b></span>",
+									  "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+									  "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+									  "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+									  "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+					}
+		}
+	},
+	"cpu": {
+		"format": "{usage}%  ",
+		"interval": 5,
+		"on-click": "hyprctl dispatch exec \"[float] foot -W 80x24 btm\""
+	},
+	"memory": {
+		"format": "{}%  ",
+		"interval": 5,
+		"on-click": "hyprctl dispatch exec \"[float] foot -W 80x24 btm\""
+	},
+	"battery": {
+		"interval": 5,
+		"states": {
+			"good": 90,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{capacity}%  {icon}    ",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": [" ", " ", " ", " ", " "]
+	},
+	//"network": {
+	//      "interface": "wlp2s0", // (Optional) To force the use of this interface
+	//	"interval": 10,
+	//	"format-wifi": "{essid} ({signalStrength}%)  ",
+	//	"format-ethernet": "{ifname}  ",
+	//	"format-disconnected": "Disconnected ⚠ ",
+        //	"tooltip-format": "{ipaddr}/{cidr}",
+	//	"on-click": "hyprctl dispatch exec \"[float] foot -W 80x24 nmtui\""
+	//},
+	"network": {
+		// "interface": "wlp2s0", // (Optional) To force the use of this interface
+		"interval": 10,
+		//"format-wifi": "{essid} ({signalStrength}%)  ",
+		"format-wifi": "{signalStrength}%",
+		"format-ethernet": "{ifname}  ",
+		"format-disconnected": "Disconnected ⚠ ",
+		"tooltip-format": "{ipaddr}/{cidr}",
+		"on-click": "hyprctl dispatch exec \"[float] foot -W 80x24 nmtui\""
+	},
+	"pulseaudio": {
+		"scroll-step": 1,
+		"format": "{volume}%  {icon}    ",
+		"format-bluetooth": "{volume}%  {icon}    ",
+		"format-muted": "0%       ",
+		"format-icons": {
+			"headphones": " ",
+			"handsfree": " ",
+			"headset": " ",
+			"phone": " ",
+			"portable": " ",
+			"car": " ",
+			"default": [" ", " "]
+		},
+		"on-click": "pavucontrol"
+	},
+
+	"pulseaudio#mic": {
+			"scroll-step": 0,
+			"format": "{format_source}",
+			"format-source": " ",
+			"format-source-muted": " ",
+			"on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+		},
+
+	"group/power": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "not-power",
+			"transition-left-to-right": false,
+		},
+		"modules": [
+			"custom/power", // First element is the "group leader" and won't ever be hidden
+			"custom/lock",
+			"custom/exit",
+			"custom/reboot",
+		]
+	},
+	"custom/exit": {
+		"format": " 󰗼 ",
+		"tooltip": false,
+		"on-click": "bash ~/.config/waybar/scripts/confirm.sh \"hyprctl dispatch exit\""
+	},
+	"custom/lock": {
+		"format": " 󰍁 ",
+		"tooltip": false,
+		"on-click": "hyprlock"
+	},
+	"custom/reboot": {
+		"format": " 󰜉 ",
+		"tooltip": false,
+		"on-click": "bash ~/.config/waybar/scripts/confirm.sh \"reboot\""
+	},
+	"custom/power": {
+		"format": "  ",
+		"tooltip": false,
+		"on-click": "bash ~/.config/waybar/scripts/confirm.sh \"shutdown now\""
+	},
+        "idle_inhibitor": {
+            "format": "{icon}    ",
+            "format-icons": {
+                "activated": "On  ",
+                "deactivated": "Off  "
+            }
+        }
+}

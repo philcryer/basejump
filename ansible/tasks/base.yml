@@ -6,15 +6,15 @@
   become: yes
   become_method: enable
 
-- name: Ensure base directories exists
-  ansible.builtin.file:
-    path:
-      - '/home/{{ user_id }}/bin'
-    state: directory
-    owner: '{{ user_id }}'
-    group: '{{ user_id }}'
-    mode: '0755'
-    recurse: yes
-  become: yes
-  become_method: enable
+#- name: Ensure base directories exists
+#  ansible.builtin.file:
+#    path:
+#      - '/home/{{ user_id }}/bin'
+#    state: directory
+#    owner: '{{ user_id }}'
+#    group: '{{ user_id }}'
+#    mode: '0755'
+#    recurse: yes
+#  become: yes
+#  become_method: enable
 

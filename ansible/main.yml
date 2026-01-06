@@ -1,9 +1,43 @@
 ---
 - name: Main playbook for Basejump
   hosts: all
+#  hosts: 127.0.0.1
+#  connection: local
   gather_facts: true
   vars_files:
-      - "~/.ansible/become_pass.yml"
+    - '~/.ansible/become_pass.yml'
+#    - 'group_vars/all.yml'
+
   tasks:
-    - name: Run common tasks
-      ansible.builtin.include_tasks: "tasks/base.yml"
+#    - name: Ping my hosts
+#      ansible.builtin.ping:
+
+#    - name: Print message
+#      ansible.builtin.debug:
+#        msg: Hello world
+
+#    - name: Run common tasks
+#      ansible.builtin.include_tasks: "tasks/base.yml"
+
+    - name: Install base packages
+      ansible.builtin.package:
+        name: '{{ installed_packages }}' 
+        state: present
+      become: yes
+
+
+
+#      become_method: enable
+
+#    - name: Ensure base directories exists
+#      ansible.builtin.file:
+#        path:
+#          - '/home/{{ user_id }}/bin'
+#        state: directory
+#        owner: '{{ user_id }}'
+#        group: '{{ user_id }}'
+#        mode: '0755'
+#        recurse: yes
+#      become: yes
+#      become_method: enable
+

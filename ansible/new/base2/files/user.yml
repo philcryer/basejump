@@ -1,0 +1,14 @@
+--- 
+- name: Add normal user
+  ansible.builtin.user:
+    name: '{{ user_id }}'
+    uid: 1000
+    shell: /bin/fish
+    groups: wheel,rfkill,uucp,lp,storage,sys,network,audio
+    append: yes
+    create_home: yes
+  become: yes
+
+
+# sys,network,wheel,audio,lp,storage,uucp,video,users,rfkill,
+#fhak3r:x:1000:1000:fak3r:/home/fak3r:/bin/fish

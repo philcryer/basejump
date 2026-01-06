@@ -96,7 +96,8 @@ run_ansible() {
   echo
   #ansible-galaxy install -r requirements.yml --force
   ansible-galaxy install -r requirements.yml
-  ansible-playbook main.yml -i inventory
+#  ansible-playbook main.yml -i inventory.yml --connection=local
+  ansible-playbook main.yml -i inventory.yml
 }
 
 kick_off
