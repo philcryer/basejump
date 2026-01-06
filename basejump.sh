@@ -108,6 +108,7 @@ ansible_run() {
   else
 	msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible" 
 	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
+	#ansible-playbook -vvvv main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
   fi
   msg_good "Ansible run complete"
 }

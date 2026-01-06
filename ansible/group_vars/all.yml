@@ -9,6 +9,7 @@ code_directory: ~/repos
 
 # packages
 installed_packages:
+  - gzip
   - fish
   - btop
   - curl
@@ -17,6 +18,8 @@ installed_packages:
   - unzip
   - clang
   - neovim
+  - fontconfig
+  - libdeflate-utils
 
 # users' groups
 alpine_groups:
@@ -27,6 +30,6 @@ alpine_groups:
   - netdev
 
 # starship
-starship_install_directory: $HOME/.local/bin
-starship_owner: '{{ user_id }}'
-starship_group: '{{ user_id }}'
+#starship_install_directory: $HOME/.local/bin
+#starship_owner: '{{ user_id }}'
+#starship_group: '{{ user_id }}'
