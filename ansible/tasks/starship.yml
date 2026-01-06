@@ -1,0 +1,24 @@
+---
+- name: Get starship install script from starship.rs
+  ansible.builtin.get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship_install.sh
+    mode: '0755'
+
+- name: Install starship via install script
+  ansible.builtin.shell:
+    #cmd: /tmp/starship_install.sh --yes
+    cmd: /tmp/install.sh | sh -s -- -b ~/.local/bin
+    executable: /bin/sh
+  become: yes
+
+- name: Enable starship in the fish shell
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.config/fish/config.fish"
+    line: "starship init fish | source"
+    create: yes
+
+- name: Install starship.toml
+  ansible.builtin.copy:
+    src: ../files/starship.toml
+    dest: "{{ lookup('env', 'HOME') }}/.config/starship.toml"

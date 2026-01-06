@@ -91,7 +91,11 @@
       ansible.builtin.shell: fc-cache -f -v
       changed_when: false
 
- # roles:
+    - name: Include Starship task
+      include_tasks: 
+        file: tasks/starship.yml
+
+
  #   - role: rolehippie.starship
  #     vars:
  #       #starship_install_directory: $HOME/.local/bin
