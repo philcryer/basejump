@@ -1,7 +1,0 @@
----
-roles:
-  - name: dev-sec.ssh-hardening
-
-collections:
-  - name: oneidentity.privilege_manager
-

@@ -20,6 +20,17 @@ set -e
 os=$(uname)
 distro=$(cat /etc/os-release | grep ^ID= | cut -d= -f2)
 
+logo() {
+  clear
+  echo "___.                             __"                    
+  echo "\_ |__ _____    ______ ____     |__|__ __  _____ ______ " 
+  echo " | __ \\__  \  /  ___// __ \     |  |  |  \/     \\\____ \ " 
+  echo " | \_\ \/ __ \_\___ \\  ___/     |  |  |  /  Y Y  \  |_> > "
+  echo " |___  (____  /____  >\___  >\__|  |____/|__|_|  /   __/ "
+  echo "     \/     \/     \/     \/\______|           \/|__| "
+  echo                             
+}
+
 msg_status() {
   echo -e "\x1B[01;34m[*]\x1B[0m $1"
 }
@@ -33,15 +44,7 @@ msg_notification() {
   echo -e "\x1B[01;33m[*]\x1B[0m $1"
 }
 
-kick_off() {
-  clear
-  echo " b     a     s     e     j     u     m     p"; echo
-  echo " |     |     |     |     |     |     |     |"
-  echo " v     v     v     v     v     v     v     v"; echo
-  echo " B     A     S     E     J     U     M     P"; echo
-}
-
-become_check() {
+check_become() {
   msg_notification "checking for become scheme (sudo or doas)"
   if type sudo >/dev/null 2>&1; then
     become_scheme=sudo
@@ -52,7 +55,7 @@ become_check() {
   msg_good "found $become_scheme, will use it for become scheme"
 }
 
-os_check() {
+check_os() {
   msg_notification "checking operating system"
   if [ "$distro" == "alpine" ]; then
     msg_good "$os ($distro) is supported, continuing"
@@ -91,10 +94,14 @@ ansible_install() {
   msg_good "Ansible version $(ansible --version | grep "ansible \[core" | cut -d " " -f3 | cut -d "]" -f1) installed"
 }
 
-run_ansible() {
-  msg_notification "handing off to Ansible, installing packages from Ansible Galaxy"
+ansible_galaxy() {
+  msg_notification "Running Ansible to install packages from Ansible Galaxy"
   cd ansible; ansible-galaxy install -r requirements.yml &> /dev/null
   msg_good "Ansible Galaxy packages installed"
+}
+
+ansible_run() {
+  msg_notification "Running Ansible for basejump"
   if [ ! -f "$HOME/.ansible/become-pass" ]; then
 	msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible" 
 	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K
@@ -102,12 +109,14 @@ run_ansible() {
 	msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible" 
 	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
   fi
+  msg_good "Ansible run complete"
 }
 
-kick_off
-become_check
-os_check
+logo
+check_become
+check_os
+ansible_galaxy
 ansible_install
-run_ansible
+ansible_run
 
 exit 0
