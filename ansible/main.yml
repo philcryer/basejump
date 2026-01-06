@@ -3,37 +3,49 @@
   hosts: all
   gather_facts: true
   vars_files:
-#    - '~/.ansible/become_pass.yml'
     - 'group_vars/all.yml'
 
   tasks:
-#  - name: Test
-#    debug:
-#      var: ansible_facts
-
   - name: Install base packages
     ansible.builtin.package:
       name: '{{ installed_packages }}' 
       state: latest
     become: true
 
-  - name: Create or update normal user
+  - name: 'Create or update base user {{ user_id }}'
     ansible.builtin.user:
-      name: '{{ local_username }}'
-      uid: 1000
-      shell: /bin/fish
+      name: '{{ user_id }}'
+      state: present
+      home: '/home/{{ user_id }}'
+      shell: '/usr/bin/fish'
       groups: 'wheel,audio,input,video,netdev'
       append: true
       create_home: true
     become: true
     when: ansible_facts['distribution'] == 'Alpine'
 
-  - name: Ensure base directories exists
-    ansible.builtin.file:
-      path:
-        - '/home/{{ local_username }}/bin'
-      state: directory
-      owner: '{{ local_username }}'
-      group: '{{ local_username }}'
+  - name: Install gitconfig template
+    ansible.builtin.template:
+      src: templates/gitconfig.j2
+      dest: '$HOME/.gitconfig'
+      owner: '{{ user_id }}'
+      group: '{{ user_id }}'
       mode: '0755'
-      recurse: yes
+
+  - name: Install profile configuration
+    ansible.builtin.copy:
+      src: files/profile
+      dest: '$HOME/.profile'
+      owner: '{{ user_id }}'
+      group: '{{ user_id }}'
+      mode: '0755'
+
+  - name: Install LazyVim, a neovim configuration
+    ansible.builtin.git:
+      repo: https://github.com/LazyVim/starter
+      dest: $HOME/.config/nvim
+
+  - name: Remove LazyVim git directory
+    ansible.builtin.file:
+      path: $HOME/.config/nvim/.git
+      state: absent

@@ -1,7 +1,7 @@
 all:
   hosts:
     localhost:
-      user_id: fak3r
+      user_id: luser
       ansible_conection: local
 #      ansible_become_method: sudo
 #      become: true

@@ -1,0 +1,9 @@
+#### aliases
+## neovim/nvim to replace vi/vim commands
+alias vi="nvim"
+alias vim="nvim"
+export EDITOR="nvim"
+export VISUAL="nvim"
+## docker shortcuts
+alias dflip="docker compose down; docker compose up -d; docker compose logs -f"
+alias dlogs="docker compose logs -f"

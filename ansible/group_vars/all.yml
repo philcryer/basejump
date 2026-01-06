@@ -1,9 +1,8 @@
 ---
-local_username: luser
 ssh_private_key_file: ~/.ssh/id_ed25519
 
-gitconfig_name:
-gitconfig_email:
+gitconfig_name: philcryer
+gitconfig_email: phil@philcryer.com
 
 downloads: ~/.ansible/tmp/
 
@@ -16,6 +15,7 @@ installed_packages:
   - wget 
   - ncdu
   - unzip
+  - clang
   - neovim
 
 alpine_groups:
