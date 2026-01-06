@@ -1,7 +1,7 @@
 <div align="center" border="0">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="logo.png">
-    <source media="(prefers-color-scheme: light)" srcset="logo.png">
+    <source media="(prefers-color-scheme: dark)" srcset="ansible/files/logo.png">
+    <source media="(prefers-color-scheme: light)" srcset="ansible/files/logo.png">
     <img alt="basejump logo" src="logo.png">
   </picture>
 </div>
