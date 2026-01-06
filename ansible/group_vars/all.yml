@@ -1,13 +1,13 @@
 ---
-ssh_private_key_file: ~/.ssh/id_ed25519
-
+# gitconfig
 gitconfig_name: philcryer
 gitconfig_email: phil@philcryer.com
 
+# directories
 downloads: ~/.ansible/tmp/
-
 code_directory: ~/repos
 
+# packages
 installed_packages:
   - fish
   - btop
@@ -18,9 +18,15 @@ installed_packages:
   - clang
   - neovim
 
+# users' groups
 alpine_groups:
   - wheel
   - audio
   - input
   - video
   - netdev
+
+# starship
+starship_install_directory: $HOME/.local/bin
+starship_owner: '{{ user_id }}'
+starship_group: '{{ user_id }}'

@@ -1,6 +1,7 @@
 ---
 roles:
   - name: dev-sec.ssh-hardening
+  - name: rolehippie.starship
 
 collections:
   - name: oneidentity.privilege_manager

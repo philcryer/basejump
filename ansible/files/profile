@@ -1,4 +1,7 @@
-#### aliases
+#### PATHING
+PATH=$PATH:$HOME/.local/bin
+
+#### ALIASES
 ## neovim/nvim to replace vi/vim commands
 alias vi="nvim"
 alias vim="nvim"
