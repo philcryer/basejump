@@ -5,12 +5,18 @@
     dest: /tmp/starship_install.sh
     mode: '0755'
 
+- name: Ensure $HOME/.local/bin exists
+  ansible.builtin.file:
+    path: $HOME/.local/bin
+    state: directory
+    owner: '{{ user_id }}'
+    group: '{{ user_id }}'
+    mode: '0755'
+
 - name: Install starship via install script
   ansible.builtin.shell:
-    #cmd: /tmp/starship_install.sh | sh -s -- --yes -b $HOME/.local/bin
     cmd: /tmp/starship_install.sh --yes -b $HOME/.local/bin
     executable: /bin/sh
-  #become: yes
 
 - name: Enable starship in the fish shell
   ansible.builtin.lineinfile:
@@ -22,3 +28,8 @@
   ansible.builtin.copy:
     src: ../files/starship.toml
     dest: "{{ lookup('env', 'HOME') }}/.config/starship.toml"
+
+- name: Remove starship install script
+  ansible.builtin.file:
+    path: /tmp/starship_install.sh
+    state: absent

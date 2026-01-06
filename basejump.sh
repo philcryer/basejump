@@ -9,7 +9,7 @@
 # 	* Alpine Linux (3.22.1)
 # 	* CachyOS Linux (rolling)
 # 	* Debian GNU/Linux (13 (trixie))
-#	* Fedora Linux (42)
+#	  * Fedora Linux (42)
 #
 # Source:  https://github.com/philcryer/basejump
 # Author: philcryer < phil at philcryer dot com >

@@ -1,0 +1,32 @@
+---
+- name: Check existing directory for FiraCodeNerdFont
+  ansible.builtin.stat:
+    path: '$HOME/.local/share/fonts/FiraCodeNerdFont'
+  register: font_dir
+
+- name: Ensure $HOME/.local/share/fonts exists
+  ansible.builtin.file:
+    path: '$HOME/.local/share/fonts/FiraCodeNerdFont'
+    state: directory
+    owner: '{{ user_id }}'
+    group: '{{ user_id }}'
+    mode: '0755'
+
+- name: Download and extract FiraCodeNerdFont
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip
+    dest: '$HOME/.fonts/FiraCodeNerdFont'
+    remote_src: true
+  when: not font_dir.stat.exists
+
+- name: Update font cache
+  ansible.builtin.shell: fc-cache -f -v
+  changed_when: false
+
+- name: Include LazyVim task
+  include_tasks: 
+    file: tasks/lazyvim.yml
+
+- name: Include Starship task
+  include_tasks: 
+    file: tasks/starship.yml
