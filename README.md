@@ -24,7 +24,7 @@ Basejump is a shell script that runs on a new Linux host, it will check if [Ansi
 This creates a consistent base environment in Linux, regardless of which distribution is running, currently targeting:
 
 * Alpine Linux
-* CachyOS (Arch Linux)
+* CachyOS (based on Arch Linux)
 * Debian
 * Fedora
 
@@ -38,6 +38,9 @@ __NOTICE__ if you don't have Ansible installed, basejump will do that first via 
   * wget
   * sudo -or- doas
 
+## optional
+
+* Define your BECOME password in `$HOME/.ansible/become-pass
 ## usage
 
 Checkout the code, change into the directory:

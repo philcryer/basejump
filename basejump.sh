@@ -1,14 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 #===============================================================================
-# basejump -- a bash script that installs Ansible, then uses it to automate the
-#   base setup of hosts via playbooks from the `ansible/requirements.txt` file
+# basejump: a shell script that installs Ansible, then uses it to automate the
+#   base setup of hosts via the `ansible/main.yml` playbook, supported by any
+#   playbooks from the `ansible/requirements.txt` file
 #
 # Supported Linux distros and versions tested:
-# 	* Alpine Linux - 3.22.1
-# 	* CachyOS Linux - rolling
-# 	* Debian GNU/Linux - 13 (trixie)
-#	  * Fedora Linux - 42
+# 	* Alpine Linux (3.22.1)
+# 	* CachyOS Linux (rolling)
+# 	* Debian GNU/Linux (13 (trixie))
+#	* Fedora Linux (42)
 #
 # Source:  https://github.com/philcryer/basejump
 # Author: philcryer < phil at philcryer dot com >
@@ -34,10 +35,10 @@ msg_notification() {
 
 kick_off() {
   clear
-  echo "|     |     |     |     |     |     |     |"
+  echo " b     a     s     e     j     u     m     p"; echo
   echo " |     |     |     |     |     |     |     |"
-  echo "  |     |     |     |     |     |     |     |"
-  echo "   B     A     S     E     J     U     M     P"
+  echo " v     v     v     v     v     v     v     v"; echo
+  echo " B     A     S     E     J     U     M     P"; echo
 }
 
 become_check() {
@@ -91,13 +92,16 @@ ansible_install() {
 }
 
 run_ansible() {
-  msg_status "handing off to Ansible"
-  cd ansible
-  echo
-  #ansible-galaxy install -r requirements.yml --force
-  ansible-galaxy install -r requirements.yml
-#  ansible-playbook main.yml -i inventory.yml --connection=local
-  ansible-playbook main.yml -i inventory.yml
+  msg_notification "handing off to Ansible, installing packages from Ansible Galaxy"
+  cd ansible; ansible-galaxy install -r requirements.yml &> /dev/null
+  msg_good "Ansible Galaxy packages installed"
+  if [ ! -f "$HOME/.ansible/become-pass" ]; then
+	msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible" 
+	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K
+  else
+	msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible" 
+	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
+  fi
 }
 
 kick_off

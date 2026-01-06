@@ -1,14 +1,26 @@
 ---
+local_username: luser
+ssh_private_key_file: ~/.ssh/id_ed25519
+
 gitconfig_name:
 gitconfig_email:
+
 downloads: ~/.ansible/tmp/
+
 code_directory: ~/repos
-#ansible_become_password: '{{ ansible_become_password }}'
-#ansible_become_password: '{{ become_password }}'
+
 installed_packages:
   - fish
   - btop
-  - unzip
   - curl
   - wget 
+  - ncdu
+  - unzip
   - neovim
+
+alpine_groups:
+  - wheel
+  - audio
+  - input
+  - video
+  - netdev

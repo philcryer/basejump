@@ -1,43 +1,39 @@
 ---
 - name: Main playbook for Basejump
   hosts: all
-#  hosts: 127.0.0.1
-#  connection: local
   gather_facts: true
   vars_files:
-    - '~/.ansible/become_pass.yml'
-#    - 'group_vars/all.yml'
+#    - '~/.ansible/become_pass.yml'
+    - 'group_vars/all.yml'
 
   tasks:
-#    - name: Ping my hosts
-#      ansible.builtin.ping:
+#  - name: Test
+#    debug:
+#      var: ansible_facts
 
-#    - name: Print message
-#      ansible.builtin.debug:
-#        msg: Hello world
+  - name: Install base packages
+    ansible.builtin.package:
+      name: '{{ installed_packages }}' 
+      state: latest
+    become: true
 
-#    - name: Run common tasks
-#      ansible.builtin.include_tasks: "tasks/base.yml"
+  - name: Create or update normal user
+    ansible.builtin.user:
+      name: '{{ local_username }}'
+      uid: 1000
+      shell: /bin/fish
+      groups: 'wheel,audio,input,video,netdev'
+      append: true
+      create_home: true
+    become: true
+    when: ansible_facts['distribution'] == 'Alpine'
 
-    - name: Install base packages
-      ansible.builtin.package:
-        name: '{{ installed_packages }}' 
-        state: present
-      become: yes
-
-
-
-#      become_method: enable
-
-#    - name: Ensure base directories exists
-#      ansible.builtin.file:
-#        path:
-#          - '/home/{{ user_id }}/bin'
-#        state: directory
-#        owner: '{{ user_id }}'
-#        group: '{{ user_id }}'
-#        mode: '0755'
-#        recurse: yes
-#      become: yes
-#      become_method: enable
-
+  - name: Ensure base directories exists
+    ansible.builtin.file:
+      path:
+        - '/home/{{ local_username }}/bin'
+      state: directory
+      owner: '{{ local_username }}'
+      group: '{{ local_username }}'
+      mode: '0755'
+      recurse: yes
