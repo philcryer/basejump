@@ -9,21 +9,21 @@
 #    - name: Show all facts
 #      ansible.builtin.debug:
 
-    - name: 'Install base packages, generic'
+    - name: 'Install base packages, generic across all Linuxes'
       ansible.builtin.package:
         name: '{{ packages_installed }}'
         update_cache: true
         state: present
       become: true
 
-    - name: 'Install base packages, Alpine Linux specific'
+    - name: 'Install required packages, Alpine Linux specific'
       ansible.builtin.package:
         name: '{{ packages_installed_alpine }}'
         state: present
       become: true
       when: ansible_facts['distribution'] == 'Alpine'
 
-    - name: 'Install base packages, Arch Linux specific'
+    - name: 'Install required packages, Arch Linux specific'
       ansible.builtin.package:
         name: '{{ packages_installed_archlinux }}'
         state: present
