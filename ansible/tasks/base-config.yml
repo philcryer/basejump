@@ -1,4 +1,9 @@
 ---
+- name: Check if gitconfig is present
+  ansible.builtin.stat:
+    path: '$HOME/.gitconfig'
+  register: gitconfig
+
 - name: Install gitconfig template
   ansible.builtin.template:
     src: templates/gitconfig.j2
@@ -6,20 +11,33 @@
     owner: '{{ user_id }}'
     group: '{{ user_id }}'
     mode: '0755'
+  when: not gitconfig.stat.exists
+
+- name: Check if profile is present
+  ansible.builtin.stat:
+    path: '$HOME/.profile'
+  register: profile
 
 - name: Install profile configuration
   ansible.builtin.copy:
-    src: ../files/profile
+    src: 'files/profile'
     dest: '$HOME/.profile'
     owner: '{{ user_id }}'
     group: '{{ user_id }}'
     mode: '0755'
+  when: not profile.stat.exists
+
+- name: Check if a fish alias is present
+  ansible.builtin.stat:
+    path: '$HOME/.config/fish/functions/vi.fish'
+  register: fish_functions
 
 - name: Install fish aliases
   ansible.builtin.copy:
-    src: '{{ item }}' 
+    src: '{{ item }}'
     dest: '$HOME/.config/fish/functions'
     owner: '{{ user_id }}'
     group: '{{ user_id }}'
-    mode: '0755'
+    mode: '0644'
   with_fileglob: "../files/fish_functions/*"
+  when: not fish_functions.stat.exists

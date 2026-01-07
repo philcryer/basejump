@@ -6,28 +6,46 @@
     - 'group_vars/all.yml'
 
   tasks:
-    - name: Install base packages
+#    - name: Show all facts
+#      ansible.builtin.debug:
+
+    - name: 'Install base packages, generic'
       ansible.builtin.package:
-        name: '{{ installed_packages }}'
+        name: '{{ packages_installed }}'
+        update_cache: true
         state: present
       become: true
 
+    - name: 'Install base packages, Alpine Linux specific'
+      ansible.builtin.package:
+        name: '{{ packages_installed_alpine }}'
+        state: present
+      become: true
+      when: ansible_facts['distribution'] == 'Alpine'
+
+    - name: 'Install base packages, Arch Linux specific'
+      ansible.builtin.package:
+        name: '{{ packages_installed_archlinux }}'
+        state: present
+      become: true
+      when: ansible_facts['distribution'] == 'Archlinux'
+
     - name: Include user task
-      include_tasks: 
+      ansible.builtin.include_tasks:
         file: tasks/user.yml
 
-    - name: Include user-config task
-      include_tasks: 
-        file: tasks/user-config.yml
+    - name: Include base-config task
+      ansible.builtin.include_tasks:
+        file: tasks/base-config.yml
 
     - name: Include LazyVim task
-      include_tasks: 
+      ansible.builtin.include_tasks:
         file: tasks/lazyvim.yml
 
-    - name: Include nerdfont task
-      include_tasks: 
+    - name: Include Nerd Font task
+      ansible.builtin.include_tasks:
         file: tasks/nerdfont.yml
 
     - name: Include Starship task
-      include_tasks: 
+      ansible.builtin.include_tasks:
         file: tasks/starship.yml

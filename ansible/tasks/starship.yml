@@ -1,35 +1,53 @@
 ---
-- name: Get starship install script from starship.rs
-  ansible.builtin.get_url:
-    url: https://starship.rs/install.sh
-    dest: /tmp/starship_install.sh
-    mode: '0755'
+- name: Check if Starship is installed
+  ansible.builtin.stat:
+    path: '$HOME/.local/bin/starship'
+  register: starship
 
-- name: Ensure $HOME/.local/bin exists
+- name: Ensure target directory $HOME/.local/bin exists
   ansible.builtin.file:
-    path: $HOME/.local/bin
+    path: '$HOME/.local/bin'
     state: directory
     owner: '{{ user_id }}'
     group: '{{ user_id }}'
     mode: '0755'
+  when: not starship.stat.exists
+
+- name: Get starship install script
+  ansible.builtin.get_url:
+    url: 'https://starship.rs/install.sh'
+    dest: '/tmp/starship_install.sh'
+    mode: '0755'
+  when: not starship.stat.exists
 
 - name: Install starship via install script
   ansible.builtin.shell:
-    cmd: /tmp/starship_install.sh --yes -b $HOME/.local/bin
+    cmd: '/tmp/starship_install.sh --yes -b $HOME/.local/bin'
     executable: /bin/sh
+  changed_when: starship.rc != 0
+  when: not starship.stat.exists
 
 - name: Enable starship in the fish shell
   ansible.builtin.lineinfile:
     path: "{{ lookup('env', 'HOME') }}/.config/fish/config.fish"
     line: "$HOME/.local/bin/starship init fish | source"
-    create: yes
+    owner: '{{ user_id }}'
+    group: '{{ user_id }}'
+    mode: '0755'
+    create: true
+  when: not starship.stat.exists
 
 - name: Install starship.toml configuration file
   ansible.builtin.copy:
-    src: ../files/starship.toml
+    src: files/starship.toml
     dest: "{{ lookup('env', 'HOME') }}/.config/starship.toml"
+    owner: '{{ user_id }}'
+    group: '{{ user_id }}'
+    mode: '0755'
+  when: not starship.stat.exists
 
 - name: Remove starship install script
   ansible.builtin.file:
     path: /tmp/starship_install.sh
     state: absent
+  when: not starship.stat.exists

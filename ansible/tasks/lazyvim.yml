@@ -16,3 +16,4 @@
   ansible.builtin.file:
     path: $HOME/.config/nvim/.git
     state: absent
+  when: not lazyvim.stat.exists

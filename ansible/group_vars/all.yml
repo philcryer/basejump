@@ -8,28 +8,21 @@ downloads: ~/.ansible/tmp/
 code_directory: ~/repos
 
 # packages
-installed_packages:
-  - gzip
+packages_installed:
   - fish
   - btop
   - curl
   - wget 
   - ncdu
+  - pigz
   - unzip
   - clang
   - neovim
   - fontconfig
+
+packages_installed_alpine:
+  - gzip
   - libdeflate-utils
 
-# users' groups
-alpine_groups:
-  - wheel
-  - audio
-  - input
-  - video
-  - netdev
-
-# starship
-#starship_install_directory: $HOME/.local/bin
-#starship_owner: '{{ user_id }}'
-#starship_group: '{{ user_id }}'
+packages_installed_archlinux:
+  - zlib-ng-compat

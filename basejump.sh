@@ -26,8 +26,8 @@ logo() {
   echo "\_ |__ _____    ______ ____     |__|__ __  _____ ______ " 
   echo " | __ \\__  \  /  ___// __ \     |  |  |  \/     \\\____ \ " 
   echo " | \_\ \/ __ \_\___ \\  ___/     |  |  |  /  Y Y  \  |_> > "
-  echo " |___  (____  /____  >\___  >\__|  |____/|__|_|  /   __/ [ build ]"
-  echo "     \/     \/     \/     \/\______|           \/|__|    [$(git log -1 --pretty=format:%h)]"                            
+  echo " |___  (____  /____  >\___  >\__|  |____/|__|_|  /   __/   "
+  echo "     \/     \/     \/     \/\______|           \/|__|      [ build $(git log -1 --pretty=format:%h) ]"                            
   echo
 }
 
@@ -56,7 +56,7 @@ check_become() {
 }
 
 check_os() {
-  msg_notification "checking operating system"
+  msg_notification "checking if basejump supports this operating system"
   if [ "$distro" == "alpine" ]; then
     msg_good "$os ($distro) is supported, continuing"
   elif [ "$distro" == "cachyos" ]; then
@@ -91,26 +91,26 @@ ansible_install() {
       fi
     fi
   done
-  msg_good "Ansible version $(ansible --version | grep "ansible \[core" | cut -d " " -f3 | cut -d "]" -f1) installed"
+  msg_good "Ansible version $(ansible --version | grep "ansible \[core" | cut -d " " -f3 | cut -d "]" -f1) installed on $os (${distro})"
 }
 
 ansible_galaxy() {
-  msg_notification "Running Ansible to install packages from Ansible Galaxy"
+  msg_notification "Running Ansible Galaxy to download required packages"
   cd ansible; ansible-galaxy install -r requirements.yml &> /dev/null
-  msg_good "Ansible Galaxy packages installed"
+  msg_good "Ansible Galaxy packages downloaded to ansible/roles"
 }
 
 ansible_run() {
-  msg_notification "Running Ansible for basejump"
+  msg_notification "Running Ansible to apply basejump configuration"
   if [ ! -f "$HOME/.ansible/become-pass" ]; then
 	msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible" 
 	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K
   else
 	msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible" 
-	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
+	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass --connection-password-file=$HOME/.ansible/become-pass
 	#ansible-playbook -vvvv main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
   fi
-  msg_good "Ansible run complete"
+  msg_good "Ansible basejump run completed"
 }
 
 logo
