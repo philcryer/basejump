@@ -8,7 +8,9 @@
 
 # basejump
 
-Basejump is a shell script that runs on a new Linux host, it will check if [Ansible](https://www.ansible.com) is installed, if not it will install `ansible` and `ansible-lint, and then hand it off to ansible to automate the setup of a new Linux host. Look in the [ansible directory](https://github.com/philcryer/basejump/tree/main/ansible) to see what it does to start, by default it only deals with command-line setup, focusing on things like:
+Basejump is a bash script that runs on Linux hosts that checks if [Ansible](https://www.ansible.com) is installed, if not it will install `ansible`, along with `ansible-lint`, and then run `ansible` to automate the setup and configuration of the host. Look in the [ansible directory](https://github.com/philcryer/basejump/tree/main/ansible) at `main.yml` and the files in `tasks/` to see what it does to start.
+
+Currently command-line setup and configuration, focusing on things like:
 
 * ssh
   * user configuration (~/.ssh/config`)
@@ -21,12 +23,12 @@ Basejump is a shell script that runs on a new Linux host, it will check if [Ansi
 * user profile
   * configuration (~/.profile)
 
-This creates a consistent base environment in Linux, regardless of which distribution is running, currently targeting:
+This creates a consistent base environment in Linux, regardless of the distribution. Since some current distros have an older version of `neovim` in their repositories which `lazyVim` doesn't support, basejump currently targets:
 
-* Alpine Linux
-* CachyOS (based on Arch Linux)
-* Debian
-* Fedora
+* Alpine Linux (3.23+)
+* CachyOS, based on Arch Linux (any)
+* Debian (forky/testing/14+)
+* Fedora (42+)
 
 Soon Ansible modules for setting up and configuring a desktop will be available.
 
@@ -34,13 +36,10 @@ __NOTICE__ if you don't have Ansible installed, basejump will do that first via 
 
 ## requirements
 
-* Linux, with packages:
-  * wget
+* A supported version of Linux, with packages:
+  * bash
   * sudo -or- doas
 
-## optional
-
-* Define your BECOME password in `$HOME/.ansible/become-pass
 ## usage
 
 Checkout the code, change into the directory:
@@ -50,22 +49,15 @@ git clone https://github.com/philcryer/basejump.git
 cd basejump
 ```
 
-Edit `ansible/group_vars/all.yml` and set your git username and email variables
+(optional) define your SSH and/or BECOME password in `$HOME/.ansible/become-pass`
+
+(optional) edit `ansible/group_vars/all.yml`, uncomment the GitHub related variables, and set your git username and email variables
 
 Look over what's going to be done by reading `ansible/tasks/main.yml`, then run `basejump`, which will automatically install Ansible if it's not already, and then hand it off to Ansible to do the syncing work.
 
 ```
-basejump
+./basejump
 ```
-
-Do you want to just AUTORUN this *without prompts?* I always say you shouldn't do this, it's a security risk, but look, I'm not your boss, and yolo, so why the hell not?
-
-```
-```
-sh -c "$(wget -qO- https://raw.githubusercontent.com/philcryer/basejump/refs/heads/main/basejump.sh)"
-```
-
-When it's done, close your terminal session, log back in and you should be all set. YMMV, Not responsible for lost or stolen articles, this offer not valid in Tennessee. Sorry Tennessee! 
 
 ## license 
 
