@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 #===============================================================================
 # basejump: a shell script that installs Ansible, then uses it to automate the
@@ -22,12 +22,12 @@ distro=$(cat /etc/os-release | grep ^ID= | cut -d= -f2)
 
 logo() {
   clear
-  echo "___.                             __"                    
-  echo "\_ |__ _____    ______ ____     |__|__ __  _____ ______ " 
-  echo " | __ \\__  \  /  ___// __ \     |  |  |  \/     \\\____ \ " 
+  echo "___.                             __"
+  echo "\_ |__ _____    ______ ____     |__|__ __  _____ ______ "
+  echo " | __ \\__  \  /  ___// __ \     |  |  |  \/     \\\____ \ "
   echo " | \_\ \/ __ \_\___ \\  ___/     |  |  |  /  Y Y  \  |_> > "
   echo " |___  (____  /____  >\___  >\__|  |____/|__|_|  /   __/   "
-  echo "     \/     \/     \/     \/\______|           \/|__|      [ build $(git log -1 --pretty=format:%h) ]"                            
+  echo "     \/     \/     \/     \/\______|           \/|__|    [ build $(git log -1 --pretty=format:%h) ]"
   echo
 }
 
@@ -52,18 +52,22 @@ check_become() {
   if type doas >/dev/null 2>&1; then
     become_scheme=doas
   fi
-  msg_good "found $become_scheme, will use it for become scheme"
+  msg_good "found ${become_scheme}, will use it for become scheme"
 }
 
 check_os() {
   msg_notification "checking if basejump supports this operating system"
-  if [ "$distro" == "alpine" ]; then
+  if [ "$distro" == "fedora" ]; then
+    if ! rpm -qa | grep -qw sshpass; then
+      msg_notification "${distro} needs sshpass installed, attemping via ${become_scheme}"
+      ${become_scheme} yum install -y sshpass
+    fi
+    msg_good "$os ($distro) is supported, continuing"
+  elif [ "$distro" == "alpine" ]; then
     msg_good "$os ($distro) is supported, continuing"
   elif [ "$distro" == "cachyos" ]; then
     msg_good "$os ($distro) is supported, continuing"
   elif [ "$distro" == "debian" ]; then
-    msg_good "$os ($distro) is supported, continuing"
-  elif [ "$distro" == "fedora" ]; then
     msg_good "$os ($distro) is supported, continuing"
   else
     msg_good "$os ($distro) is NOT supported. Exiting"
@@ -87,7 +91,7 @@ ansible_install() {
         $become_scheme apt install -y git curl ansible ansible-lint
       fi
       if [ "$distro" == "fedora" ]; then
-        $become_scheme yum install -y git curl ansible ansible-lint
+        $become_scheme yum install -y git curl ansible ansible-lint sshpass
       fi
     fi
   done
@@ -96,19 +100,20 @@ ansible_install() {
 
 ansible_galaxy() {
   msg_notification "Running Ansible Galaxy to download required packages"
-  cd ansible; ansible-galaxy install -r requirements.yml &> /dev/null
+  cd ansible
+  ansible-galaxy install -r requirements.yml &>/dev/null
   msg_good "Ansible Galaxy packages downloaded to ansible/roles"
 }
 
 ansible_run() {
   msg_notification "Running Ansible to apply basejump configuration"
   if [ ! -f "$HOME/.ansible/become-pass" ]; then
-	msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible" 
-	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K
+    msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible"
+    ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K
   else
-	msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible" 
-	ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass --connection-password-file=$HOME/.ansible/become-pass
-	#ansible-playbook -vvvv main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
+    msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible"
+    ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass --connection-password-file=$HOME/.ansible/become-pass
+    #ansible-playbook -vvvv main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
   fi
   msg_good "Ansible basejump run completed"
 }
