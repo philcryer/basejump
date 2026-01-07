@@ -24,7 +24,7 @@
     line: "$HOME/.local/bin/starship init fish | source"
     create: yes
 
-- name: Install starship.toml
+- name: Install starship.toml configuration file
   ansible.builtin.copy:
     src: ../files/starship.toml
     dest: "{{ lookup('env', 'HOME') }}/.config/starship.toml"

@@ -1,12 +1,12 @@
-#### PATHING
+#### VARIABLES
 export PATH="$PATH:$HOME/.local/bin"
-
-#### ALIASES
-## neovim/nvim to replace vi/vim commands
-alias vi="nvim"
-alias vim="nvim"
 export EDITOR="nvim"
 export VISUAL="nvim"
-## docker shortcuts
-alias dflip="docker compose down; docker compose up -d; docker compose logs -f"
-alias dlogs="docker compose logs -f"
+
+#### ALIASES
+# 1) create functions in .config/fish/functions via:
+# > function foo
+#     alias foo="echo bar"
+#   end
+# 2) save function
+# > funcsave foo

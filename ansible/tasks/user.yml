@@ -1,0 +1,12 @@
+---
+- name: 'Create or update base user {{ user_id }}'
+  ansible.builtin.user:
+    name: '{{ user_id }}'
+    state: present
+    home: '/home/{{ user_id }}'
+    shell: '/usr/bin/fish'
+    groups: 'wheel,audio,input,video,netdev'
+    append: true
+    create_home: true
+  become: true
+  when: ansible_facts['distribution'] == 'Alpine'
