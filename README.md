@@ -43,7 +43,7 @@ NOTE: Since some current distros have an older version of `neovim` (0.11.2 and p
 * CachyOS, based on Arch Linux (any)
 * Debian (forky/testing/14+)
 * Fedora (42+)
-<div style="text-align: center;">
+<div align="center">
 ![](imgs/logo_alpine.png) ![](imgs/logo_arch.png) ![](imgs/logo_debian.png) ![](imgs/logo_fedora.png)
 </div>
 Soon I want to add more Ansible logic for setting up and configuring a desktop environment, as my current [Hyprland](https://github.com/hyprwm/Hyprland) desktop manager's configs are very many and customized, not something I want to do over, and over, again across multiple hosts!
