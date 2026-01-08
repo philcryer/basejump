@@ -23,19 +23,21 @@ Once run, `basejump` checks for, and then installs if they'er not present: `ansi
   * This then calls the specific `tasks`
 
 * [tasks/](https://github.com/philcryer/basejump/tree/main/ansible/tasks)
-  * User task - setup base user with the same groups, while varying the list for different distros via [user.yml](https://github.com/philcryer/basejump/blob/main/ansible/tasks/user.yml) 
-  * base-config task handles the setup of user specific dotfiles and configurations
-    * gitconfig: installation and configuration via [.gitconfig](https://github.com/philcryer/basejump/blob/main/ansible/templates/gitconfig.j2) TIP - define `gitconfig_email` and `gitconfig_name` in group_vars/all.yml, then uncomment the two lines in this file to have it automatically populate  
-    * profile: including the `$PATH` in `.profile`
+  * [user.yml](https://github.com/philcryer/basejump/blob/main/ansible/tasks/user.yml) - setup the base user with the same groups and configuration, while varying details for different distros via
+  * [base-config.yml](https://github.com/philcryer/basejump/blob/main/ansible/tasks/base-config.yml) - handles the setup of user specific dotfiles and configurations:
+    * gitconfig: install configuration file [.gitconfig](https://github.com/philcryer/basejump/blob/main/ansible/templates/gitconfig.j2) TIP - define `gitconfig_email` and `gitconfig_name` in group_vars/all.yml, then uncomment the two lines in this file to have it automatically populate  
+    * profile: install `.profile` to user's home directory to define new `$PATH`
     * fish functions: define functions for the `fish` shell, mainly to use `neovim` in place of `vi`, `vim`, and even `nvim`
-  * neovim: install and configuration via `.config/nvim` using LazyVim goodness
-  * LazyVim: install and configure LazyVim for neovim to have a great base to start in
+  * [neovim.yml](https://github.com/philcryer/basejump/blob/main/ansible/tasks/neovim.yml) - install and configuration via `.config/nvim` using LazyVim goodness
+  * [lazyvim.yml](https://github.com/philcryer/basejump/blob/main/ansible/tasks/user.yml) - install and configure [LazyVim](https://www.lazyvim.org/) for neovim to have a great base to start with
   * Nerd Font: install the [Fira Code](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode) font from [Nerd Fonts](https://www.nerdfonts.com), then update the system's font cache so it's usable with Starship
   * Starship: install and configure [Starship](https://starship.rs), my favorite shell prompt
 
-This creates a consistent base environment in Linux, regardless of the distribution. Since some current distros have an older version of `neovim` in their repositories which `lazyVim` doesn't support, basejump currently targets:
+This creates a consistent base environment in Linux, regardless of the distribution. 
 
 ## what does it support?
+
+NOTE: Since some current distros have an older version of `neovim` (0.11.2 and prior) in their repositories which `lazyVim` doesn't support, basejump currently targets:
 
 * Alpine Linux (3.23+)
 * CachyOS, based on Arch Linux (any)
