@@ -56,9 +56,9 @@ NOTE: Since some current distros have an older version of `neovim` (0.11.2 and p
     <img alt="basejump logo" src="imgs/imgs/logo_arch.png">
   </picture>
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_debian.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_debian.png)">
-    <img alt="basejump logo" src="imgs/logo_debian.png)">
+    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_debian.svg">
+    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_debian.svg)">
+    <img alt="basejump logo" src="imgs/logo_debian.svg)">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_fedora.png">
