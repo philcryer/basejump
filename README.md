@@ -51,9 +51,9 @@ NOTE: Since some current distros have an older version of `neovim` (0.11.2 and p
     <img alt="Alpine Linux logo" src="imgs/logo_alpine.png">
   </picture>
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/imgs/logo_arch.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/imgs/logo_arch.png">
-    <img alt="Arch Linux logo" src="imgs/imgs/logo_arch.png">
+    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_arch.png">
+    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_arch.png">
+    <img alt="Arch Linux logo" src="imgs/logo_arch.png">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_debian.png">
