@@ -43,9 +43,30 @@ NOTE: Since some current distros have an older version of `neovim` (0.11.2 and p
 * CachyOS, based on Arch Linux (any)
 * Debian (forky/testing/14+)
 * Fedora (42+)
-<div align="center">
-![](imgs/logo_alpine.png) ![](imgs/logo_arch.png) ![](imgs/logo_debian.png) ![](imgs/logo_fedora.png)
+
+<div align="center" border="0">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_alpine.png">
+    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_alpine.png">
+    <img alt="basejump logo" src="imgs/logo_alpine.png">
+  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="imgs/imgs/logo_arch.png">
+    <source media="(prefers-color-scheme: light)" srcset="imgs/imgs/logo_arch.png">
+    <img alt="basejump logo" src="imgs/imgs/logo_arch.png">
+  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_debian.png">
+    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_debian.png)">
+    <img alt="basejump logo" src="imgs/logo_debian.png)">
+  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_fedora.png">
+    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_fedora.png">
+    <img alt="basejump logo" src="imgs/logo_fedora.png">
+  </picture>
 </div>
+
 Soon I want to add more Ansible logic for setting up and configuring a desktop environment, as my current [Hyprland](https://github.com/hyprwm/Hyprland) desktop manager's configs are very many and customized, not something I want to do over, and over, again across multiple hosts!
 
 ## requirements
