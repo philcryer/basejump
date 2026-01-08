@@ -48,22 +48,22 @@ NOTE: Since some current distros have an older version of `neovim` (0.11.2 and p
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_alpine.png">
     <source media="(prefers-color-scheme: light)" srcset="imgs/logo_alpine.png">
-    <img alt="basejump logo" src="imgs/logo_alpine.png">
+    <img alt="Alpine Linux logo" src="imgs/logo_alpine.png">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="imgs/imgs/logo_arch.png">
     <source media="(prefers-color-scheme: light)" srcset="imgs/imgs/logo_arch.png">
-    <img alt="basejump logo" src="imgs/imgs/logo_arch.png">
+    <img alt="Arch Linux logo" src="imgs/imgs/logo_arch.png">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_debian.png">
     <source media="(prefers-color-scheme: light)" srcset="imgs/logo_debian.png">
-    <img alt="basejump logo" src="imgs/logo_debian.png">
+    <img alt="GNU/Debian Linux logo" src="imgs/logo_debian.png">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_fedora.png">
     <source media="(prefers-color-scheme: light)" srcset="imgs/logo_fedora.png">
-    <img alt="basejump logo" src="imgs/logo_fedora.png">
+    <img alt="Fedora Linux logo" src="imgs/logo_fedora.png">
   </picture>
 </div>
 
