@@ -1,0 +1,14 @@
+---
+- name: Check if Neovim is configured
+  ansible.builtin.stat:
+    path: $HOME/.config/nvim/init.lua
+  register: neovim
+
+- name: Copy in Neovim configurations if not present
+  ansible.builtin.copy:
+    src: 'files/nvim'
+    dest: '$HOME/.config'
+    owner: '{{ user_id }}'
+    group: '{{ user_id }}'
+    mode: '0755'
+  when: not neovim.stat.exists

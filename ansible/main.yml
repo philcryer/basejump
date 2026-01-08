@@ -30,6 +30,20 @@
       become: true
       when: ansible_facts['distribution'] == 'Archlinux'
 
+    - name: 'Install required packages, GNU/Debian Linux specific'
+      ansible.builtin.package:
+        name: '{{ packages_installed_debian }}'
+        state: present
+      become: true
+      when: ansible_facts['distribution'] == 'Debian'
+
+    - name: 'Install required packages, Fedora Linux specific'
+      ansible.builtin.package:
+        name: '{{ packages_installed_fedora }}'
+        state: present
+      become: true
+      when: ansible_facts['distribution'] == 'Fedora'
+
     - name: Include user task
       ansible.builtin.include_tasks:
         file: tasks/user.yml
@@ -37,6 +51,10 @@
     - name: Include base-config task
       ansible.builtin.include_tasks:
         file: tasks/base-config.yml
+
+    - name: Include Neovim task
+      ansible.builtin.include_tasks:
+        file: tasks/neovim.yml
 
     - name: Include LazyVim task
       ansible.builtin.include_tasks:

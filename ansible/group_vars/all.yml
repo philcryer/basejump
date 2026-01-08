@@ -1,7 +1,7 @@
 ---
 # gitconfig
-gitconfig_name: philcryer
-gitconfig_email: phil@philcryer.com
+# gitconfig_name: YOUR_USERNAME
+# gitconfig_email: YOUR@EMAIL_ADDRESS
 
 # directories
 downloads: ~/.ansible/tmp/
@@ -26,3 +26,7 @@ packages_installed_alpine:
 
 packages_installed_archlinux:
   - zlib-ng-compat
+
+packages_installed_debian:
+
+packages_installed_fedora:

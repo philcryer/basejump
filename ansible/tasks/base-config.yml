@@ -39,5 +39,5 @@
     owner: '{{ user_id }}'
     group: '{{ user_id }}'
     mode: '0644'
-  with_fileglob: "../files/fish_functions/*"
+  with_fileglob: "../files/fish/functions/*"
   when: not fish_functions.stat.exists
