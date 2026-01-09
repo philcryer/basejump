@@ -8,18 +8,18 @@ downloads: ~/.ansible/tmp/
 code_directory: ~/repos
 
 #### packages - Generic
-packages_installed:
-  - fish
-  - btop
-  - curl
-  - wget
-  - ncdu
-  - pigz
-  - unzip
-  - clang
-  - neovim
-  - starship
-  - fontconfig
+#packages_installed:
+#  - fish
+#  - btop
+#  - curl
+#  - wget
+#  - ncdu
+#  - pigz
+#  - unzip
+#  - clang
+#  - neovim
+#  - starship
+#  - fontconfig
 
 #### packages - Alpine Linux
 packages_installed_alpine:

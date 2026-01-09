@@ -3,7 +3,8 @@
   hosts: all
   gather_facts: true
   vars_files:
-    - 'group_vars/all.yml'
+    - 'vars/main.yml'
+    - 'vars/packages.yml'
 
   tasks:
 #    - name: Show all facts

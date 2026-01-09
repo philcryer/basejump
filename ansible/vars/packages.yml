@@ -1,0 +1,16 @@
+---
+#### packages - Linux Generic
+packages_installed:
+  - fish
+  - btop
+  - curl
+  - wget
+  - ncdu
+  - tree
+  - pigz
+  - unzip
+  - clang
+  - neovim
+  - starship
+  - fontconfig
+
