@@ -37,12 +37,12 @@ This creates a consistent base environment in Linux, regardless of the distribut
 
 ## what does it support?
 
-NOTE: Since some current distros have an older version of `neovim` (0.11.2 and prior) in their repositories which `lazyVim` doesn't support, basejump currently targets:
-
 * Alpine Linux (3.23+)
 * CachyOS, based on Arch Linux (any)
 * Debian (forky/testing/14+)
 * Fedora (42+)
+
+[!NOTE] some current distros have an older version of `neovim` (0.11.2 and prior) in their repositories which `lazyVim` doesn't support, basejump currently targets:
 
 <div align="center" border="0">
   <picture>
