@@ -42,8 +42,6 @@ This creates a consistent base environment in Linux, regardless of the distribut
 * Debian (forky/testing/14+)
 * Fedora (42+)
 
-[!NOTE] some current distros have an older version of `neovim` (0.11.2 and prior) in their repositories which `lazyVim` doesn't support, basejump currently targets:
-
 <div align="center" border="0">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_alpine.png">
@@ -66,6 +64,9 @@ This creates a consistent base environment in Linux, regardless of the distribut
     <img alt="Fedora Linux logo" src="imgs/logo_fedora.png">
   </picture>
 </div>
+
+> [!NOTE]
+> some current distros have an older version of `neovim` (0.11.2 and prior) in their repositories which `lazyVim` doesn't support, basejump currently targets:
 
 Soon I want to add more Ansible logic for setting up and configuring a desktop environment, as my current [Hyprland](https://github.com/hyprwm/Hyprland) desktop manager's configs are very many and customized, not something I want to do over, and over, again across multiple hosts!
 
