@@ -86,12 +86,12 @@ cd basejump
 ```
 
 > [!TIP]
-> define your SSH and/or BECOME password in `$HOME/.ansible/become-pass`
+> define your SSH and/or BECOME password in `$HOME/.ansible/become-pass`, otherwise you will be prompted for those when Ansible needs them during the run
 
-> [!NOTE]
-> to setup your GitHub username and email in `.gitconfig`, edit `ansible/group_vars/all.yml`, uncomment the GitHub related variables, and set your git username and email variables
+> [!TIP]
+> to include your GitHub username and email in `.gitconfig`, edit `ansible/group_vars/all.yml`, uncomment and define the variables: `gitconfig_name` and `gitconfig_name`
 
-Look over what's going to be done by reading `ansible/tasks/main.yml`, then run `basejump`, which will automatically install Ansible if it's not already, and then hand it off to Ansible to do the syncing work.
+Look over what's going to be done by reading `ansible/main.yml`, then run `basejump`, which will automatically install Ansible if it's not already, and then hand it off to Ansible to do the syncing work
 
 ```shell
 ./basejump
