@@ -11,6 +11,8 @@ packages_installed:
   - unzip
   - clang
   - neovim
+  - clipman
+  - luarocks
   - starship
   - fontconfig
 
