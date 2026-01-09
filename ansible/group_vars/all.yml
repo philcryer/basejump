@@ -1,32 +1,38 @@
 ---
-# gitconfig
+#### gitconfig
 # gitconfig_name: YOUR_USERNAME
 # gitconfig_email: YOUR@EMAIL_ADDRESS
 
-# directories
+#### directories
 downloads: ~/.ansible/tmp/
 code_directory: ~/repos
 
-# packages
+#### packages - Generic
 packages_installed:
   - fish
   - btop
   - curl
-  - wget 
+  - wget
   - ncdu
   - pigz
   - unzip
   - clang
   - neovim
+  - starship
   - fontconfig
 
+#### packages - Alpine Linux
 packages_installed_alpine:
   - gzip
   - libdeflate-utils
 
+#### packages - Arch Linux
 packages_installed_archlinux:
   - zlib-ng-compat
 
+#### packages - GNU/Debian Linux
 packages_installed_debian:
 
+#### packages - Fedora
 packages_installed_fedora:
+
