@@ -1,8 +1,8 @@
 <div align="center" border="0">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/logo.png">
-    <img alt="basejump logo" src="imgs/logo.png">
+    <source media="(prefers-color-scheme: dark)" srcset="img/logo.png">
+    <source media="(prefers-color-scheme: light)" srcset="img/logo.png">
+    <img alt="basejump logo" src="img/logo.png">
   </picture>
 </div>
 
@@ -44,24 +44,24 @@ This creates a consistent base environment in Linux, regardless of the distribut
 
 <div align="center" border="0">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_alpine.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_alpine.png">
-    <img alt="Alpine Linux logo" src="imgs/logo_alpine.png">
+    <source media="(prefers-color-scheme: dark)" srcset="img/logo_alpine.png">
+    <source media="(prefers-color-scheme: light)" srcset="img/logo_alpine.png">
+    <img alt="Alpine Linux logo" src="img/logo_alpine.png">
   </picture>
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_arch.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_arch.png">
-    <img alt="Arch Linux logo" src="imgs/logo_arch.png">
+    <source media="(prefers-color-scheme: dark)" srcset="img/logo_arch.png">
+    <source media="(prefers-color-scheme: light)" srcset="img/logo_arch.png">
+    <img alt="Arch Linux logo" src="img/logo_arch.png">
   </picture>
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_debian.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_debian.png">
-    <img alt="GNU/Debian Linux logo" src="imgs/logo_debian.png">
+    <source media="(prefers-color-scheme: dark)" srcset="img/logo_debian.png">
+    <source media="(prefers-color-scheme: light)" srcset="img/logo_debian.png">
+    <img alt="GNU/Debian Linux logo" src="img/logo_debian.png">
   </picture>
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo_fedora.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/logo_fedora.png">
-    <img alt="Fedora Linux logo" src="imgs/logo_fedora.png">
+    <source media="(prefers-color-scheme: dark)" srcset="img/logo_fedora.png">
+    <source media="(prefers-color-scheme: light)" srcset="img/logo_fedora.png">
+    <img alt="Fedora Linux logo" src="img/logo_fedora.png">
   </picture>
 </div>
 
@@ -103,9 +103,9 @@ Check out the action! See the useless ascii art header! See how I've evolved ove
 
 <div align="center" border="0">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="imgs/screenshot.png">
-    <source media="(prefers-color-scheme: light)" srcset="imgs/screenshot.png">
-    <img alt="basejump script" src="imgs/screenshot.png">
+    <source media="(prefers-color-scheme: dark)" srcset="img/screenshot.png">
+    <source media="(prefers-color-scheme: light)" srcset="img/screenshot.png">
+    <img alt="basejump script" src="img/screenshot.png">
   </picture>
 </div>
 

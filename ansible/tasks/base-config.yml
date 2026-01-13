@@ -12,14 +12,23 @@
     path: "$HOME/.gitconfig"
   register: gitconfig
 
-- name: Install .gitconfig template
+- name: Install .gitconfig template when github name and email are defined
   ansible.builtin.template:
     src: templates/gitconfig.j2
     dest: "$HOME/.gitconfig"
     owner: "{{ user_id }}"
     group: "{{ user_id }}"
     mode: "0755"
-  when: not gitconfig.stat.exists
+  when: not gitconfig.stat.exists and github_email is defined and github_name is defined
+
+- name: Install .gitconfig file when github name and email are not defined
+  ansible.builtin.copy:
+    src: files/gitconfig
+    dest: "$HOME/.gitconfig"
+    owner: "{{ user_id }}"
+    group: "{{ user_id }}"
+    mode: "0755"
+  when: not gitconfig.stat.exists and github_email is undefined and github_name is undefined
 
 - name: Check if .profile is present
   ansible.builtin.stat:
@@ -35,17 +44,3 @@
     mode: "0755"
   when: not profile.stat.exists
 
-- name: Check if a fish alias is present
-  ansible.builtin.stat:
-    path: "$HOME/.config/fish/functions/vi.fish"
-  register: fish_functions
-
-- name: Install fish aliases
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "$HOME/.config/fish/functions"
-    owner: "{{ user_id }}"
-    group: "{{ user_id }}"
-    mode: "0644"
-  with_fileglob: "../files/fish/functions/*"
-  when: not fish_functions.stat.exists
