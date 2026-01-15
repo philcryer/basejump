@@ -14,5 +14,6 @@ packages_installed:
   - clipman
   - luarocks
   - starship
+  - xarchiver
   - fontconfig
 

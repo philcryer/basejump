@@ -121,8 +121,8 @@ ansible_run() {
 logo
 check_become
 check_os
-ansible_galaxy
 ansible_install
+ansible_galaxy
 ansible_run
 
 exit 0
