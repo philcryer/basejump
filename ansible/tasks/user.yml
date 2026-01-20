@@ -1,5 +1,5 @@
 ---
-- name: 'Create or update base user {{ user_id }}'
+- name: 'Create or update base user {{ user_id }} in Alpine'
   ansible.builtin.user:
     name: '{{ user_id }}'
     state: present
@@ -11,7 +11,7 @@
   become: true
   when: ansible_facts['distribution'] == 'Alpine'
 
-- name: 'Create or update base user {{ user_id }}'
+- name: 'Create or update base user {{ user_id }} in Arch'
   ansible.builtin.user:
     name: '{{ user_id }}'
     state: present
@@ -22,3 +22,15 @@
     create_home: true
   become: true
   when: ansible_facts['distribution'] == 'Archlinux'
+
+- name: 'Create or update base user {{ user_id }} in Debian'
+  ansible.builtin.user:
+    name: '{{ user_id }}'
+    state: present
+    home: '/home/{{ user_id }}'
+    shell: '/usr/bin/fish'
+    groups: 'adm,sys,tty,disk,uucp,dialout,sudo,audio,video,render'
+    append: true
+    create_home: true
+  become: true
+  when: ansible_facts['distribution'] == 'Debian'

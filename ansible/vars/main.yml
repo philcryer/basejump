@@ -24,6 +24,7 @@ code_directory: ~/repos
 #### packages - Alpine Linux
 packages_installed_alpine:
   - gzip
+  - tzdata
   - libdeflate-utils
 
 #### packages - Arch Linux
