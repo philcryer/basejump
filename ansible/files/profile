@@ -1,9 +1,14 @@
 #### VARIABLES
+export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
 #### ALIASES
+alias vi="nvim"
+alias vim="nvim"
+
+#### ALIASES (FISH)
 # 1) create functions in .config/fish/functions via:
 # > function foo
 #     alias foo="echo bar"
