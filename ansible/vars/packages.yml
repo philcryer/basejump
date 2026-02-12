@@ -11,6 +11,7 @@ packages_installed:
   - unzip
   - clang
   - neovim
+  - shadow
   - clipman
   - luarocks
   - starship

@@ -110,9 +110,12 @@ ansible_run() {
   if [ ! -f "$HOME/.ansible/become-pass" ]; then
     msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible"
     ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K
+    # debug output
+    #ansible-playbook -vvv main.yml -i inventory.yml --become-method=$become_scheme -K
   else
     msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible"
     ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass --connection-password-file=$HOME/.ansible/become-pass
+    # debug output
     #ansible-playbook -vvvv main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
   fi
   msg_good "Ansible basejump run completed"
