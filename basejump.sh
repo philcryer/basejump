@@ -23,10 +23,10 @@ distro=$(cat /etc/os-release | grep ^ID= | cut -d= -f2)
 logo() {
   clear
   echo "___.                             __"
-  echo "\_ |__ _____    ______ ____     |__|__ __  _____ ______ "
+  echo "\_ |__ ____    ______ ____      |__|__ __  _____ ______ "
   echo " | __ \\__  \  /  ___// __ \     |  |  |  \/     \\\____ \ "
-  echo " | \_\ \/ __ \_\___ \\  ___/     |  |  |  /  Y Y  \  |_> > "
-  echo " |___  (____  /____  >\___  >\__|  |____/|__|_|  /   __/   "
+  echo " | \_\ \/__ \_\___ \\   ___/     |  |  |  /  Y Y  \  |_> > "
+  echo " |___  (____ /____ > \___ >  ___|  |____/|__|_|  /   __/   "
   echo "     \/     \/     \/     \/\______|           \/|__|    [ build $(git log -1 --pretty=format:%h) ]"
   echo
 }
@@ -48,6 +48,8 @@ check_become() {
   msg_notification "checking for become scheme (sudo or doas)"
   if type sudo >/dev/null 2>&1; then
     become_scheme=sudo
+  elif [ "$distro" == "ubuntu" ]; then
+    become_scheme=sudo.ws
   fi
   if type doas >/dev/null 2>&1; then
     become_scheme=doas
@@ -67,7 +69,7 @@ check_os() {
     msg_good "$os ($distro) is supported, continuing"
   elif [ "$distro" == "cachyos" ]; then
     msg_good "$os ($distro) is supported, continuing"
-  elif [ "$distro" == "debian" ]; then
+  elif [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ]; then
     msg_good "$os ($distro) is supported, continuing"
   else
     msg_good "$os ($distro) is NOT supported. Exiting"
@@ -87,7 +89,8 @@ ansible_install() {
       if [ "$distro" == "cachyos" ]; then
         $become_scheme pacman -Sy --noconfirm git curl ansible ansible-lint
       fi
-      if [ "$distro" == "debian" ]; then
+      #if [ "$distro" == "debian" ]; then
+      if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ]; then
         $become_scheme apt install -y git curl ansible ansible-lint
       fi
       if [ "$distro" == "fedora" ]; then
@@ -107,6 +110,11 @@ ansible_galaxy() {
 
 ansible_run() {
   msg_notification "Running Ansible to apply basejump configuration"
+  if [ "$distro" == "ubuntu" ]; then
+	  # workaround for sudo on Ubuntu 25.x (https://github.com/ansible/ansible/issues/85837)
+    	msg_notification "using sudo.ws for $distro"
+	export ANSIBLE_BECOME_EXE=sudo.ws
+  fi
   if [ ! -f "$HOME/.ansible/become-pass" ]; then
     msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible"
     ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K

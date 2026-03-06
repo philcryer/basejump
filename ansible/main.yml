@@ -38,6 +38,13 @@
       become: true
       when: ansible_facts['distribution'] == 'Debian'
 
+    - name: 'Install required packages, Ubuntu Linux specific'
+      ansible.builtin.package:
+        name: '{{ packages_installed_ubuntu }}'
+        state: present
+      become: true
+      when: ansible_facts['distribution'] == 'Ubuntu'
+
     - name: 'Install required packages, Fedora Linux specific'
       ansible.builtin.package:
         name: '{{ packages_installed_fedora }}'

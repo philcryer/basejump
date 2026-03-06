@@ -26,14 +26,21 @@ packages_installed_alpine:
   - gzip
   - tzdata
   - libdeflate-utils
+  - shadow
 
 #### packages - Arch Linux
 packages_installed_archlinux:
   - zlib-ng-compat
+  - shadow
 
 #### packages - GNU/Debian Linux
 packages_installed_debian:
+  - shadow
+
+#### packages - Ubuntu
+packages_installed_ubuntu:
 
 #### packages - Fedora
 packages_installed_fedora:
+  - shadow
 
