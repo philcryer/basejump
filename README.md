@@ -19,6 +19,7 @@ Once run, `basejump` checks for, and then installs if they'er not present: `ansi
   * Install base packages, specifically for Alpine Linux ([see packages_installed_alpine](https://github.com/philcryer/basejump/blob/main/ansible/group_vars/all.yml)) 
   * Install base packages, specifically for Arch Linux ([see packages_installed_arch](https://github.com/philcryer/basejump/blob/main/ansible/group_vars/all.yml)) 
   * Install base packages, specifically for GNU/Debian Linux ([see packages_installed_debian](https://github.com/philcryer/basejump/blob/main/ansible/group_vars/all.yml)) 
+  * Install base packages, specifically for Ubuntu Linux ([see packages_installed_ubuntu](https://github.com/philcryer/basejump/blob/main/ansible/group_vars/all.yml)) 
   * Install base packages, specifically for Fedora Linux ([see packages_installed_fedora](https://github.com/philcryer/basejump/blob/main/ansible/group_vars/all.yml)) 
   * This then calls the specific `tasks`
 
@@ -40,6 +41,7 @@ This creates a consistent base environment in Linux, regardless of the distribut
 * Alpine Linux (3.23+)
 * CachyOS, based on Arch Linux (any)
 * Debian (forky/testing/14+)
+* Ubuntu (25.10+)
 * Fedora (42+)
 
 <div align="center" border="0">
