@@ -25,13 +25,24 @@ code_directory: ~/repos
 packages_installed_alpine:
   - gzip
   - tzdata
-  - libdeflate-utils
   - shadow
+  - ripgrep
+  - libdeflate-utils
+  - nvim-treesitter
+
+  ## FIXME see if these packages are native in deb, arch, fedora and add to packages.yml
+  - ast-grep
+  - ast-grep-fish-completion
+  - luarocks 
+  - lazygit
+  - fzf
+  - fd
+  - lua-language-server
 
 #### packages - Arch Linux
 packages_installed_archlinux:
-  - zlib-ng-compat
   - shadow
+  - zlib-ng-compat
 
 #### packages - GNU/Debian Linux
 packages_installed_debian:

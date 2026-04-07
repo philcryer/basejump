@@ -1,0 +1,10 @@
+---
+- name: Enable profile in the fish shell
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.config/fish/config.fish"
+    line: "source ~/.profile"
+    owner: "{{ user_id }}"
+    group: "{{ user_id }}"
+    mode: "0755"
+    create: true
+

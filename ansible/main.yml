@@ -72,6 +72,10 @@
       ansible.builtin.include_tasks:
         file: tasks/nerdfont.yml
 
+    - name: Include Fish config task
+      ansible.builtin.include_tasks:
+        file: tasks/fish_config.yml
+
     - name: Include Starship task
       ansible.builtin.include_tasks:
         file: tasks/starship.yml
