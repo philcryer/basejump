@@ -16,4 +16,5 @@ packages_installed:
   - starship
   - xarchiver
   - fontconfig
+  - tree-sitter-cli
 

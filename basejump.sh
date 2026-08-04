@@ -103,25 +103,26 @@ ansible_install() {
 
 ansible_galaxy() {
   msg_notification "Running Ansible Galaxy to download required packages"
-  cd ansible
-  ansible-galaxy install -r requirements.yml &>/dev/null
+  ansible-galaxy install -r ansible/requirements.yml
   msg_good "Ansible Galaxy packages downloaded to ansible/roles"
 }
 
 ansible_run() {
   msg_notification "Running Ansible to apply basejump configuration"
   if [ "$distro" == "ubuntu" ]; then
-	  # workaround for sudo on Ubuntu 25.x (https://github.com/ansible/ansible/issues/85837)
-    	msg_notification "using sudo.ws for $distro"
-	export ANSIBLE_BECOME_EXE=sudo.ws
+    # workaround for sudo on Ubuntu 25.x (https://github.com/ansible/ansible/issues/85837)
+    msg_notification "using sudo.ws for $distro"
+    export ANSIBLE_BECOME_EXE=sudo.ws
   fi
   if [ ! -f "$HOME/.ansible/become-pass" ]; then
     msg_notification "$HOME/.ansible/become-pass NOT FOUND, prompting for password to run Ansible"
+    cd ansible
     ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme -K
     # debug output
     #ansible-playbook -vvv main.yml -i inventory.yml --become-method=$become_scheme -K
   else
     msg_good "$HOME/.ansible/become-pass FOUND, using it to run Ansible"
+    cd ansible
     ansible-playbook main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass --connection-password-file=$HOME/.ansible/become-pass
     # debug output
     #ansible-playbook -vvvv main.yml -i inventory.yml --become-method=$become_scheme --become-password-file=$HOME/.ansible/become-pass
