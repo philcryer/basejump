@@ -51,9 +51,9 @@ This creates a consistent base environment in Linux, regardless of the distribut
     <img alt="Alpine Linux logo" src="img/logo_alpine.png">
   </picture>
     <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="img/logo_arch.png">
-    <source media="(prefers-color-scheme: light)" srcset="img/logo_arch.png">
-    <img alt="Arch Linux logo" src="img/logo_arch.png">
+    <source media="(prefers-color-scheme: dark)" srcset="img/logo_cachyos.png">
+    <source media="(prefers-color-scheme: light)" srcset="img/logo_cachyos.png">
+    <img alt="Arch Linux logo" src="img/logo_cachyos.png">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="img/logo_debian.png">
