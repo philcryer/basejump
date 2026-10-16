@@ -40,8 +40,8 @@ This creates a consistent base environment in Linux, regardless of the distribut
 
 * Alpine Linux (3.23+)
 * CachyOS, based on Arch Linux (any)
-* Debian (forky/testing/14+)
-* Ubuntu (25.10+)
+* Debian GNU/Linux (14+)
+* Ubuntu, based on Debian (25.10+)
 * Fedora (42+)
 
 <div align="center" border="0">
@@ -53,7 +53,7 @@ This creates a consistent base environment in Linux, regardless of the distribut
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="img/logo_cachyos.png">
     <source media="(prefers-color-scheme: light)" srcset="img/logo_cachyos.png">
-    <img alt="Arch Linux logo" src="img/logo_cachyos.png">
+    <img alt="CachyOS Linux logo" src="img/logo_cachyos.png">
   </picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="img/logo_debian.png">
