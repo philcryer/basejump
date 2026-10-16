@@ -60,6 +60,11 @@ This creates a consistent base environment in Linux, regardless of the distribut
     <source media="(prefers-color-scheme: light)" srcset="img/logo_debian.png">
     <img alt="GNU/Debian Linux logo" src="img/logo_debian.png">
   </picture>
+  <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="img/logo_ubuntu.png">
+  <source media="(prefers-color-scheme: light)" srcset="img/logo_ubuntu.png">
+  <img alt="Ubuntu Linux logo" src="img/logo_ubuntu.png">
+</picture>
     <picture>
     <source media="(prefers-color-scheme: dark)" srcset="img/logo_fedora.png">
     <source media="(prefers-color-scheme: light)" srcset="img/logo_fedora.png">
