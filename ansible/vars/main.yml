@@ -43,6 +43,9 @@ packages_installed_alpine:
 packages_installed_archlinux:
   - shadow
   - zlib-ng-compat
+  - floorp-bin
+  - signal-desktop
+  - zed
 
 #### packages - GNU/Debian Linux
 packages_installed_debian:

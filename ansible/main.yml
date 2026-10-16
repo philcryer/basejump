@@ -10,7 +10,7 @@
 #    - name: Show all facts
 #      ansible.builtin.debug:
 
-    - name: 'Install base packages, generic across all Linuxes'
+    - name: 'Install base packages, generic across all Linux distros'
       ansible.builtin.package:
         name: '{{ packages_installed }}'
         update_cache: true
@@ -72,10 +72,10 @@
       ansible.builtin.include_tasks:
         file: tasks/nerdfont.yml
 
-    - name: Include Fish config task
-      ansible.builtin.include_tasks:
-        file: tasks/fish_config.yml
+#    - name: Include Fish config task
+#      ansible.builtin.include_tasks:
+#        file: tasks/fish_config.yml
 
-    - name: Include Starship task
-      ansible.builtin.include_tasks:
-        file: tasks/starship.yml
+#    - name: Include Starship task
+#      ansible.builtin.include_tasks:
+#        file: tasks/starship.yml
