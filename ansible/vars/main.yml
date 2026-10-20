@@ -46,6 +46,10 @@ packages_installed_archlinux:
   - floorp-bin
   - signal-desktop
   - zed
+  - yay
+  - transmission-gtk
+  - popsicle
+  - libreoffice-fresh
 
 #### packages - GNU/Debian Linux
 packages_installed_debian:
